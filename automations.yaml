@@ -103,7 +103,7 @@
   - entity_id: sensor.motion_1
     from: standby
     platform: state
-    to: 'motion detected'
+    to: motion detected
 - action:
   - alias: LED OFF
     data:
@@ -117,8 +117,26 @@
   id: '1504962290689'
   trigger:
   - entity_id: sensor.motion_1
-    from: 'motion detected'
+    from: motion detected
     platform: state
     to: standby
     for:
-      seconds: 5
+      hours: 0
+      minutes: 0
+      seconds: 2
+- action:
+  - alias: LIGHTSON
+    data:
+      entity_id:
+      - group.all_lights
+    service: homeassistant.turn_on
+  alias: LUX < 60 LIGHT ON
+  condition:
+  - condition: state
+    entity_id: group.all_lights
+    state: 'off'
+  id: '1504968184222'
+  trigger:
+  - below: '60'
+    entity_id: sensor.lumsens_1
+    platform: numeric_state
