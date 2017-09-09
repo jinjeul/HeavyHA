@@ -1,0 +1,124 @@
+- alias: Si Sunset Alors Lights ON
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -01:30:00
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.lumieres_salon
+- alias: Si CAST PLEX Alors Light 10
+  trigger:
+    platform: state
+    entity_id: sensor.chromecast_state
+    to: playing
+  condition:
+  - condition: state
+    entity_id: media_player.denon_salon
+    state: 'on'
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: Plex
+  action:
+    service: scene.turn_on
+    entity_id: scene.plexon
+- alias: Si FIN PLEX Alors Light 100
+  trigger:
+    platform: state
+    entity_id: sensor.chromecast_state
+    to: idle
+  condition:
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: Plex
+  action:
+    service: scene.turn_on
+    entity_id: scene.plexoff
+- alias: Si PAUSE PLEX Alors Light 100
+  trigger:
+    platform: state
+    entity_id: sensor.chromecast_state
+    to: paused
+  condition:
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: Plex
+  action:
+    service: scene.turn_on
+    entity_id: scene.plexoff
+- alias: Si EXIT PLEX Alors Light 100
+  trigger:
+    platform: state
+    entity_id: sensor.chromecast_state
+    to: 'off'
+  condition:
+  - condition: template
+    value_template: '{{ states.light.salon.attributes.brightness == "42" }}'
+  action:
+    service: scene.turn_on
+    entity_id: scene.plexoff
+- id: PlexPlaying
+  alias: Plex Playing
+  trigger:
+  - platform: state
+    entity_id: media_player.jungleplex
+    to: playing
+  action:
+  - service: homeassistant.turn_off
+    entity_id: light.cuisine
+- id: PlexPaused
+  alias: Plex Paused
+  trigger:
+  - platform: state
+    entity_id: media_player.jungleplex
+    to: paused
+    for:
+      seconds: 5
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.cuisine
+- id: PlexStopped
+  alias: Plex Stopped
+  trigger:
+  - platform: state
+    entity_id: media_player.jungleplex
+    to: idle
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.cuisine
+- action:
+  - alias: LED ON
+    data:
+      entity_id: light.led_1
+    service: light.turn_on
+  alias: Si MOTION ON ALORS LED ON
+  condition:
+  - condition: state
+    entity_id: light.led_1
+    state: 'off'
+  id: '1504905480172'
+  trigger:
+  - entity_id: sensor.motion_1
+    from: standby
+    platform: state
+    to: 'motion detected'
+- action:
+  - alias: LED OFF
+    data:
+      entity_id: light.led_1
+    service: light.turn_off
+  alias: Si MOTION ON ALORS LED OFF
+  condition:
+  - condition: state
+    entity_id: light.led_1
+    state: 'on'
+  id: '1504962290689'
+  trigger:
+  - entity_id: sensor.motion_1
+    from: 'motion detected'
+    platform: state
+    to: standby
+    for:
+      seconds: 5
