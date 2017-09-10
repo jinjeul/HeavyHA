@@ -32,3 +32,11 @@
   name: "Real Feel 1"
   unit_of_measurement: "°F"
   value_template: '{{ value_json.heatIndex | round(1) }}'
+  
+  
+  
+#- platform: plex
+#  host: 192.168.1.132
+#  name: Jungleplex
+#  username: jungleman
+#  password: !secret plex_server

@@ -1,3 +1,11 @@
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                VIEWS                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
 default_view:
   view: true
   icon: mdi:home
@@ -6,15 +14,6 @@ default_view:
   - media_player.junglecast
   - media_player.denon_salon
   - media_player.jungleplex
-
-Cuisine:
-- light.cuisine
-Salon:
-- light.salon
-- media_player.denon_salon
-- media_player.junglecast
-Chambre:
-- media_player.denon_chambre
 tab_lumieres:
   entities:
   - light.cuisine
@@ -39,3 +38,21 @@ sensor_node_1_card:
     - sensor.motion_1  
     - light.led_1
   view: true
+
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                GROUPS                                            #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+Cuisine:
+- light.cuisine
+Salon:
+- light.salon
+- media_player.denon_salon
+- media_player.junglecast
+Chambre:
+- media_player.denon_chambre

@@ -1,0 +1,81 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INTRO                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+homeassistant:
+  name: Jungle'Home
+  latitude: !secret latitude_
+  longitude: !secret longitude_
+  elevation: 80
+  unit_system: metric
+  time_zone: Europe/Paris
+  
+http:
+  api_password: !secret api_ha
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INCLUDES                                          #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+group: !include groups.yaml
+automation: !include automations.yaml
+sensor: !include sensors.yaml
+scene: !include scenes.yaml
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                COMPONENTS                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+frontend:
+logger:
+  default: error
+  logs:
+    DenonAVR: fatal
+config:
+updater:
+discovery:
+conversation:
+history:
+logbook:
+sun:
+light:
+  - platform: lifx
+  - platform: mqtt_json  
+    name: "LED 1"  
+    state_topic: "bruh/sensornode1"  
+    command_topic: "bruh/sensornode1/set"  
+    brightness: true  
+    flash: true  
+    rgb: true  
+    optimistic: false  
+    qos: 0
+media_player:
+  - platform: cast
+  - platform: denonavr
+    host: 192.168.1.135
+    name: Denon Salon
+    show_all_sources: False
+    zones:
+      - zone: Zone2
+        name: Denon Chambre
+  - platform: plex
+    include_non_clients: true
+    scan_interval: 5
+    show_all_controls: false
+mqtt:  
+  broker: m21.cloudmqtt.com
+  port: 12467    
+  username: !secret mqtt_login  
+  password: !secret mqtt_password

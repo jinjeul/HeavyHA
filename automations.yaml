@@ -136,7 +136,7 @@
     entity_id: light.cuisine
     state: 'off'
   - condition: numeric_state
-    below: '60'
+    below: '300'
     entity_id: sensor.lumsens_1
   trigger:
   - entity_id: sensor.motion_1
