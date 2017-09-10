@@ -70,10 +70,6 @@ media_player:
     zones:
       - zone: Zone2
         name: Denon Chambre
-  - platform: plex
-    include_non_clients: true
-    scan_interval: 5
-    show_all_controls: false
 mqtt:  
   broker: m21.cloudmqtt.com
   port: 12467    
