@@ -1,4 +1,4 @@
-####################################################################################
+﻿####################################################################################
 #                                                                                  #
 #                                                                                  #
 #                                VIEWS                                             #
@@ -13,7 +13,6 @@ default_view:
   - group.all_lights
   - media_player.junglecast
   - media_player.denon_salon
-  - media_player.jungleplex
 tab_lumieres:
   entities:
   - light.cuisine
@@ -23,10 +22,12 @@ tab_lumieres:
   view: true
 automations_vue:
   entities:
-  - automation.si_sunset_alors_lights_on
-  - automation.turn_off_light_10_minutes_after_last_movement
-  - automation.si_motion_on_alors_led_on
-  - automation.lux__60_light_on
+  - automation.allumer_les_lumieres_au_couche_du_soleil
+  - automation.allumer_la_cuisine_si_mouvement
+  - automation.eteindre_la_lumiere_cuisine_apres_10min
+  - automation.allumer_la_led_si_mouvement
+  - automation.eteindre_la_led_si_mouvement
+  - automation.allumer_le_salon_si_luminosite_basse
   name: Automations
   view: true
 sensor_node_1_card:  

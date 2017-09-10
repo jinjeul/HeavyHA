@@ -1,4 +1,4 @@
-####################################################################################
+﻿####################################################################################
 #                                                                                  #
 #                                                                                  #
 #                                AUTOMATIONS                                       #
@@ -6,7 +6,7 @@
 #                                                                                  #
 ####################################################################################
 
-- alias: Si Sunset Alors Lights ON
+- alias: 'Allumer les lumières au couché du soleil'
   initial_state: 'on'
   trigger:
     platform: sun
@@ -79,43 +79,6 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
-
-
-- id: PlexPlaying
-  alias: Plex Playing
-  trigger:
-  - platform: state
-    entity_id: media_player.jungleplex
-    to: playing
-  action:
-  - service: homeassistant.turn_off
-    entity_id: light.cuisine
-
-
-- id: PlexPaused
-  alias: Plex Paused
-  trigger:
-  - platform: state
-    entity_id: media_player.jungleplex
-    to: paused
-    for:
-      seconds: 5
-  action:
-  - service: light.turn_on
-    data:
-      entity_id: light.cuisine
-  
-  
-- id: PlexStopped
-  alias: Plex Stopped
-  trigger:
-  - platform: state
-    entity_id: media_player.jungleplex
-    to: idle
-  action:
-  - service: light.turn_on
-    data:
-      entity_id: light.cuisine
   
 ####################################################################################
 #                                                                                  #
@@ -126,34 +89,29 @@
 ####################################################################################
   
 - action:
-  - alias: LED ON
-    data:
+  - data:
       entity_id: light.led_1
     service: light.turn_on
-  alias: Si MOTION ON ALORS LED ON
+  alias: 'Allumer la LED si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
     state: 'off'
-  id: '1504905480172'
   trigger:
   - entity_id: sensor.motion_1
     from: standby
     platform: state
     to: motion detected
 
-
 - action:
-  - alias: LED OFF
-    data:
+  - data:
       entity_id: light.led_1
     service: light.turn_off
-  alias: Si MOTION ON ALORS LED OFF
+  alias: 'Eteindre la LED si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
     state: 'on'
-  id: '1504962290689'
   trigger:
   - entity_id: sensor.motion_1
     from: motion detected
@@ -163,15 +121,13 @@
       hours: 0
       minutes: 0
       seconds: 2
-  
-  
+
 - action:
-  - alias: 'Lights On with Motion'
     data:
       entity_id:
       - light.cuisine
     service: homeassistant.turn_on
-  alias: LUX < 60 LIGHT ON
+  alias: 'Allumer la cuisine si mouvement'
   condition:
   - condition: state
     entity_id: light.cuisine
@@ -186,7 +142,7 @@
     to: motion detected
 
 
-- alias: Turn off light 10 minutes after last movement
+- alias: 'Eteindre la lumière cuisine après 10min'
   trigger:
     platform: state
     entity_id: sensor.motion_1
@@ -196,3 +152,25 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.cuisine
+
+#- alias: LED to RED quand temp sous 24
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.temperature_1
+#    below: 24
+#  action:
+#    service: homeassistant.turn_on
+#    entity_id: light.led_1
+
+- action:
+    entity_id: light.salon
+    service: homeassistant.turn_on
+  alias: 'Allumer le salon si luminosité basse'
+  condition:
+  - condition: state
+    entity_id: light.salon
+    state: 'off'
+  trigger:
+  - platform: numeric_state
+    below: '300'
+    entity_id: sensor.lumsens_1
