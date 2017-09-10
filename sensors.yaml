@@ -1,4 +1,12 @@
-﻿- platform: yr
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSORS                                           #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- platform: yr
 - platform: template
   sensors:
     chromecast_source:
@@ -6,7 +14,22 @@
       friendly_name: 'Chromecast Source'
     chromecast_state:
       value_template: '{{ states.media_player.junglecast.state }}'
-      friendly_name: 'Chromecast State'
+      friendly_name: 'Chromecast State'  
+  
+#- platform: plex
+#  host: 192.168.1.132
+#  name: Jungleplex
+#  username: jungleman
+#  password: !secret plex_server
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSOR NODES                                      #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
 - platform: mqtt  
   state_topic: "bruh/sensornode1"  
   name: "Humidite 1"  
@@ -32,11 +55,3 @@
   name: "Real Feel 1"
   unit_of_measurement: "°F"
   value_template: '{{ value_json.heatIndex | round(1) }}'
-  
-  
-  
-#- platform: plex
-#  host: 192.168.1.132
-#  name: Jungleplex
-#  username: jungleman
-#  password: !secret plex_server

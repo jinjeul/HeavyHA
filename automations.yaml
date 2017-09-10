@@ -1,3 +1,11 @@
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                AUTOMATIONS                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
 - alias: Si Sunset Alors Lights ON
   initial_state: 'on'
   trigger:
@@ -7,6 +15,15 @@
   action:
     service: homeassistant.turn_on
     entity_id: group.lumieres_salon
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                PLEX & CAST                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
 - alias: Si CAST PLEX Alors Light 10
   trigger:
     platform: state
@@ -22,6 +39,7 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexon
+  
 - alias: Si FIN PLEX Alors Light 100
   trigger:
     platform: state
@@ -34,6 +52,8 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
+
+
 - alias: Si PAUSE PLEX Alors Light 100
   trigger:
     platform: state
@@ -46,6 +66,8 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
+
+
 - alias: Si EXIT PLEX Alors Light 100
   trigger:
     platform: state
@@ -57,6 +79,8 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
+
+
 - id: PlexPlaying
   alias: Plex Playing
   trigger:
@@ -66,6 +90,8 @@
   action:
   - service: homeassistant.turn_off
     entity_id: light.cuisine
+
+
 - id: PlexPaused
   alias: Plex Paused
   trigger:
@@ -78,6 +104,8 @@
   - service: light.turn_on
     data:
       entity_id: light.cuisine
+  
+  
 - id: PlexStopped
   alias: Plex Stopped
   trigger:
@@ -88,6 +116,15 @@
   - service: light.turn_on
     data:
       entity_id: light.cuisine
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSOR > LIGHTS                                   #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+  
 - action:
   - alias: LED ON
     data:
@@ -104,6 +141,8 @@
     from: standby
     platform: state
     to: motion detected
+
+
 - action:
   - alias: LED OFF
     data:
@@ -124,6 +163,8 @@
       hours: 0
       minutes: 0
       seconds: 2
+  
+  
 - action:
   - alias: 'Lights On with Motion'
     data:
@@ -143,6 +184,8 @@
     from: standby
     platform: state
     to: motion detected
+
+
 - alias: Turn off light 10 minutes after last movement
   trigger:
     platform: state
