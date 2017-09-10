@@ -1,0 +1,14 @@
+﻿- name: plexon
+  entities:
+      light.salon:
+        state: on
+        color_temp: 333
+        brightness: 42
+        transition: 15
+- name: plexoff
+  entities:
+      light.salon:
+        state: on
+        color_temp: 333
+        brightness: 250
+        transition: 15

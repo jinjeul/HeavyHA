@@ -1,0 +1,41 @@
+default_view:
+  view: true
+  icon: mdi:home
+  entities:
+  - group.all_lights
+  - media_player.junglecast
+  - media_player.denon_salon
+  - media_player.jungleplex
+
+Cuisine:
+- light.cuisine
+Salon:
+- light.salon
+- media_player.denon_salon
+- media_player.junglecast
+Chambre:
+- media_player.denon_chambre
+tab_lumieres:
+  entities:
+  - light.cuisine
+  - light.salon
+  - light.led_1
+  name: Lumieres
+  view: true
+automations_vue:
+  entities:
+  - automation.si_sunset_alors_lights_on
+  - automation.turn_off_light_10_minutes_after_last_movement
+  - automation.si_motion_on_alors_led_on
+  - automation.lux__60_light_on
+  name: Automations
+  view: true
+sensor_node_1_card:  
+  name: Sensor Cuisine
+  entities:  
+    - sensor.temperature_1  
+    - sensor.humidite_1 
+    - sensor.lumsens_1
+    - sensor.motion_1  
+    - light.led_1
+  view: true

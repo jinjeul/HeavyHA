@@ -125,18 +125,31 @@
       minutes: 0
       seconds: 2
 - action:
-  - alias: LIGHTSON
+  - alias: 'Lights On with Motion'
     data:
       entity_id:
-      - group.all_lights
+      - light.cuisine
     service: homeassistant.turn_on
   alias: LUX < 60 LIGHT ON
   condition:
   - condition: state
-    entity_id: group.all_lights
+    entity_id: light.cuisine
     state: 'off'
-  id: '1504968184222'
-  trigger:
-  - below: '60'
+  - condition: numeric_state
+    below: '60'
     entity_id: sensor.lumsens_1
-    platform: numeric_state
+  trigger:
+  - entity_id: sensor.motion_1
+    from: standby
+    platform: state
+    to: motion detected
+- alias: Turn off light 10 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: sensor.motion_1
+    to: 'standby'
+    for:
+      minutes: 10
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.cuisine
