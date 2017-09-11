@@ -5,7 +5,12 @@
 Automating your home, the french way. Balekuy-style.  
 
 My Configuration running on a RPi3 with HassIO :
-- LIFX Lights, Harmony Hub, DENON AVR, Chromecast, Plex, $15 MultiSensor by Bruh Automation (thanks man!)
+- LIFX Lights (2)
+- Harmony Hub (to control Philips TV and more)
+- DENON AVR X2200w
+- Chromecast
+- Plex server
+- $15 MultiSensor by Bruh Automation (thanks man!)
 
 Todo :
 - Voice recognition via Google
