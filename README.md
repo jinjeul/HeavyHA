@@ -13,6 +13,10 @@ My Configuration running on a RPi3 with HassIO :
 - $15 MultiSensor by Bruh Automation (thanks man!)
 
 Todo :
+- Migrate from HassIO to Raspbian+HA
+- Create MQTT Server on NAS
+- Add NAS info to HA
+- Configuration of People Presence to activate automations
 - Voice recognition via Google
 - Add second Multisensor (hallway)
 - Add third Multisensor (bathroom)
