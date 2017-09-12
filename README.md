@@ -4,7 +4,7 @@
 
 Automating your home, the french way. Balekuy-style.  
 
-My Configuration running on a RPi3 with HassIO :
+My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) :
 - LIFX Lights (2)
 - Harmony Hub (to control Philips TV and more)
 - DENON AVR X2200w
@@ -13,12 +13,17 @@ My Configuration running on a RPi3 with HassIO :
 - $15 MultiSensor by Bruh Automation (thanks man!)
 
 Todo :
-- Migrate from HassIO to Raspbian+HA
+
 - Create MQTT Server on NAS
 - Add NAS info to HA
 - Configuration of People Presence to activate automations
 - Voice recognition via Google
 - Add second Multisensor (hallway)
 - Add third Multisensor (bathroom)
+
+Done :
+
+- Migrate from HassIO to Raspbian+HA
+
 
 Peace.
