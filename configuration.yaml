@@ -54,8 +54,8 @@ light:
   - platform: lifx
   - platform: mqtt_json  
     name: "LED 1"  
-    state_topic: "bruh/sensornode1"  
-    command_topic: "bruh/sensornode1/set"  
+    state_topic: "jungle/sensornode1"  
+    command_topic: "jungle/sensornode1/set"  
     brightness: true  
     flash: true  
     rgb: true  
