@@ -14,16 +14,14 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 
 Todo :
 
-- Create MQTT Server on NAS
-- Add NAS info to HA
 - Configuration of People Presence to activate automations
+- Add NAS info to HA
 - Voice recognition via Google
-- Add second Multisensor (hallway)
-- Add third Multisensor (bathroom)
+- Add more multisensors
 
 Done :
 
-- Migrate from HassIO to Raspbian+HA
-
+- Moved from HassIO to Raspbian+HA
+- Running MQTT Server on NAS
 
 Peace.
