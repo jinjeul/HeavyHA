@@ -70,16 +70,18 @@ media_player:
     zones:
       - zone: Zone2
         name: Denon Chambre
+
+		
+
 mqtt:  
-  broker: m21.cloudmqtt.com
-  port: 12467    
-  username: !secret mqtt_login  
-  password: !secret mqtt_password
-device_tracker:
-  - platform: ddwrt
-    host: 192.168.1.1
-    username: root
-    password: !secret router_password
-    interval_seconds: 10
-    consider_home: 180
-    track_new_devices: yes
+  broker: 192.168.1.132
+  port: 1883
+  username: !secret mqtt_login_junglenas
+  password: !secret mqtt_password_junglenas
+
+# OLD MQTT CLOUD SERVER
+#mqtt:  
+#  broker: m21.cloudmqtt.com
+#  port: 12467    
+#  username: !secret mqtt_login  
+#  password: !secret mqtt_password
