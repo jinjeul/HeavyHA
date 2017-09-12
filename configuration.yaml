@@ -70,9 +70,11 @@ media_player:
     zones:
       - zone: Zone2
         name: Denon Chambre
-
-		
-
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: admin 
+    password: !secret router_password
 mqtt:  
   broker: 192.168.1.132
   port: 1883
