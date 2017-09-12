@@ -13,7 +13,7 @@
     event: sunset
     offset: -01:30:00
   condition:
-    platform: state
+  - condition: state
     entity_id: device_tracker.androidf1562bd8cb4c4a91
     state: 'home'
   action:

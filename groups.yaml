@@ -13,7 +13,15 @@ default_view:
   - group.all_lights
   - media_player.junglecast
   - media_player.denon_salon
-tab_lumieres:
+  - camera.jungle_3t
+  - camera.meteo_epinay_sur_orge
+media:
+  entities:
+  - media_player.junglecast
+  - media_player.denon_salon
+  name: Media
+  view: true  
+lumieres:
   entities:
   - light.cuisine
   - light.salon
@@ -39,7 +47,6 @@ sensor_node_1_card:
     - sensor.motion_1  
     - light.led_1
   view: true
-
 
 ####################################################################################
 #                                                                                  #
