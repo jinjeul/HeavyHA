@@ -46,6 +46,11 @@ logger:
 config:
 updater:
 discovery:
+mqtt:  
+  broker: 192.168.1.132
+  port: 1883
+  username: !secret mqtt_login_junglenas
+  password: !secret mqtt_password_junglenas
 conversation:
 history:
 logbook:
@@ -75,15 +80,4 @@ device_tracker:
     host: 192.168.1.1
     username: admin 
     password: !secret router_password
-mqtt:  
-  broker: 192.168.1.132
-  port: 1883
-  username: !secret mqtt_login_junglenas
-  password: !secret mqtt_password_junglenas
-
-# OLD MQTT CLOUD SERVER
-#mqtt:  
-#  broker: m21.cloudmqtt.com
-#  port: 12467    
-#  username: !secret mqtt_login  
-#  password: !secret mqtt_password
+  - platform: gpslogger

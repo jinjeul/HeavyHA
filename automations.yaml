@@ -12,6 +12,10 @@
     platform: sun
     event: sunset
     offset: -01:30:00
+  condition:
+    platform: state
+	entity_id: device_tracker.androidf1562bd8cb4c4a91
+	state: 'home'
   action:
     service: homeassistant.turn_on
     entity_id: group.lumieres_salon
@@ -170,6 +174,9 @@
   - condition: state
     entity_id: light.salon
     state: 'off'
+  - condition: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+	state: 'home'
   trigger:
   - platform: numeric_state
     below: '300'
