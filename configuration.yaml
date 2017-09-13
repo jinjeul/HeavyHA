@@ -29,6 +29,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 sensor: !include sensors.yaml
 scene: !include scenes.yaml
+zone: !include zones.yaml
 
 ####################################################################################
 #                                                                                  #
