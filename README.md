@@ -19,6 +19,8 @@ Todo :
 - Voice recognition via Google
 - Add more multisensors
 
++ https://annuel2.framapad.org/p/heavyha
+
 Done :
 
 - Moved from HassIO to Raspbian+HA
