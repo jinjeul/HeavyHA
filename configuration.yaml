@@ -82,6 +82,8 @@ device_tracker:
     username: admin 
     password: !secret router_password
   - platform: gpslogger
+  - platform: owntracks
+    max_gps_accuracy: 200
 camera:
   - platform: generic
     name: Jungle 3T
