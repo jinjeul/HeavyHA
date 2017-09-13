@@ -1,0 +1,5 @@
+- name: Travail
+  latitude: 48.74454
+  longitude: 2.368118
+  radius: 250
+  icon: mdi:work
