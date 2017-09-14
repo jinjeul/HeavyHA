@@ -84,11 +84,7 @@ device_tracker:
   - platform: gpslogger
   - platform: owntracks
     max_gps_accuracy: 200
-camera:
-  - platform: generic
-    name: Jungle 3T
-    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.d55a7c08.attributes.latitude }},{{ states.device_tracker.d55a7c08.attributes.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.d55a7c08.attributes.latitude }},{{ states.device_tracker.d55a7c08.attributes.longitude }}
-    limit_refetch_to_url_change: true
+camera
   - platform: generic
     name: Meteo Epinay sur Orge
     still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg

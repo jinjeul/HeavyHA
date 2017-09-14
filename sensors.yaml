@@ -6,6 +6,14 @@
 #                                                                                  #
 ####################################################################################
 
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: ipv4_address
+      arg: eth0
 - platform: yr
 - platform: template
   sensors:

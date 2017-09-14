@@ -14,7 +14,7 @@
     offset: -01:30:00
   condition:
   - condition: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    entity_id: device_tracker.jungle_owntrack3t
     state: 'home'
   action:
     service: homeassistant.turn_on
@@ -175,7 +175,7 @@
     entity_id: light.salon
     state: 'off'
   - condition: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    entity_id: device_tracker.jungle_owntrack3t
     state: 'home'
   trigger:
   - platform: numeric_state

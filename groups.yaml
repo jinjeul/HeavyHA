@@ -10,10 +10,10 @@ default_view:
   view: true
   icon: mdi:home
   entities:
+  - device_tracker.jungle_owntrack3t
   - group.all_lights
   - media_player.junglecast
   - media_player.denon_salon
-  - camera.jungle_3t
   - camera.meteo_epinay_sur_orge
 media:
   entities:
