@@ -36,6 +36,7 @@ automations_vue:
   - automation.allumer_la_led_si_mouvement
   - automation.eteindre_la_led_si_mouvement
   - automation.allumer_le_salon_si_luminosite_basse
+  - automation.eteindre_le_salon_si_luminosite_haute
   name: Automations
   view: true
 sensor_node_1_card:  

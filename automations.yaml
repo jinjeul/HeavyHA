@@ -181,3 +181,16 @@
   - platform: numeric_state
     below: '300'
     entity_id: sensor.lumsens_1
+
+- action:
+    entity_id: light.salon
+    service: homeassistant.turn_off
+  alias: 'Eteindre le salon si luminosité haute'
+  condition:
+  - condition: state
+    entity_id: device_tracker.jungle_owntrack3t
+    state: 'home'
+  trigger:
+  - platform: numeric_state
+    above: '300'
+    entity_id: sensor.lumsens_1

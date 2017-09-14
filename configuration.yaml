@@ -84,7 +84,7 @@ device_tracker:
   - platform: gpslogger
   - platform: owntracks
     max_gps_accuracy: 200
-camera
+camera:
   - platform: generic
     name: Meteo Epinay sur Orge
     still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
