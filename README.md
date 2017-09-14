@@ -14,11 +14,10 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 
 Todo :
 
-- Add NAS info to HA
+- Private NAS Sensor
 - Voice recognition via Google
 - TeleInfo EDF
-- Nest Thermostat
-
+- Thermostat
 
 TODOLIST: https://annuel2.framapad.org/p/heavyha
 
