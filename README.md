@@ -14,7 +14,7 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 
 Todo :
 
-- Configuration of People Presence to activate automations
+
 - Add NAS info to HA
 - Voice recognition via Google
 - Add more multisensors
@@ -23,6 +23,7 @@ Todo :
 
 Done :
 
+- Configuration of People Presence to activate automations => Best = Owntracks + MQTT / 2nd = DD-WRT + MAC Phone
 - Moved from HassIO to Raspbian+HA
 - Running MQTT Server on NAS
 
