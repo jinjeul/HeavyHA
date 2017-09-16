@@ -14,7 +14,6 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 
 Todo :
 
-- Private NAS Sensor
 - Voice recognition via Google
 - TeleInfo EDF
 - Thermostat
@@ -23,6 +22,7 @@ TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Private NAS Sensor => glances
 - Configuration of People Presence to activate automations => Best = Owntracks + MQTT / 2nd = DD-WRT + MAC Phone
 - Moved from HassIO to Raspbian+HA
 - Running MQTT Server on NAS
