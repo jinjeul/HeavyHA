@@ -56,6 +56,9 @@ mqtt:
 conversation:
 history:
 logbook:
+  exclude:
+    entities:
+      - sensor.rpi_uptime
 sun:
 light:
   - platform: lifx

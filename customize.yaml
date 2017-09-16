@@ -25,7 +25,7 @@ sensor.temperature_1:
   friendly_name: 'Température'
 sensor.humidite_1:
   friendly_name: 'Taux humidité'
-  icon: mdi:weather-windy
+  icon: mdi:cup-water
 sensor.lumsens_1:
   friendly_name: 'Luminosité'
   icon: mdi:spotlight
