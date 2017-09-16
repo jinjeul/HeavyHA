@@ -13,7 +13,16 @@ homeassistant:
   elevation: 80
   unit_system: metric
   time_zone: Europe/Paris
-  
+  customize:
+    group.all_lights:
+      hidden: false
+      friendly_name: 'Les lumières'
+    group.lumieres_home:
+      hidden: false
+      friendly_name: 'Réglage des Lumières'
+    sensor.rpi_uptime:
+      friendly_name: Uptime
+      icon: mdi:clock
 http:
   api_password: !secret api_ha
 

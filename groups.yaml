@@ -11,36 +11,68 @@ default_view:
   icon: mdi:home
   entities:
   - device_tracker.jungle_owntrack3t
-  - group.lumieres
+  - group.lumieres_home
   - media_player.junglecast
   - media_player.denon_salon
   - camera.meteo_epinay_sur_orge
   - group.datetimeweather
   - group.sensor_node_1_card
+
+####################################################################################
+#                                                                                  #
+#                                VIEW                                              #
+#                                TABS                                              #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
 media:
   entities:
   - media_player.junglecast
   - media_player.denon_salon
   name: Media
-  view: true  
+  view: true
 lumieres:
   entities:
-  - light.cuisine
-  - light.salon
-  - light.led_1
+  - group.all_lights
+  - group.all_scenes
   name: Lumieres
   view: true
 automations_vue:
   entities:
-  - automation.allumer_les_lumieres_au_couche_du_soleil
-  - automation.allumer_la_cuisine_si_mouvement
-  - automation.eteindre_la_lumiere_cuisine_apres_10min
-  - automation.allumer_la_led_si_mouvement
-  - automation.eteindre_la_led_si_mouvement
-  - automation.allumer_le_salon_si_luminosite_basse
-  - automation.eteindre_le_salon_si_luminosite_haute
+    - group.motion_automation
+    - group.lux_automation
+    - group.plex_automations
   name: Automations
   view: true
+hardware_view:
+  name: Monitoring
+  entities:
+    - group.rpi
+    - group.junglenas
+  view: true
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                GROUPS                                            #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+Cuisine:
+- light.cuisine
+Salon:
+- light.salon
+- media_player.denon_salon
+- media_player.junglecast
+Chambre:
+- media_player.denon_chambre
+lumieres_home:
+  entities:
+  - light.cuisine
+  - light.salon
+  name: Lumieres
 sensor_node_1_card:  
   name: La cuisine
   entities:  
@@ -63,19 +95,59 @@ datetimeweather:
     - sensor.yr_wind_direction
     - sun.sun
     - sensor.moon
-####################################################################################
-#                                                                                  #
-#                                                                                  #
-#                                GROUPS                                            #
-#                                                                                  #
-#                                                                                  #
-####################################################################################
-
-Cuisine:
-- light.cuisine
-Salon:
-- light.salon
-- media_player.denon_salon
-- media_player.junglecast
-Chambre:
-- media_player.denon_chambre
+plex_automations:
+  name: Trigger Plex
+  entities:
+    - automation.si_cast_plex_alors_light_10
+    - automation.si_pause_plex_alors_light_100
+    - automation.si_fin_plex_alors_light_100
+motion_automation:
+  name: Trigger Motion
+  entities:
+    - automation.allumer_les_lumieres_au_couche_du_soleil
+    - automation.allumer_la_cuisine_si_mouvement
+    - automation.eteindre_la_lumiere_cuisine_apres_10min
+    - automation.allumer_la_led_si_mouvement
+    - automation.eteindre_la_led_si_mouvement
+lux_automation:
+  name: Trigger Luminosity
+  entities:
+    - automation.allumer_le_salon_si_luminosite_basse
+    - automation.eteindre_le_salon_si_luminosite_haute
+rpi:
+  name: Raspberry Pi
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.rpi_uptime
+    - sensor.ipv4_address_eth0
+all_scenes:
+  name: Les scènes
+  entities:
+    - scene.chaud
+    - scene.saloncool
+    - scene.chezchouka
+    - scene.coolblue
+    - scene.hot_sex
+    - scene.plexoff
+    - scene.plexpause
+    - scene.plexon
+junglenas:
+  name: JungleNAS
+  entities:
+    - sensor.glances_cpu_load
+#    - sensor.glances_cpu_temp
+    - sensor.glances_disk_free
+    - sensor.glances_disk_use
+#    - sensor.glances_disk_use_2
+    - sensor.glances_ram_free
+    - sensor.glances_ram_use
+#    - sensor.glances_ram_use_2
+#    - sensor.glances_running
+#    - sensor.glances_sleeping
+#    - sensor.glances_swap_free
+    - sensor.glances_swap_use
+    - sensor.glances_swap_use_2
+#    - sensor.glances_thread
+#    - sensor.glances_total

@@ -12,13 +12,23 @@
         state: on
         color_temp: 333
         brightness: 42
-        transition: 15
+        transition: 10
+
 - name: plexoff
   entities:
       light.salon:
         state: on
         color_temp: 333
         brightness: 250
-        transition: 15
+        transition: 30
+
+- name: plexpause
+  entities:
+      light.salon:
+        state: on
+        color_temp: 333
+        brightness: 131
+        transition: 7
+
 - platform: lifx_cloud
   token: !secret lifxapitoken

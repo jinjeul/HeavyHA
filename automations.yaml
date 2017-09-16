@@ -43,20 +43,6 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexon
-  
-- alias: Si FIN PLEX Alors Light 100
-  trigger:
-    platform: state
-    entity_id: sensor.chromecast_state
-    to: idle
-  condition:
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: Plex
-  action:
-    service: scene.turn_on
-    entity_id: scene.plexoff
-
 
 - alias: Si PAUSE PLEX Alors Light 100
   trigger:
@@ -69,21 +55,25 @@
     state: Plex
   action:
     service: scene.turn_on
-    entity_id: scene.plexoff
+    entity_id: scene.plexpause
 
-
-- alias: Si EXIT PLEX Alors Light 100
+- alias: Si FIN PLEX Alors Light 100
   trigger:
     platform: state
     entity_id: sensor.chromecast_state
-    to: 'off'
+    to: idle
+    for:
+      hours: 00
+      minutes: 00
+      seconds: 03
   condition:
-  - condition: template
-    value_template: '{{ states.light.salon.attributes.brightness == "42" }}'
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: Plex
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
-  
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -156,15 +146,6 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.cuisine
-
-#- alias: LED to RED quand temp sous 24
-#  trigger:
-#    platform: numeric_state
-#    entity_id: sensor.temperature_1
-#    below: 24
-#  action:
-#    service: homeassistant.turn_on
-#    entity_id: light.led_1
 
 - action:
     entity_id: light.salon

@@ -6,14 +6,6 @@
 #                                                                                  #
 ####################################################################################
 
-- platform: systemmonitor
-  resources:
-    - type: disk_use_percent
-      arg: /home
-    - type: memory_free
-    - type: processor_use
-    - type: ipv4_address
-      arg: eth0
 - platform: yr
   monitored_conditions:
     - symbol
@@ -23,14 +15,6 @@
     - windDirection
     - humidity
     - cloudiness
-- platform: time_date
-  display_options:
-    - 'time'
-    - 'date'
-    #- 'date_time'
-    #- 'time_date'
-    #- 'time_utc'
-    #- 'beat'
 - platform: moon
 - platform: template
   sensors:
@@ -39,8 +23,52 @@
       friendly_name: 'Chromecast Source'
     chromecast_state:
       value_template: '{{ states.media_player.junglecast.state }}'
-      friendly_name: 'Chromecast State'  
-  
+      friendly_name: 'Chromecast State'
+ 
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MONITORING                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: ipv4_address
+      arg: eth0
+- platform: command_line
+  name: Rpi Uptime
+  command: "uptime -p"
+  value_template: "{{ value[3:] }}"
+  scan_interval: 60
+- platform: glances
+  host: 192.168.1.132
+  resources:
+    - 'disk_use_percent'
+    - 'disk_use'
+    - 'disk_free'
+    - 'memory_use_percent'
+    - 'memory_use'
+    - 'memory_free'
+    - 'swap_use_percent'
+    - 'swap_use'
+    - 'swap_free'
+    - 'processor_load'
+    - 'process_running'
+    - 'process_total'
+    - 'process_thread'
+    - 'process_sleeping'
+    - 'cpu_temp'
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -74,3 +102,4 @@
   name: "Real Feel 1"
   unit_of_measurement: "°F"
   value_template: '{{ value_json.heatIndex | round(1) }}'
+
