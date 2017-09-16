@@ -48,7 +48,21 @@ sensor_node_1_card:
     - sensor.motion_1  
     - light.led_1
   view: true
-
+datetimeweather:
+  name: Le monde, dehors
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.yr_symbol
+    - sensor.yr_temperature
+    - sensor.yr_cloudiness
+    - sensor.yr_humidity
+    - sensor.yr_precipitation
+    - sensor.yr_wind_speed
+    - sensor.yr_wind_direction
+    - sun.sun
+    - sensor.moon
+  view: true
 ####################################################################################
 #                                                                                  #
 #                                                                                  #

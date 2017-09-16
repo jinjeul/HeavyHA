@@ -15,6 +15,22 @@
     - type: ipv4_address
       arg: eth0
 - platform: yr
+    - symbol
+    - temperature
+    - precipitation
+    - windSpeed
+    - windDirection
+    - humidity
+    - cloudiness
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    #- 'date_time'
+    #- 'time_date'
+    #- 'time_utc'
+    #- 'beat'
+- platform: moon
 - platform: template
   sensors:
     chromecast_source:
