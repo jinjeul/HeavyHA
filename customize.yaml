@@ -1,0 +1,81 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                                GROUPS                                            #
+#                                                                                  #
+####################################################################################
+
+group.all_lights:
+  hidden: false
+  friendly_name: 'Les lumières'
+group.lumieres_home:
+  hidden: false
+  friendly_name: 'Réglage des Lumières'
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                                SENSOR                                            #
+#                                                                                  #
+####################################################################################
+
+sensor.temperature_1:
+  friendly_name: 'Température'
+sensor.humidite_1:
+  friendly_name: 'Taux humidité'
+  icon: mdi:weather-windy
+sensor.lumsens_1:
+  friendly_name: 'Luminosité'
+  icon: mdi:spotlight
+sensor.motion_1:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
+sensor.rpi_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock
+sensor.time:
+  friendly_name: 'Heure'
+sensor.date:
+  friendly_name: 'Date'
+sensor.yr_symbol:
+  friendly_name: 'Symbole'
+sensor.yr_temperature:
+  friendly_name: 'Température'
+sensor.yr_cloudiness:
+  friendly_name: 'Nuages'
+  icon: mdi:cloud-outline
+sensor.yr_humidity:
+  friendly_name: 'Humidité'
+  icon: mdi:cup-water
+sensor.yr_precipitation:
+  friendly_name: 'Pluie'
+  icon: mdi:weather-rainy
+sensor.yr_wind_speed:
+  friendly_name: 'Vent'
+  icon: mdi:weather-windy
+sensor.yr_wind_direction:
+  friendly_name: 'Direction du vent'
+  hidden: true
+sensor.glances_cpu_load:
+  friendly_name: 'CPU Use'
+  icon: mdi:nfc-variant
+sensor.glances_disk_free:
+  friendly_name: 'Disk Free'
+  icon: mdi:harddisk
+sensor.glances_disk_use:
+  friendly_name: 'Disk Use'
+  icon: mdi:harddisk
+sensor.glances_ram_free:
+  friendly_name: 'RAM Free'
+  icon: mdi:nfc-variant
+sensor.glances_ram_use:
+  friendly_name: 'RAM Use'
+  icon: mdi:nfc-variant
+sensor.glances_swap_use:
+  friendly_name: 'Swap Use'
+  icon: mdi:swap-horizontal
+sensor.glances_swap_use_2:
+  friendly_name: 'Swap Size'
+  icon: mdi:swap-horizontal

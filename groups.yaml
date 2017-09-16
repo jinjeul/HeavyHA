@@ -79,8 +79,7 @@ sensor_node_1_card:
     - sensor.temperature_1  
     - sensor.humidite_1 
     - sensor.lumsens_1
-    - sensor.motion_1  
-    - light.led_1
+    - sensor.motion_1
 datetimeweather:
   name: Le monde, dehors
   entities:
@@ -137,17 +136,17 @@ junglenas:
   name: JungleNAS
   entities:
     - sensor.glances_cpu_load
-#    - sensor.glances_cpu_temp
     - sensor.glances_disk_free
     - sensor.glances_disk_use
-#    - sensor.glances_disk_use_2
     - sensor.glances_ram_free
     - sensor.glances_ram_use
-#    - sensor.glances_ram_use_2
-#    - sensor.glances_running
-#    - sensor.glances_sleeping
-#    - sensor.glances_swap_free
     - sensor.glances_swap_use
     - sensor.glances_swap_use_2
 #    - sensor.glances_thread
 #    - sensor.glances_total
+#    - sensor.glances_cpu_temp
+#    - sensor.glances_ram_use_2
+#    - sensor.glances_running
+#    - sensor.glances_sleeping
+#    - sensor.glances_swap_free
+#    - sensor.glances_disk_use_2
