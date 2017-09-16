@@ -15,6 +15,7 @@
     - type: ipv4_address
       arg: eth0
 - platform: yr
+  monitored_conditions:
     - symbol
     - temperature
     - precipitation

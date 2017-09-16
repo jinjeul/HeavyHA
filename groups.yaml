@@ -15,6 +15,7 @@ default_view:
   - media_player.junglecast
   - media_player.denon_salon
   - camera.meteo_epinay_sur_orge
+  - group.datetimeweather
 media:
   entities:
   - media_player.junglecast
@@ -62,7 +63,6 @@ datetimeweather:
     - sensor.yr_wind_direction
     - sun.sun
     - sensor.moon
-  view: true
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
