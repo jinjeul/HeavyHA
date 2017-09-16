@@ -11,11 +11,12 @@ default_view:
   icon: mdi:home
   entities:
   - device_tracker.jungle_owntrack3t
-  - group.all_lights
+  - group.lumieres
   - media_player.junglecast
   - media_player.denon_salon
   - camera.meteo_epinay_sur_orge
   - group.datetimeweather
+  - group.sensor_node_1_card
 media:
   entities:
   - media_player.junglecast
@@ -41,14 +42,13 @@ automations_vue:
   name: Automations
   view: true
 sensor_node_1_card:  
-  name: Sensor Cuisine
+  name: La cuisine
   entities:  
     - sensor.temperature_1  
     - sensor.humidite_1 
     - sensor.lumsens_1
     - sensor.motion_1  
     - light.led_1
-  view: true
 datetimeweather:
   name: Le monde, dehors
   entities:
