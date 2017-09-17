@@ -13,7 +13,6 @@ default_view:
   - device_tracker.jungle_owntrack3t
   - group.lumieres_home
   - media_player.junglecast
-  - media_player.denon_salon
   - camera.meteo_epinay_sur_orge
   - group.datetimeweather
   - group.sensor_node_1_card
@@ -71,7 +70,9 @@ Chambre:
 lumieres_home:
   entities:
   - light.cuisine
+  - input_slider.cuisine_brightness
   - light.salon
+  - input_slider.salon_brightness
   name: Lumieres
 sensor_node_1_card:  
   name: La cuisine

@@ -31,6 +31,7 @@ automation: !include automations.yaml
 sensor: !include sensors.yaml
 scene: !include scenes.yaml
 zone: !include zones.yaml
+input_slider: !include input_sliders.yaml
 
 ####################################################################################
 #                                                                                  #

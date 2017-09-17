@@ -1,0 +1,12 @@
+﻿salon_brightness:
+  name: 'Luminosité du salon'
+  initial: 254
+  min: 0
+  max: 254
+  step: 1
+cuisine_brightness:
+  name: 'Luminosité de la cuisine'
+  initial: 254
+  min: 0
+  max: 254
+  step: 1
