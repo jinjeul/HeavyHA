@@ -27,6 +27,20 @@
     service: homeassistant.turn_on
     entity_id: group.lumieres_salon
 
+- alias: 'Allumer les lumières @ arrivée Home'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'home'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.lumsens_1
+    below: '300'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.lumieres_salon
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -195,6 +209,7 @@
       data_template:
         entity_id: light.salon
         brightness: '{{ trigger.to_state.state | int }}'
+
 - alias: Cuisine Light - Adjust Brightness
   trigger:
     platform: state
@@ -205,3 +220,14 @@
       data_template:
         entity_id: light.cuisine
         brightness: '{{ trigger.to_state.state | int }}'
+
+- alias: 'Alerte pushbullet si 5° dehors'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.yr_temperature
+    below: '5'
+  action:
+    service: notify.pushbullet_3t
+    data:
+      title: 'Alerte GEL'
+      message: 'Rentres les plantes, il va geler'

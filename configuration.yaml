@@ -60,6 +60,10 @@ logbook:
   exclude:
     entities:
       - sensor.rpi_uptime
+notify:
+  - name: pushbullet_3t
+    platform: pushbullet
+    api_key: !secret pushbullet_api
 sun:
 light:
   - platform: lifx
