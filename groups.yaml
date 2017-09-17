@@ -98,7 +98,7 @@ plex_automations:
   name: Trigger Plex
   entities:
     - automation.si_cast_plex_alors_light_10
-    - automation.si_pause_plex_alors_light_100
+    - automation.si_pause_plex_alors_light_70
     - automation.si_fin_plex_alors_light_100
 motion_automation:
   name: Trigger Motion

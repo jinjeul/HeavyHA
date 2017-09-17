@@ -13,9 +13,16 @@
     event: sunset
     offset: -01:30:00
   condition:
-  - condition: state
-    entity_id: device_tracker.jungle_owntrack3t
-    state: 'home'
+    condition: or
+    conditions:
+      #Tracking OWNTRACK
+      - condition: state
+        entity_id: device_tracker.jungle_owntrack3t
+        state: 'home'
+      #Tracking DD-WRT
+      - condition: state
+        entity_id: device_tracker.androidf1562bd8cb4c4a91
+        state: 'home'
   action:
     service: homeassistant.turn_on
     entity_id: group.lumieres_salon
@@ -31,28 +38,17 @@
 - alias: Si CAST PLEX Alors Light 10
   trigger:
     platform: state
-    entity_id: sensor.chromecast_state
+    entity_id: sensor.rasplex
     to: playing
-  condition:
-  - condition: state
-    entity_id: media_player.denon_salon
-    state: 'on'
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: Plex
   action:
     service: scene.turn_on
     entity_id: scene.plexon
 
-- alias: Si PAUSE PLEX Alors Light 100
+- alias: Si PAUSE PLEX Alors Light 70
   trigger:
     platform: state
-    entity_id: sensor.chromecast_state
+    entity_id: sensor.rasplex
     to: paused
-  condition:
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: Plex
   action:
     service: scene.turn_on
     entity_id: scene.plexpause
@@ -60,16 +56,12 @@
 - alias: Si FIN PLEX Alors Light 100
   trigger:
     platform: state
-    entity_id: sensor.chromecast_state
+    entity_id: sensor.rasplex
     to: idle
     for:
       hours: 00
       minutes: 00
       seconds: 03
-  condition:
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: Plex
   action:
     service: scene.turn_on
     entity_id: scene.plexoff
@@ -152,12 +144,21 @@
     service: homeassistant.turn_on
   alias: 'Allumer le salon si luminosité basse'
   condition:
-  - condition: state
-    entity_id: light.salon
-    state: 'off'
-  - condition: state
-    entity_id: device_tracker.jungle_owntrack3t
-    state: 'home'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.salon
+        state: 'off'
+      - condition: or
+        conditions:
+         #Tracking OWNTRACK
+          - condition: state
+            entity_id: device_tracker.jungle_owntrack3t
+            state: 'home'
+          #Tracking DD-WRT
+          - condition: state
+            entity_id: device_tracker.androidf1562bd8cb4c4a91
+            state: 'home'
   trigger:
   - platform: numeric_state
     below: '300'
@@ -168,10 +169,18 @@
     service: homeassistant.turn_off
   alias: 'Eteindre le salon si luminosité haute'
   condition:
-  - condition: state
-    entity_id: device_tracker.jungle_owntrack3t
-    state: 'home'
+      condition: or
+      conditions:
+        #Tracking OWNTRACK
+        - condition: state
+          entity_id: device_tracker.jungle_owntrack3t
+          state: 'home'
+        #Tracking DD-WRT
+        - condition: state
+          entity_id: device_tracker.androidf1562bd8cb4c4a91
+          state: 'home'
   trigger:
   - platform: numeric_state
     above: '300'
     entity_id: sensor.lumsens_1
+  initial_state: 'off'

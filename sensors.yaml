@@ -24,6 +24,7 @@
     chromecast_state:
       value_template: '{{ states.media_player.junglecast.state }}'
       friendly_name: 'Chromecast State'
+
  
 ####################################################################################
 #                                                                                  #
@@ -68,7 +69,10 @@
     - 'process_thread'
     - 'process_sleeping'
     - 'cpu_temp'
-
+- platform: command_line
+  name: rasplex
+  command: 'python3 /home/pi/.homeassistant/plexstatus.py'
+  scan_interval: 7
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
