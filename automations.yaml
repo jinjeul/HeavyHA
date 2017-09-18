@@ -54,6 +54,10 @@
     platform: state
     entity_id: sensor.rasplex
     to: playing
+  condition:
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: 'Plex'
   action:
     service: scene.turn_on
     entity_id: scene.plexon
@@ -63,11 +67,16 @@
     platform: state
     entity_id: sensor.rasplex
     to: paused
+  condition:
+  - condition: state
+    entity_id: sensor.chromecast_source
+    state: 'Plex'
   action:
     service: scene.turn_on
     entity_id: scene.plexpause
 
 - alias: Si FIN PLEX Alors Light 100
+  initial_state: 'off'
   trigger:
     platform: state
     entity_id: sensor.rasplex
