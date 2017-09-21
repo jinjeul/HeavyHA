@@ -30,6 +30,7 @@ media:
   entities:
   - media_player.junglecast
   - media_player.denon_salon
+  - media_player.denon_chambre
   name: Media
   view: true
 lumieres:
@@ -44,6 +45,7 @@ automations_vue:
     - group.lux_automation
     - group.plex_automations
     - group.coming_home_automation
+    - group.leaving_home_automation
   name: Automations
   view: true
 hardware_view:
@@ -120,6 +122,10 @@ coming_home_automation:
   name: Trigger HOME
   entities:
     - automation.allumer_les_lumieres__arrivee_home
+leaving_home_automation:
+  name: Trigger AWAY
+  entities:
+    - automation.eteindre_musique_au_depart
 rpi:
   name: Raspberry Pi
   entities:
