@@ -60,6 +60,18 @@ logbook:
   exclude:
     entities:
       - sensor.rpi_uptime
+      - group.cuisine
+      - group.salon
+      - group.lumieres_home
+      - light.led_1
+      - sensor.time
+      - sensor.yr_symbol
+      - sensor.yr_temperature
+      - sensor.yr_cloudiness
+      - sensor.yr_humidity
+      - sensor.yr_precipitation
+      - sensor.yr_wind_speed
+      - sensor.yr_wind_direction
 notify:
   - name: pushbullet_3t
     platform: pushbullet
