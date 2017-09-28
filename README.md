@@ -11,14 +11,16 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 - Chromecast
 - Plex server
 - $15 MultiSensor by Bruh Automation (thanks man!)
-
+- Heat control with ESP (fil pilote) + MQTT + generic_thermostat
 
 Working on :
 
-- Thermostat (ESP8266 & Fil pilote + Multisensors + MQTT & generic_thermostat)
 
 Todo :
 
+- Add Ikea lamps everywhere
+- Add Xiaomi Yeelight Chambre
+- Chambre Thermostat
 - Voice recognition via Google (Waiting for Google Assistant API in French)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
 
@@ -26,6 +28,7 @@ TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Salon Thermostat (ESP8266 & Fil pilote + Multisensors + MQTT & generic_thermostat)
 - Added Denon AVR Zone2 (= denon_chambre)
 - Private NAS Sensor => glances
 - Configuration of People Presence to activate automations => Best = Owntracks + MQTT / 2nd = DD-WRT + MAC Phone
