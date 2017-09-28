@@ -18,6 +18,7 @@ Working on :
 
 Todo :
 
+- Add windows PC power on/off switch
 - Add Harmony Activities to views
 - Add Ikea lamps everywhere
 - Add Xiaomi Yeelight Chambre
