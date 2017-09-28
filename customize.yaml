@@ -12,6 +12,9 @@ group.all_lights:
 group.lumieres_home:
   hidden: false
   friendly_name: 'Réglage des Lumières'
+group.chauffage:
+  hidden: false
+  friendly_name: 'Chauffage'
   
 ####################################################################################
 #                                                                                  #

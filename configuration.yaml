@@ -32,6 +32,7 @@ sensor: !include sensors.yaml
 scene: !include scenes.yaml
 zone: !include zones.yaml
 input_slider: !include input_sliders.yaml
+switch: !include switches.yaml
 
 ####################################################################################
 #                                                                                  #
@@ -110,3 +111,28 @@ camera:
     name: Meteo Epinay sur Orge
     still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
     content_type: 'image/svg+xml'
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                BINARY SENSORS                                    #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+#http://192.168.1.104/control?cmd=GPIO,12,1
+#binary_sensor:
+
+climate:
+  - platform: generic_thermostat
+    name: Salon
+    heater: switch.radiateur_salon
+    target_sensor: sensor.temperature_1
+    min_temp: 17
+    max_temp: 25
+    target_temp: 21
+    tolerance: 1
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3

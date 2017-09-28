@@ -41,6 +41,19 @@
     service: homeassistant.turn_on
     entity_id: light.salon, light.cuisine
 
+- alias: 'Allumer chauffage @ arrivée Home'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'home'
+    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+  action:
+    service: climate.set_temperature
+    data:
+        entity_id: climate.salon
+        temperature: '21'
+
 - alias: 'Eteindre musique au depart'
   initial_state: 'on'
   trigger:
@@ -65,7 +78,22 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.salon, light.cuisine
-
+    
+- alias: 'Eteindre chauffage au depart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'not_home'
+    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '17'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_salon
 ####################################################################################
 #                                                                                  #
 #                                                                                  #

@@ -10,6 +10,7 @@ default_view:
   view: true
   icon: mdi:home
   entities:
+  - binary_sensor.etat_radiateur_salon
   - device_tracker.jungle_owntrack3t
   - device_tracker.androidf1562bd8cb4c4a91
   - group.lumieres_home
@@ -26,18 +27,25 @@ default_view:
 #                                                                                  #
 ####################################################################################
 
+lumieres:
+  entities:
+  - group.all_lights
+  - group.all_scenes
+  name: Lumieres
+  view: true
+
+chauffage:
+  name: Chauffage
+  entities:
+    - group.radiateurs
+    - group.thermostat
+  view: true
 media:
   entities:
   - media_player.junglecast
   - media_player.denon_salon
   - media_player.denon_chambre
   name: Media
-  view: true
-lumieres:
-  entities:
-  - group.all_lights
-  - group.all_scenes
-  name: Lumieres
   view: true
 automations_vue:
   entities:
@@ -54,6 +62,8 @@ hardware_view:
     - group.rpi
     - group.junglenas
   view: true
+
+
 
 ####################################################################################
 #                                                                                  #
@@ -145,6 +155,7 @@ all_scenes:
     - scene.plexoff
     - scene.plexpause
     - scene.plexon
+    - scene.psychedelic
 junglenas:
   name: JungleNAS
   entities:
@@ -163,3 +174,11 @@ junglenas:
 #    - sensor.glances_sleeping
 #    - sensor.glances_swap_free
 #    - sensor.glances_disk_use_2
+radiateurs:
+  name: 'Contrôle des radiateurs'
+  entities:
+    - switch.radiateur_salon
+thermostat:
+  name: 'Suivi des thermostats'
+  entities:
+    - climate.salon
