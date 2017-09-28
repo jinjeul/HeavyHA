@@ -18,6 +18,7 @@ Working on :
 
 Todo :
 
+- Add Harmony Activities to views
 - Add Ikea lamps everywhere
 - Add Xiaomi Yeelight Chambre
 - Chambre Thermostat
