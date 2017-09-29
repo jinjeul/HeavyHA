@@ -21,8 +21,8 @@ Todo :
 - Move to HTTPS !
 - Add windows PC power on/off switch
 - Add Harmony Activities to views
+- AIO ESP Relay for Salon & Chambre thermostat
 - Add Ikea lamps everywhere
-- Chambre Thermostat
 - Voice recognition via Google (Waiting for Google Assistant API in French)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
 
