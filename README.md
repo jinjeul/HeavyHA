@@ -18,6 +18,7 @@ Working on :
 
 Todo :
 
+- Move to HTTPS !
 - Add windows PC power on/off switch
 - Add Harmony Activities to views
 - Add Ikea lamps everywhere
