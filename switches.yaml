@@ -1,6 +1,7 @@
 ﻿- platform: mqtt
   name: "Radiateur Salon"  
-  state_topic: "jungle/radcontrol1/#"  
+  state_topic: "jungle/radcontrol1/#"
+  # RETAIN FLAG peut etre trop court si reboot HA alors switch ON par defaut
   command_topic: "jungle/radcontrol1/set"
   payload_on: "1"
   payload_off: "0"  
