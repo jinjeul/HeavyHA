@@ -18,7 +18,6 @@ Working on :
 
 Todo :
 
-- Move to HTTPS !
 - Add windows PC power on/off switch
 - Add Harmony Activities to views
 - AIO ESP Relay for Salon & Chambre thermostat
@@ -30,6 +29,7 @@ COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Moved to target DNS + HTTPS (let's encrypt)
 - Added Xiaomi Yeelight (light.chambre)
 - Salon Thermostat (ESP8266 & Fil pilote + Multisensors + MQTT & generic_thermostat)
 - Added Denon AVR Zone2 (= denon_chambre)
