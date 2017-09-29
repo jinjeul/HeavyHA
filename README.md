@@ -22,7 +22,6 @@ Todo :
 - Add windows PC power on/off switch
 - Add Harmony Activities to views
 - Add Ikea lamps everywhere
-- Add Xiaomi Yeelight Chambre
 - Chambre Thermostat
 - Voice recognition via Google (Waiting for Google Assistant API in French)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
@@ -31,6 +30,7 @@ TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Added Xiaomi Yeelight (light.chambre)
 - Salon Thermostat (ESP8266 & Fil pilote + Multisensors + MQTT & generic_thermostat)
 - Added Denon AVR Zone2 (= denon_chambre)
 - Private NAS Sensor => glances
