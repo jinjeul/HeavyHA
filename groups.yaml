@@ -87,6 +87,8 @@ lumieres_home:
   - input_slider.cuisine_brightness
   - light.salon
   - input_slider.salon_brightness
+  - light.chambre
+  - input_slider.chambre_brightness
   name: Lumieres
 sensor_node_1_card:  
   name: La cuisine
