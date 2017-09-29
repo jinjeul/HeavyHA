@@ -26,7 +26,7 @@ Todo :
 - Voice recognition via Google (Waiting for Google Assistant API in French)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
 
-TODOLIST: https://annuel2.framapad.org/p/heavyha
+COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
