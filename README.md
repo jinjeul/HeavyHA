@@ -2,7 +2,7 @@
 
 ![alt text](http://296s9q35uygy2xc5t0t6boviah.wpengine.netdna-cdn.com/wp-content/uploads/2014/07/Automation-Tiers.png)
 
-Automating your home, the french way. Balekuy-style.  
+Automating your home, the French Jungleman way.
 
 ![alt text](https://img11.hostingpics.net/pics/529497CaptureHA01102017.png)
 
