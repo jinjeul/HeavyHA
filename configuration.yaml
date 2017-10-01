@@ -35,6 +35,7 @@ scene: !include scenes.yaml
 zone: !include zones.yaml
 input_slider: !include input_sliders.yaml
 switch: !include switches.yaml
+input_select: !include input_selects.yaml
 
 ####################################################################################
 #                                                                                  #
@@ -118,7 +119,16 @@ camera:
     name: Meteo Epinay sur Orge
     still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
     content_type: 'image/svg+xml'
-
+    
+remote:
+  - platform: harmony
+    name: 'HUB Salon'
+    host: 192.168.1.148
+    port: 5222
+    activity: 'Regarder la TV'
+    #username: !secret harmony_mail
+    #password: !secret harmony_password
+    
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -127,8 +137,7 @@ camera:
 #                                                                                  #
 ####################################################################################
 
-#http://192.168.1.104/control?cmd=GPIO,12,1
-#binary_sensor:
+#http://ipESP/control?cmd=GPIO,12,1
 
 climate:
   - platform: generic_thermostat
@@ -143,7 +152,6 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
- 
 
 ####################################################################################
 #                                                                                  #
@@ -152,20 +160,9 @@ climate:
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
- 
-      
-input_select:
-  pcoptions:
-    name: 'Power Options'
-    options:
-      - Restart
-      - Shutdown
-      - None
-      - Sleep
-    initial: None
-    icon: mdi:desktop-tower
 
 shell_command:
   shutdown_z800: 'curl -k http://jungle-pc:8000/?action=System.Shutdown'
   restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
   sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
+

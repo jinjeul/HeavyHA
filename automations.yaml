@@ -312,26 +312,71 @@
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
-      
-      
-- alias: z800_restart
+   
+- alias: junglepc_redemarrer
   trigger:
     platform: state
     entity_id: input_select.pcoptions
-    to: "Restart"
+    to: "Redémarrer"
   action:
     - service: shell_command.restart_z800
-- alias: z800_shutdown
+- alias: junglepc_eteindre
   trigger:
     platform: state
     entity_id: input_select.pcoptions
-    to: "Shutdown"
+    to: "Eteindre"
   action:
     - service: shell_command.shutdown_z800
-- alias: z800_sleep
+- alias: junglepc_veille
   trigger:
     platform: state
     entity_id: input_select.pcoptions
-    to: "Sleep"
+    to: "Veille"
   action:
     - service: shell_command.sleep_z800
+    
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                HARMONY HUB                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+    
+- alias: Harmony
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    from: 'Choisir la source'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.hub_salon
+      data_template:
+        activity: >
+          {% if is_state("input_select.harmony", "Chromecast") %}
+            27262320
+          {% elif is_state("input_select.harmony", "Chambre Bluetooth") %}
+            28429925
+          {% elif is_state("input_select.harmony", "Vinyle") %}
+            28532020
+          {% else %}
+          {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Choisir la source"
+
+- alias: Harmony Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    to: 'Arrêt'
+  action:
+    - service: remote.turn_off
+      entity_id: remote.hub_salon
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Choisir la source"

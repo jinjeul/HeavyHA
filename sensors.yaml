@@ -24,6 +24,11 @@
     chromecast_state:
       value_template: '{{ states.media_player.junglecast.state }}'
       friendly_name: 'Chromecast State'
+- platform: template
+  sensors:
+    current_activity_hub:
+      friendly_name: 'Activité en cours'
+      value_template: '{{ states.remote.hub_salon.attributes.current_activity }}'
 
  
 ####################################################################################

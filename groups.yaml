@@ -43,9 +43,8 @@ chauffage:
 media:
   entities:
   - group.pccontrol
-  - media_player.junglecast
-  - media_player.denon_salon
-  - media_player.denon_chambre
+  - group.harmony
+  - group.mediaplayers
   name: Media
   view: true
 automations_vue:
@@ -80,6 +79,10 @@ Salon:
 - light.salon
 - media_player.denon_salon
 - media_player.junglecast
+mediaplayers:
+- media_player.junglecast
+- media_player.denon_salon
+- media_player.denon_chambre
 Chambre:
 - media_player.denon_chambre
 lumieres_home:
@@ -190,3 +193,9 @@ pccontrol:
   entities:
     - switch.jungle_pc
     - input_select.pcoptions
+harmony:
+  name: 'Activités Harmony HUB'
+  entities:
+    - sensor.current_activity_hub
+    - input_select.harmony
+    
