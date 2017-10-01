@@ -18,6 +18,7 @@ Working on :
 
 Todo :
 
+- Connected ON/OFF Wall switches
 - Add windows PC power on/off switch
 - Add Harmony Activities to views
 - AIO ESP Relay for Salon & Chambre thermostat
