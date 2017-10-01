@@ -5,28 +5,26 @@
 Automating your home, the french way. Balekuy-style.  
 
 My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) :
-- LIFX Lights (2)
+- LIFX (2)
+- Xiaomi Yeelight (1)
 - Harmony Hub (to control Philips TV and more)
-- DENON AVR X2200w
+- DENON AVR X2200w Media Receiver
 - Chromecast
-- Plex server
+- NAS (HP Microserv) : Plex, MQTT...
 - $15 MultiSensor by Bruh Automation (thanks man!)
 - Heat control with ESP (fil pilote) + MQTT + generic_thermostat
 
-Working on :
+TODO :
 
-
-Todo :
-
-- Connected ON/OFF Wall switches
-- AIO ESP Relay for Salon & Chambre thermostat
-- Add Ikea lamps everywhere
-- Voice recognition via Google (Waiting for Google Assistant API in French)
+- Connected ON/OFF Wall switches (ESP ?)
+- AIO ESP Relay for Salon & Chambre thermostat (Awaiting Delivery)
+- Add Lamps (Ikea Tradfri ?)
+- Voice recognition via Google (Cloud Speech API ?)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
 
 COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
-Done :
+DONE :
 
 - Added Harmony Activities Control
 - Added Windows PC Power Control (using Airytec Switch Off)
