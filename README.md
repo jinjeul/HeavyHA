@@ -19,8 +19,6 @@ Working on :
 Todo :
 
 - Connected ON/OFF Wall switches
-
-- Add Harmony Activities to views
 - AIO ESP Relay for Salon & Chambre thermostat
 - Add Ikea lamps everywhere
 - Voice recognition via Google (Waiting for Google Assistant API in French)
@@ -30,6 +28,7 @@ COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Added Harmony Activities Control
 - Added Windows PC Power Control (using Airytec Switch Off)
 - Moved to target DNS + HTTPS (let's encrypt)
 - Added Xiaomi Yeelight (light.chambre)
