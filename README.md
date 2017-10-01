@@ -4,6 +4,8 @@
 
 Automating your home, the french way. Balekuy-style.  
 
+![alt text](https://img11.hostingpics.net/pics/529497CaptureHA01102017.png)
+
 My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) :
 - LIFX (2)
 - Xiaomi Yeelight (1)
