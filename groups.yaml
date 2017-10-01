@@ -42,6 +42,7 @@ chauffage:
   view: true
 media:
   entities:
+  - group.pccontrol
   - media_player.junglecast
   - media_player.denon_salon
   - media_player.denon_chambre
@@ -184,3 +185,8 @@ thermostat:
   name: 'Suivi des thermostats'
   entities:
     - climate.salon
+pccontrol:
+  name: 'Contrôle des PC'
+  entities:
+    - switch.jungle_pc
+    - input_select.pcoptions

@@ -17,6 +17,8 @@ homeassistant:
 
 http:
   api_password: !secret api_ha
+  ssl_certificate: /etc/letsencrypt/live/jungleman.house/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/jungleman.house/privkey.pem
 
 ####################################################################################
 #                                                                                  #
@@ -141,3 +143,29 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 3
+ 
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                PC CONTROL                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+ 
+      
+input_select:
+  pcoptions:
+    name: 'Power Options'
+    options:
+      - Restart
+      - Shutdown
+      - None
+      - Sleep
+    initial: None
+    icon: mdi:desktop-tower
+
+shell_command:
+  shutdown_z800: 'curl -k http://jungle-pc:8000/?action=System.Shutdown'
+  restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
+  sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
