@@ -19,7 +19,7 @@ Working on :
 Todo :
 
 - Connected ON/OFF Wall switches
-- Add windows PC power on/off switch
+
 - Add Harmony Activities to views
 - AIO ESP Relay for Salon & Chambre thermostat
 - Add Ikea lamps everywhere
@@ -30,6 +30,7 @@ COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 Done :
 
+- Added Windows PC Power Control (using Airytec Switch Off)
 - Moved to target DNS + HTTPS (let's encrypt)
 - Added Xiaomi Yeelight (light.chambre)
 - Salon Thermostat (ESP8266 & Fil pilote + Multisensors + MQTT & generic_thermostat)
