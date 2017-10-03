@@ -20,7 +20,7 @@ TODO :
 
 - Connected ON/OFF Wall switches (ESP ?)
 - AIO ESP Relay for Salon & Chambre thermostat (Awaiting Delivery)
-- Add Lamps (Ikea Tradfri ?)
+- Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
 - Voice recognition via Google (Cloud Speech API ?)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
 
@@ -28,6 +28,7 @@ COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 DONE :
 
+- Added Vestibule Light (Xiaomi) + sensor_node_2
 - Added Harmony Activities Control
 - Added Windows PC Power Control (using Airytec Switch Off)
 - Moved to target DNS + HTTPS (let's encrypt)
