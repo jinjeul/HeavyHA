@@ -30,7 +30,6 @@
       friendly_name: 'Activité en cours'
       value_template: '{{ states.remote.hub_salon.attributes.current_activity }}'
 
- 
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -78,6 +77,7 @@
   name: rasplex
   command: 'python3 /home/pi/.homeassistant/plexstatus.py'
   scan_interval: 7
+  
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -111,10 +111,33 @@
   name: "Real Feel 1"
   unit_of_measurement: "°F"
   value_template: '{{ value_json.heatIndex | round(1) }}'
-#- platform: mqtt
-#  state_topic: "jungle/radcontrol1/power"
-#  name: "Radiateur Salon"
-#  value_template: '{{ value_json.etat | round(1) }}'
+  
+- platform: mqtt  
+  state_topic: "jungle/sensornode2"  
+  name: "Humidite 2"  
+  unit_of_measurement: "%"  
+  value_template: '{{ value_json.humidity | round(1) }}'  
+- platform: mqtt  
+  state_topic: "jungle/sensornode2"  
+  name: "LumSens 2"
+  ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+  unit_of_measurement: "LUX"  
+  value_template: '{{ value_json.ldr }}'  
+- platform: mqtt  
+  state_topic: "jungle/sensornode2"  
+  name: "Motion 2"  
+  value_template: '{{ value_json.motion }}'  
+- platform: mqtt  
+  state_topic: "jungle/sensornode2"  
+  name: "Temperature 2"  
+  unit_of_measurement: "°F"
+  value_template: '{{ value_json.temperature | round(1) }}'
+- platform: mqtt
+  state_topic: "jungle/sensornode2"
+  name: "Real Feel 2"
+  unit_of_measurement: "°F"
+  value_template: '{{ value_json.heatIndex | round(1) }}'
+  
 - platform: mqtt
   state_topic: "jungle/radcontrol1/power"
   name: "Etat Radiateur Salon"

@@ -40,6 +40,16 @@
   action:
     service: homeassistant.turn_on
     entity_id: light.salon, light.cuisine
+    
+- alias: 'Allumer PC @ arrivée Home'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.junglepc
 
 - alias: 'Allumer chauffage @ arrivée Home'
   initial_state: 'on'
@@ -77,7 +87,7 @@
     # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
   action:
     service: homeassistant.turn_off
-    entity_id: light.salon, light.cuisine
+    entity_id: light.salon, light.cuisine, light.vestibule
     
 - alias: 'Eteindre chauffage au depart'
   initial_state: 'on'
@@ -94,6 +104,21 @@
     - service : homeassistant.turn_off
       data:
         entity_id: switch.radiateur_salon
+
+- alias: 'Eteindre PC au depart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: switch.jungle_pc
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.jungle_pc
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -154,7 +179,7 @@
   - data:
       entity_id: light.led_1
     service: light.turn_on
-  alias: 'Allumer la LED si mouvement'
+  alias: 'Allumer la LED 1 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
@@ -169,7 +194,7 @@
   - data:
       entity_id: light.led_1
     service: light.turn_off
-  alias: 'Eteindre la LED si mouvement'
+  alias: 'Eteindre la LED 1 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
@@ -179,10 +204,36 @@
     from: motion detected
     platform: state
     to: standby
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 2
+
+- action:
+  - data:
+      entity_id: light.led_2
+    service: light.turn_on
+  alias: 'Allumer la LED 2 si mouvement'
+  condition:
+  - condition: state
+    entity_id: light.led_2
+    state: 'off'
+  trigger:
+  - entity_id: sensor.motion_2
+    from: standby
+    platform: state
+    to: motion detected
+
+- action:
+  - data:
+      entity_id: light.led_2
+    service: light.turn_off
+  alias: 'Eteindre la LED 2 si mouvement'
+  condition:
+  - condition: state
+    entity_id: light.led_2
+    state: 'on'
+  trigger:
+  - entity_id: sensor.motion_2
+    from: motion detected
+    platform: state
+    to: standby
 
 - action:
     data:
@@ -202,7 +253,34 @@
     from: standby
     platform: state
     to: motion detected
+    
 
+- action:
+    data:
+      entity_id:
+      - light.vestibule
+    service: homeassistant.turn_on
+  alias: 'Allumer la chambre si mouvement'
+  condition:
+  - condition: state
+    entity_id: light.vestibule
+    state: 'off'
+  trigger:
+  - entity_id: sensor.motion_2
+    from: standby
+    platform: state
+    to: motion detected
+
+- alias: 'Eteindre la lumière chambre après 10min'
+  trigger:
+    platform: state
+    entity_id: sensor.motion_2
+    to: 'standby'
+    for:
+      seconds: 30
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.vestibule
 
 - alias: 'Eteindre la lumière cuisine après 10min'
   trigger:
@@ -283,15 +361,15 @@
         entity_id: light.cuisine
         brightness: '{{ trigger.to_state.state | int }}'
 
-- alias: Chambre Light - Adjust Brightness
+- alias: Vestibule Light - Adjust Brightness
   trigger:
     platform: state
-    entity_id: input_slider.chambre_brightness
+    entity_id: input_slider.vestibule_brightness
   action:
     - service: light.turn_on
 # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
       data_template:
-        entity_id: light.chambre
+        entity_id: light.vestibule
         brightness: '{{ trigger.to_state.state | int }}'
 
 - alias: 'Alerte pushbullet si 5° dehors'
@@ -304,7 +382,7 @@
     data:
       title: 'Alerte GEL'
       message: 'Rentres les plantes, il va geler'
-      
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -312,7 +390,7 @@
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
-   
+
 - alias: junglepc_redemarrer
   trigger:
     platform: state
@@ -320,6 +398,10 @@
     to: "Redémarrer"
   action:
     - service: shell_command.restart_z800
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
 - alias: junglepc_eteindre
   trigger:
     platform: state
@@ -327,6 +409,10 @@
     to: "Eteindre"
   action:
     - service: shell_command.shutdown_z800
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
 - alias: junglepc_veille
   trigger:
     platform: state
@@ -334,7 +420,11 @@
     to: "Veille"
   action:
     - service: shell_command.sleep_z800
-    
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -342,7 +432,7 @@
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
-    
+
 - alias: Harmony
   hide_entity: True
   trigger:

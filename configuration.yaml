@@ -86,12 +86,21 @@ light:
   - platform: yeelight
     devices:
       192.168.1.137:
-        name: Chambre
+        name: Vestibule
         transition: 1000
   - platform: mqtt_json  
     name: "LED 1"  
     state_topic: "jungle/sensornode1"  
     command_topic: "jungle/sensornode1/set"  
+    brightness: true  
+    flash: true  
+    rgb: true  
+    optimistic: false  
+    qos: 0
+  - platform: mqtt_json  
+    name: "LED 2"  
+    state_topic: "jungle/sensornode2"  
+    command_topic: "jungle/sensornode2/set"  
     brightness: true  
     flash: true  
     rgb: true  
@@ -114,12 +123,6 @@ device_tracker:
   - platform: gpslogger
   - platform: owntracks
     max_gps_accuracy: 200
-camera:
-  - platform: generic
-    name: Meteo Epinay sur Orge
-    still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
-    content_type: 'image/svg+xml'
-    
 remote:
   - platform: harmony
     name: 'HUB Salon'
@@ -129,6 +132,12 @@ remote:
     #username: !secret harmony_mail
     #password: !secret harmony_password
     
+#camera:
+#  - platform: generic
+#    name: Meteo Epinay sur Orge
+#    still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
+#    content_type: 'image/svg+xml'
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -151,7 +160,7 @@ climate:
     min_cycle_duration:
       seconds: 5
     keep_alive:
-      minutes: 3
+      minutes: 1
 
 ####################################################################################
 #                                                                                  #

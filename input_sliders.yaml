@@ -1,17 +1,17 @@
 ﻿salon_brightness:
-  name: 'Luminosité -> salon'
+  name: ' Luminosité :'
   initial: 254
   min: 0
   max: 254
   step: 1
 cuisine_brightness:
-  name: 'Luminosité -> cuisine'
+  name: ' Luminosité :'
   initial: 254
   min: 0
   max: 254
   step: 1
-chambre_brightness:
-  name: 'Luminosité -> chambre'
+vestibule_brightness:
+  name: ' Luminosité : '
   initial: 254
   min: 0
   max: 254

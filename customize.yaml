@@ -35,6 +35,17 @@ sensor.lumsens_1:
 sensor.motion_1:
   friendly_name: 'Détecteur motion'
   icon: mdi:run
+sensor.temperature_2:
+  friendly_name: 'Température'
+sensor.humidite_2:
+  friendly_name: 'Taux humidité'
+  icon: mdi:cup-water
+sensor.lumsens_2:
+  friendly_name: 'Luminosité'
+  icon: mdi:spotlight
+sensor.motion_2:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
 sensor.rpi_uptime:
   friendly_name: Uptime
   icon: mdi:clock

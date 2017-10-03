@@ -14,10 +14,11 @@ default_view:
   - device_tracker.jungle_owntrack3t
   - device_tracker.androidf1562bd8cb4c4a91
   - group.lumieres_home
-  - media_player.junglecast
-  - camera.meteo_epinay_sur_orge
+#  - media_player.junglecast
   - group.datetimeweather
   - group.sensor_node_1_card
+  - group.sensor_node_2_card
+  
 
 ####################################################################################
 #                                                                                  #
@@ -91,8 +92,8 @@ lumieres_home:
   - input_slider.cuisine_brightness
   - light.salon
   - input_slider.salon_brightness
-  - light.chambre
-  - input_slider.chambre_brightness
+  - light.vestibule
+  - input_slider.vestibule_brightness
   name: Lumieres
 sensor_node_1_card:  
   name: La cuisine
@@ -101,6 +102,13 @@ sensor_node_1_card:
     - sensor.humidite_1 
     - sensor.lumsens_1
     - sensor.motion_1
+sensor_node_2_card:  
+  name: Le vestibule
+  entities:  
+    - sensor.temperature_2  
+    - sensor.humidite_2 
+    - sensor.lumsens_2
+    - sensor.motion_2
 datetimeweather:
   name: Le monde, dehors
   entities:
