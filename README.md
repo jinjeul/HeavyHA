@@ -23,6 +23,7 @@ TODO :
 - Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
 - Voice recognition via Google (Cloud Speech API ?)
 - TeleInfo EDF (Micro Teleinfo V2.0 ?)
+- Camera ?
 
 COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
