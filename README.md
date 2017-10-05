@@ -18,7 +18,7 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 
 TODO :
 
-- Connected ON/OFF Wall switches (ESP ?)
+- Connected ON/OFF Wall switches (ESP-01, Awaiting Delivery)
 - AIO ESP Relay for Salon & Chambre thermostat (Awaiting Delivery)
 - Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
 - Voice recognition via Google (Cloud Speech API ?)
