@@ -62,7 +62,7 @@
     service: climate.set_temperature
     data:
         entity_id: climate.salon
-        temperature: '21'
+        temperature: '22'
 
 - alias: 'Eteindre musique au depart'
   initial_state: 'on'
@@ -175,11 +175,11 @@
 #                                                                                  #
 ####################################################################################
   
-- action:
+- alias: 'Allumer la LED 1 si mouvement'
+  action:
   - data:
       entity_id: light.led_1
     service: light.turn_on
-  alias: 'Allumer la LED 1 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
@@ -190,11 +190,11 @@
     platform: state
     to: motion detected
 
-- action:
+- alias: 'Eteindre la LED 1 si mouvement'
+  action:
   - data:
       entity_id: light.led_1
     service: light.turn_off
-  alias: 'Eteindre la LED 1 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_1
@@ -205,11 +205,11 @@
     platform: state
     to: standby
 
-- action:
+- alias: 'Allumer la LED 2 si mouvement'
+  action:
   - data:
       entity_id: light.led_2
     service: light.turn_on
-  alias: 'Allumer la LED 2 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_2
@@ -220,11 +220,11 @@
     platform: state
     to: motion detected
 
-- action:
+- alias: 'Eteindre la LED 2 si mouvement'
+  action:
   - data:
       entity_id: light.led_2
     service: light.turn_off
-  alias: 'Eteindre la LED 2 si mouvement'
   condition:
   - condition: state
     entity_id: light.led_2
@@ -235,12 +235,12 @@
     platform: state
     to: standby
 
-- action:
+- alias: 'Allumer la cuisine si mouvement'
+  action:
     data:
       entity_id:
       - light.cuisine
     service: homeassistant.turn_on
-  alias: 'Allumer la cuisine si mouvement'
   condition:
   - condition: state
     entity_id: light.cuisine
@@ -253,14 +253,13 @@
     from: standby
     platform: state
     to: motion detected
-    
 
-- action:
+- alias: 'Allumer la chambre si mouvement'
+  action:
     data:
       entity_id:
       - light.vestibule
     service: homeassistant.turn_on
-  alias: 'Allumer la chambre si mouvement'
   condition:
   - condition: state
     entity_id: light.vestibule
@@ -293,10 +292,10 @@
     service: homeassistant.turn_off
     entity_id: light.cuisine
 
-- action:
+- alias: 'Allumer le salon si luminosité basse'
+  action:
     entity_id: light.salon
     service: homeassistant.turn_on
-  alias: 'Allumer le salon si luminosité basse'
   condition:
     condition: and
     conditions:
@@ -318,10 +317,10 @@
     below: '300'
     entity_id: sensor.lumsens_1
 
-- action:
+- alias: 'Eteindre le salon si luminosité haute'
+  action:
     entity_id: light.salon
     service: homeassistant.turn_off
-  alias: 'Eteindre le salon si luminosité haute'
   condition:
       condition: or
       conditions:

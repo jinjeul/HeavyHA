@@ -60,6 +60,13 @@ mqtt:
   password: !secret mqtt_password_junglenas
 conversation:
 history:
+  include:
+    domains:
+      - sensor
+      - media_player
+      - light
+      - device_tracker
+      - sun
 logbook:
   exclude:
     entities:
@@ -87,7 +94,6 @@ light:
     devices:
       192.168.1.137:
         name: Vestibule
-        transition: 1000
   - platform: mqtt_json  
     name: "LED 1"  
     state_topic: "jungle/sensornode1"  
@@ -129,15 +135,7 @@ remote:
     host: 192.168.1.148
     port: 5222
     activity: 'Regarder la TV'
-    #username: !secret harmony_mail
-    #password: !secret harmony_password
     
-#camera:
-#  - platform: generic
-#    name: Meteo Epinay sur Orge
-#    still_image_url: https://www.yr.no/place/France/Île-de-France/Épinay-sur-Orge/meteogram.svg
-#    content_type: 'image/svg+xml'
-
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -155,7 +153,7 @@ climate:
     target_sensor: sensor.temperature_1
     min_temp: 17
     max_temp: 25
-    target_temp: 21
+    target_temp: 22
     tolerance: 1
     min_cycle_duration:
       seconds: 5
