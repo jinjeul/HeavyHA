@@ -1,70 +1,12 @@
 ﻿####################################################################################
 #                                                                                  #
 #                                                                                  #
-#                                AUTOMATIONS                                       #
+#                                MEDIA CONTROL                                     #
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
 
-- alias: 'Allumer les lumières au couché du soleil'
-  initial_state: 'on'
-  trigger:
-    platform: sun
-    event: sunset
-    offset: -01:30:00
-  condition:
-    condition: or
-    conditions:
-      #Tracking OWNTRACK
-      - condition: state
-        entity_id: device_tracker.jungle_owntrack3t
-        state: 'home'
-      #Tracking DD-WRT
-      - condition: state
-        entity_id: device_tracker.androidf1562bd8cb4c4a91
-        state: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: light.salon
-
-- alias: 'Allumer les lumières @ arrivée Home'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'home'
-  condition:
-    condition: numeric_state
-    entity_id: sensor.lumsens_1
-    below: '300'
-  action:
-    service: homeassistant.turn_on
-    entity_id: light.salon, light.cuisine
-    
-- alias: 'Allumer PC @ arrivée Home'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: switch.junglepc
-
-- alias: 'Allumer chauffage @ arrivée Home'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'home'
-    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
-  action:
-    service: climate.set_temperature
-    data:
-        entity_id: climate.salon
-        temperature: '22'
-
-- alias: 'Eteindre musique au depart'
+- alias: 'Media - Denon Chambre - Eteindre au départ'
   initial_state: 'on'
   trigger:
     platform: state
@@ -78,56 +20,7 @@
     service: homeassistant.turn_off
     entity_id: media_player.denon_chambre
 
-- alias: 'Eteindre lumiere au depart'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'not_home'
-    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
-  action:
-    service: homeassistant.turn_off
-    entity_id: light.salon, light.cuisine, light.vestibule
-    
-- alias: 'Eteindre chauffage au depart'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'not_home'
-    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
-  action:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.salon
-        temperature: '17'
-    - service : homeassistant.turn_off
-      data:
-        entity_id: switch.radiateur_salon
-
-- alias: 'Eteindre PC au depart'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.androidf1562bd8cb4c4a91
-    to: 'not_home'
-  condition:
-    condition: state
-    entity_id: switch.jungle_pc
-    state: 'on'
-  action:
-    service: homeassistant.turn_off
-    entity_id: switch.jungle_pc
-
-####################################################################################
-#                                                                                  #
-#                                                                                  #
-#                                PLEX & CAST                                       #
-#                                                                                  #
-#                                                                                  #
-####################################################################################
-
-- alias: Si CAST PLEX Alors Light 10
+- alias: 'Media - PLEX - Baisser les lumières play'
   trigger:
     platform: state
     entity_id: sensor.rasplex
@@ -140,7 +33,7 @@
     service: scene.turn_on
     entity_id: scene.plexon
 
-- alias: Si PAUSE PLEX Alors Light 70
+- alias: 'Media - PLEX - Monter les lumières pause'
   trigger:
     platform: state
     entity_id: sensor.rasplex
@@ -153,7 +46,7 @@
     service: scene.turn_on
     entity_id: scene.plexpause
 
-- alias: Si FIN PLEX Alors Light 100
+- alias: 'Media - PLEX - Monter les lumières stop'
   initial_state: 'off'
   trigger:
     platform: state
@@ -174,68 +67,54 @@
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
-  
-- alias: 'Allumer la LED 1 si mouvement'
-  action:
-  - data:
-      entity_id: light.led_1
-    service: light.turn_on
-  condition:
-  - condition: state
-    entity_id: light.led_1
-    state: 'off'
-  trigger:
-  - entity_id: sensor.motion_1
-    from: standby
-    platform: state
-    to: motion detected
 
-- alias: 'Eteindre la LED 1 si mouvement'
-  action:
-  - data:
-      entity_id: light.led_1
-    service: light.turn_off
-  condition:
-  - condition: state
-    entity_id: light.led_1
-    state: 'on'
+- alias: 'Lumières - Salon - Allumer au couché du soleil'
+  initial_state: 'on'
   trigger:
-  - entity_id: sensor.motion_1
-    from: motion detected
-    platform: state
-    to: standby
-
-- alias: 'Allumer la LED 2 si mouvement'
-  action:
-  - data:
-      entity_id: light.led_2
-    service: light.turn_on
+    platform: sun
+    event: sunset
+    offset: -01:30:00
   condition:
-  - condition: state
-    entity_id: light.led_2
-    state: 'off'
-  trigger:
-  - entity_id: sensor.motion_2
-    from: standby
-    platform: state
-    to: motion detected
-
-- alias: 'Eteindre la LED 2 si mouvement'
+    condition: or
+    conditions:
+      #Tracking OWNTRACK
+      - condition: state
+        entity_id: device_tracker.jungle_owntrack3t
+        state: 'home'
+      #Tracking DD-WRT
+      - condition: state
+        entity_id: device_tracker.androidf1562bd8cb4c4a91
+        state: 'home'
   action:
-  - data:
-      entity_id: light.led_2
-    service: light.turn_off
-  condition:
-  - condition: state
-    entity_id: light.led_2
-    state: 'on'
-  trigger:
-  - entity_id: sensor.motion_2
-    from: motion detected
-    platform: state
-    to: standby
+    service: homeassistant.turn_on
+    entity_id: light.salon
 
-- alias: 'Allumer la cuisine si mouvement'
+- alias: 'Lumières - Appartement - ON Arrivée Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'home'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.lumsens_1
+    below: '300'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.salon, light.cuisine
+
+- alias: 'Lumières - Appartement - OFF au Départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'not_home'
+    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.salon, light.cuisine, light.vestibule
+
+- alias: 'Lumières - Cuisine - ON mouvement'
   action:
     data:
       entity_id:
@@ -254,7 +133,18 @@
     platform: state
     to: motion detected
 
-- alias: 'Allumer la chambre si mouvement'
+- alias: 'Lumières - Cuisine - OFF mouvement 10min'
+  trigger:
+    platform: state
+    entity_id: sensor.motion_1
+    to: 'standby'
+    for:
+      minutes: 10
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.cuisine
+
+- alias: 'Lumières - Vestibule - ON mouvement'
   action:
     data:
       entity_id:
@@ -270,7 +160,7 @@
     platform: state
     to: motion detected
 
-- alias: 'Eteindre la lumière chambre après 10min'
+- alias: 'Lumières - Vestibule - OFF mouvement 10min'
   trigger:
     platform: state
     entity_id: sensor.motion_2
@@ -281,18 +171,7 @@
     service: homeassistant.turn_off
     entity_id: light.vestibule
 
-- alias: 'Eteindre la lumière cuisine après 10min'
-  trigger:
-    platform: state
-    entity_id: sensor.motion_1
-    to: 'standby'
-    for:
-      minutes: 10
-  action:
-    service: homeassistant.turn_off
-    entity_id: light.cuisine
-
-- alias: 'Allumer le salon si luminosité basse'
+- alias: 'Lumières - Salon - ON si luminosité basse'
   action:
     entity_id: light.salon
     service: homeassistant.turn_on
@@ -317,7 +196,7 @@
     below: '300'
     entity_id: sensor.lumsens_1
 
-- alias: 'Eteindre le salon si luminosité haute'
+- alias: 'Lumières - Salon - OFF si luminosité haute'
   action:
     entity_id: light.salon
     service: homeassistant.turn_off
@@ -338,40 +217,15 @@
     entity_id: sensor.lumsens_1
   initial_state: 'off'
 
-- alias: Salon Light - Adjust Brightness
-  trigger:
-    platform: state
-    entity_id: input_slider.salon_brightness
-  action:
-    - service: light.turn_on
-# Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-      data_template:
-        entity_id: light.salon
-        brightness: '{{ trigger.to_state.state | int }}'
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                ALERTES                                           #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
 
-- alias: Cuisine Light - Adjust Brightness
-  trigger:
-    platform: state
-    entity_id: input_slider.cuisine_brightness
-  action:
-    - service: light.turn_on
-# Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-      data_template:
-        entity_id: light.cuisine
-        brightness: '{{ trigger.to_state.state | int }}'
-
-- alias: Vestibule Light - Adjust Brightness
-  trigger:
-    platform: state
-    entity_id: input_slider.vestibule_brightness
-  action:
-    - service: light.turn_on
-# Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-      data_template:
-        entity_id: light.vestibule
-        brightness: '{{ trigger.to_state.state | int }}'
-
-- alias: 'Alerte pushbullet si 5° dehors'
+- alias: 'Alerte - Pushbullet - Gel à venir'
   trigger:
     platform: numeric_state
     entity_id: sensor.yr_temperature
@@ -401,6 +255,7 @@
       entity_id: input_select.pcoptions
       data_template:
         option: "Choisir une action"
+
 - alias: junglepc_eteindre
   trigger:
     platform: state
@@ -412,6 +267,7 @@
       entity_id: input_select.pcoptions
       data_template:
         option: "Choisir une action"
+
 - alias: junglepc_veille
   trigger:
     platform: state
@@ -423,6 +279,20 @@
       entity_id: input_select.pcoptions
       data_template:
         option: "Choisir une action"
+
+- alias: 'PC - Arrêter au départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: switch.jungle_pc
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.jungle_pc
 
 ####################################################################################
 #                                                                                  #
@@ -469,3 +339,128 @@
       entity_id: input_select.harmony
       data_template:
         option: "Choisir la source"
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                HEATING                                           #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+        
+- alias: 'Chauffage - Salon - 22 Arrivée Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'home'
+    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+  action:
+    service: climate.set_temperature
+    data:
+        entity_id: climate.salon
+        temperature: '22'
+
+- alias: 'Chauffage - Salon - 17 Départ Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.androidf1562bd8cb4c4a91
+    to: 'not_home'
+    # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '17'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_salon
+
+- alias: 'Chauffage - Salon - 17 et OFF le soir'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 23
+    minutes: 30
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: device_tracker.androidf1562bd8cb4c4a91
+      state: 'home'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '17'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_salon
+
+- alias: 'Chauffage - Salon - 22 et ON le matin semaine'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 8
+    minutes: 0
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: device_tracker.androidf1562bd8cb4c4a91
+      state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '22'
+    - service : homeassistant.turn_on
+      data:
+        entity_id: switch.radiateur_salon
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                LIGHT SLIDERS                                     #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- alias: 'InputSlider - Salon - Luminosité'
+  trigger:
+    platform: state
+    entity_id: input_slider.salon_brightness
+  action:
+    - service: light.turn_on
+      # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+      data_template:
+        entity_id: light.salon
+        brightness: '{{ trigger.to_state.state | int }}'
+
+- alias: 'InputSlider - Cuisine - Luminosité'
+  trigger:
+    platform: state
+    entity_id: input_slider.cuisine_brightness
+  action:
+    - service: light.turn_on
+      # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+      data_template:
+        entity_id: light.cuisine
+        brightness: '{{ trigger.to_state.state | int }}'
+
+- alias: 'InputSlider - Vestibule - Luminosité'
+  trigger:
+    platform: state
+    entity_id: input_slider.vestibule_brightness
+  action:
+    - service: light.turn_on
+      # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+      data_template:
+        entity_id: light.vestibule
+        brightness: '{{ trigger.to_state.state | int }}'

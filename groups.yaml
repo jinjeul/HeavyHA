@@ -10,15 +10,13 @@ default_view:
   view: true
   icon: mdi:home
   entities:
-  - binary_sensor.etat_radiateur_salon
+  - group.thermostat
+  - group.lumieres_home
   - device_tracker.jungle_owntrack3t
   - device_tracker.androidf1562bd8cb4c4a91
-  - group.lumieres_home
-#  - media_player.junglecast
   - group.datetimeweather
   - group.sensor_node_1_card
   - group.sensor_node_2_card
-  
 
 ####################################################################################
 #                                                                                  #
@@ -30,11 +28,12 @@ default_view:
 
 lumieres:
   entities:
-  - group.all_lights
+  - group.light_salon
+  - group.light_cuisine
+  - group.light_vestibule
   - group.all_scenes
   name: Lumieres
   view: true
-
 chauffage:
   name: Chauffage
   entities:
@@ -50,11 +49,10 @@ media:
   view: true
 automations_vue:
   entities:
-    - group.motion_automation
-    - group.lux_automation
-    - group.plex_automations
-    - group.coming_home_automation
-    - group.leaving_home_automation
+    - group.light_automation
+    - group.media_automation
+    - group.alerte_automation
+    - group.chauffage_automation
   name: Automations
   view: true
 hardware_view:
@@ -64,12 +62,10 @@ hardware_view:
     - group.junglenas
   view: true
 
-
-
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
-#                                GROUPS                                            #
+#                                LIGHT & MEDIA GROUPS                              #
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
@@ -80,114 +76,25 @@ Salon:
 - light.salon
 - media_player.denon_salon
 - media_player.junglecast
+lumieres_home:
+- group.light_salon
+- group.light_cuisine
+- group.light_vestibule
+light_salon:
+- light.salon
+- input_slider.salon_brightness
+light_cuisine:
+- light.cuisine
+- input_slider.cuisine_brightness
+light_vestibule:
+- light.vestibule
+- input_slider.vestibule_brightness
 mediaplayers:
 - media_player.junglecast
 - media_player.denon_salon
 - media_player.denon_chambre
 Chambre:
 - media_player.denon_chambre
-lumieres_home:
-  entities:
-  - light.cuisine
-  - input_slider.cuisine_brightness
-  - light.salon
-  - input_slider.salon_brightness
-  - light.vestibule
-  - input_slider.vestibule_brightness
-  name: Lumieres
-sensor_node_1_card:  
-  name: La cuisine
-  entities:  
-    - sensor.temperature_1  
-    - sensor.humidite_1 
-    - sensor.lumsens_1
-    - sensor.motion_1
-sensor_node_2_card:  
-  name: Le vestibule
-  entities:  
-    - sensor.temperature_2  
-    - sensor.humidite_2 
-    - sensor.lumsens_2
-    - sensor.motion_2
-datetimeweather:
-  name: Le monde, dehors
-  entities:
-    - sensor.time
-    - sensor.date
-    - sensor.yr_symbol
-    - sensor.yr_temperature
-    - sensor.yr_cloudiness
-    - sensor.yr_humidity
-    - sensor.yr_precipitation
-    - sensor.yr_wind_speed
-    - sensor.yr_wind_direction
-    - sun.sun
-    - sensor.moon
-plex_automations:
-  name: Trigger Plex
-  entities:
-    - automation.si_cast_plex_alors_light_10
-    - automation.si_pause_plex_alors_light_70
-    - automation.si_fin_plex_alors_light_100
-motion_automation:
-  name: Trigger Motion
-  entities:
-    - automation.allumer_les_lumieres_au_couche_du_soleil
-    - automation.allumer_la_cuisine_si_mouvement
-    - automation.eteindre_la_lumiere_cuisine_apres_10min
-    - automation.allumer_la_led_si_mouvement
-    - automation.eteindre_la_led_si_mouvement
-lux_automation:
-  name: Trigger Luminosity
-  entities:
-    - automation.allumer_le_salon_si_luminosite_basse
-    - automation.eteindre_le_salon_si_luminosite_haute
-coming_home_automation:
-  name: Trigger HOME
-  entities:
-    - automation.allumer_les_lumieres__arrivee_home
-leaving_home_automation:
-  name: Trigger AWAY
-  entities:
-    - automation.eteindre_musique_au_depart
-rpi:
-  name: Raspberry Pi
-  entities:
-    - sensor.cpu_use
-    - sensor.disk_use_home
-    - sensor.ram_free
-    - sensor.rpi_uptime
-    - sensor.ipv4_address_eth0
-all_scenes:
-  name: Les scènes
-  entities:
-    - scene.chaud
-    - scene.saloncool
-    - scene.chezchouka
-    - scene.coolblue
-    - scene.hot_sex
-    - scene.plexoff
-    - scene.plexpause
-    - scene.plexon
-    - scene.psychedelic
-junglenas:
-  name: JungleNAS
-  entities:
-    - sensor.glances_cpu_load
-    - sensor.glances_disk_free
-    - sensor.glances_disk_use
-    - sensor.glances_ram_free
-    - sensor.glances_ram_use
-    - sensor.glances_swap_use
-    - sensor.glances_swap_use_2
-#    - sensor.glances_thread
-#    - sensor.glances_total
-#    - sensor.glances_cpu_temp
-#    - sensor.glances_ram_use_2
-#    - sensor.glances_running
-#    - sensor.glances_sleeping
-#    - sensor.glances_swap_free
-#    - sensor.glances_disk_use_2
 radiateurs:
   name: 'Contrôle des radiateurs'
   entities:
@@ -206,4 +113,114 @@ harmony:
   entities:
     - sensor.current_activity_hub
     - input_select.harmony
-    
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSOR GROUPS                                     #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+sensor_node_1_card:
+  name: La cuisine
+  entities:
+    - sensor.temperature_1
+    - sensor.humidite_1 
+    - sensor.lumsens_1
+    - sensor.motion_1
+sensor_node_2_card:  
+  name: Le vestibule
+  entities:  
+    - sensor.temperature_2
+    - sensor.humidite_2 
+    - sensor.lumsens_2
+    - sensor.motion_2
+datetimeweather:
+  name: Le monde, dehors
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.yr_symbol
+    - sensor.yr_temperature
+    - sensor.yr_cloudiness
+    - sensor.yr_humidity
+    - sensor.yr_precipitation
+    - sensor.yr_wind_speed
+    - sensor.yr_wind_direction
+    - sun.sun
+    - sensor.moon
+rpi:
+  name: JunglePi
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.rpi_uptime
+    - sensor.ipv4_address_eth0
+junglenas:
+  name: JungleNAS
+  entities:
+    - sensor.glances_cpu_load
+    - sensor.glances_disk_free
+    - sensor.glances_disk_use
+    - sensor.glances_ram_free
+    - sensor.glances_ram_use
+    - sensor.glances_swap_use
+    - sensor.glances_swap_use_2
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                AUTOMATION VIEWS                                  #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+media_automation:
+  name: Media Control
+  entities:
+    - automation.media__denon_chambre__eteindre_au_depart
+    - automation.media__plex__baisser_les_lumieres_play
+    - automation.media__plex__monter_les_lumieres_pause
+    - automation.media__plex__monter_les_lumieres_stop
+light_automation:
+  name: 'Lumières & Mouvements'
+  entities:
+    - automation.lumieres__appartement__off_au_depart
+    - automation.lumieres__appartement__on_arrivee_appart
+    - automation.lumieres__cuisine__off_mouvement_10min
+    - automation.lumieres__cuisine__on_mouvement
+    - automation.lumieres__salon__allumer_au_couche_du_soleil
+    - automation.lumieres__salon__off_si_luminosite_haute
+    - automation.lumieres__salon__on_si_luminosite_basse
+    - automation.lumieres__vestibule__off_mouvement_10min
+    - automation.lumieres__vestibule__on_mouvement
+alerte_automation:
+  name: 'Mes Alertes'
+  entities:
+    - automation.alerte__pushbullet__gel_a_venir
+chauffage_automation:
+  name: 'Gestion des thermostats'
+  entities:
+    - automation.chauffage__salon__17_depart_appart
+    - automation.chauffage__salon__17_et_off_le_soir
+    - automation.chauffage__salon__22_arrivee_appart
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SCENE VIEWS                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+all_scenes:
+  name: Les scènes
+  entities:
+    - scene.chaud
+    - scene.saloncool
+    - scene.chezchouka
+    - scene.coolblue
+    - scene.hot_sex
+    - scene.psychedelic

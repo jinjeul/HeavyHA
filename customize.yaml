@@ -15,7 +15,16 @@ group.lumieres_home:
 group.chauffage:
   hidden: false
   friendly_name: 'Chauffage'
-  
+group.light_salon:
+  hidden: false
+  friendly_name: 'Lumières du Salon'
+group.light_cuisine:
+  hidden: false
+  friendly_name: 'Lumières de la Cuisine'
+group.light_vestibule:
+  hidden: false
+  friendly_name: 'Lumières du Vestibule'
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
