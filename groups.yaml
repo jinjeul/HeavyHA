@@ -53,6 +53,7 @@ automations_vue:
     - group.media_automation
     - group.alerte_automation
     - group.chauffage_automation
+    - group.scene_automation
   name: Automations
   view: true
 hardware_view:
@@ -206,6 +207,10 @@ chauffage_automation:
     - automation.chauffage__salon__17_depart_appart
     - automation.chauffage__salon__17_et_off_le_soir
     - automation.chauffage__salon__22_arrivee_appart
+scene_automation:
+  name: 'Sur lancement de scènes'
+  entities:
+    - automation.lumieres__vestibule__physchedelic_scene
 
 ####################################################################################
 #                                                                                  #

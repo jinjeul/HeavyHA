@@ -17,8 +17,8 @@ homeassistant:
 
 http:
   api_password: !secret api_ha
-  ssl_certificate: /etc/letsencrypt/live/jungleman.house/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/jungleman.house/privkey.pem
+  ssl_certificate: /home/pi/jungleman.house.crt
+  ssl_key: /home/pi/jungleman_house.key
 
 ####################################################################################
 #                                                                                  #

@@ -149,6 +149,7 @@
     data:
       entity_id:
       - light.vestibule
+      color_temp: 263.0194634402946
     service: homeassistant.turn_on
   condition:
   - condition: state
@@ -216,6 +217,29 @@
     above: '300'
     entity_id: sensor.lumsens_1
   initial_state: 'off'
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                LIGHT SCENES                                      #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- alias: 'Lumières - Vestibule - Physchedelic scene'
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service_data:
+        entity_id: scene.psychedelic
+      domain: scene
+      service: turn_on
+  action:
+    entity_id: light.vestibule
+    service: light.turn_on
+    data:
+     rgb_color: [46,0,137]
 
 ####################################################################################
 #                                                                                  #
