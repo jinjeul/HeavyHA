@@ -240,6 +240,18 @@
     service: light.turn_on
     data:
      rgb_color: [46,0,137]
+- alias: 'Lumières - Vestibule - Chaud scene'
+  trigger:
+    platform: event
+    event_type: call_service
+    event_data:
+      service_data:
+        entity_id: scene.chaud
+      domain: scene
+      service: turn_on
+  action:
+    entity_id: light.vestibule
+    service: light.turn_off
 
 ####################################################################################
 #                                                                                  #

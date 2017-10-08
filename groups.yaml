@@ -16,8 +16,7 @@ default_view:
   - device_tracker.androidf1562bd8cb4c4a91
   - group.meteo
   - group.date
-  - group.sensor_node_1_card
-  - group.sensor_node_2_card
+  - group.temperature
 
 ####################################################################################
 #                                                                                  #
@@ -40,6 +39,12 @@ chauffage:
   entities:
     - group.radiateurs
     - group.thermostat
+  view: true
+room_sensor:
+  name: Pièces
+  entities:
+    - group.sensor_node_1_card
+    - group.sensor_node_2_card
   view: true
 media:
   entities:
@@ -138,6 +143,11 @@ sensor_node_2_card:
     - sensor.humidite_2 
     - sensor.lumsens_2
     - sensor.motion_2
+temperature:
+  name: Suivi des températures
+  entities:
+   - sensor.temperature_1
+   - sensor.temperature_2
 meteo:
   name: Météo
   entities:
@@ -213,6 +223,7 @@ scene_automation:
   name: 'Sur lancement de scènes'
   entities:
     - automation.lumieres__vestibule__physchedelic_scene
+    - automation.lumieres__vestibule__chaud_scene
 
 ####################################################################################
 #                                                                                  #

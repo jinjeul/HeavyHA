@@ -34,7 +34,7 @@ group.light_vestibule:
 ####################################################################################
 
 sensor.temperature_1:
-  friendly_name: 'Température'
+  friendly_name: 'Température Cuisine'
 sensor.humidite_1:
   friendly_name: 'Taux humidité'
   icon: mdi:cup-water
@@ -45,7 +45,7 @@ sensor.motion_1:
   friendly_name: 'Détecteur motion'
   icon: mdi:run
 sensor.temperature_2:
-  friendly_name: 'Température'
+  friendly_name: 'Température Vestibule'
 sensor.humidite_2:
   friendly_name: 'Taux humidité'
   icon: mdi:cup-water
