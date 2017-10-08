@@ -14,7 +14,8 @@ default_view:
   - group.lumieres_home
   - device_tracker.jungle_owntrack3t
   - device_tracker.androidf1562bd8cb4c4a91
-  - group.datetimeweather
+  - group.meteo
+  - group.date
   - group.sensor_node_1_card
   - group.sensor_node_2_card
 
@@ -124,24 +125,22 @@ harmony:
 ####################################################################################
 
 sensor_node_1_card:
-  name: La cuisine
+  name: Cuisine
   entities:
     - sensor.temperature_1
     - sensor.humidite_1 
     - sensor.lumsens_1
     - sensor.motion_1
 sensor_node_2_card:  
-  name: Le vestibule
+  name: Vestibule
   entities:  
     - sensor.temperature_2
     - sensor.humidite_2 
     - sensor.lumsens_2
     - sensor.motion_2
-datetimeweather:
-  name: Le monde, dehors
+meteo:
+  name: Météo
   entities:
-    - sensor.time
-    - sensor.date
     - sensor.yr_symbol
     - sensor.yr_temperature
     - sensor.yr_cloudiness
@@ -149,6 +148,11 @@ datetimeweather:
     - sensor.yr_precipitation
     - sensor.yr_wind_speed
     - sensor.yr_wind_direction
+date:
+  name: Date & Heure
+  entities:
+    - sensor.time
+    - sensor.date
 rpi:
   name: JunglePi
   entities:
