@@ -27,7 +27,7 @@ COMMON TODOLIST: https://annuel2.framapad.org/p/heavyha
 
 DONE :
 
-- Added Vestibule Light (Xiaomi) + sensor_node_2
+- Added Vestibule Light (Xiaomi Yeelight) + sensor_node_2
 - Added Harmony Activities Control
 - Added Windows PC Power Control (using Airytec Switch Off)
 - Moved to target DNS + HTTPS (let's encrypt)
