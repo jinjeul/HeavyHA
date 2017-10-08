@@ -63,7 +63,7 @@ sensor.time:
 sensor.date:
   friendly_name: 'Date'
 sensor.yr_symbol:
-  friendly_name: 'Nébulosité'
+  friendly_name: 'Etat du ciel'
 sensor.yr_temperature:
   friendly_name: 'Température'
 sensor.yr_cloudiness:
