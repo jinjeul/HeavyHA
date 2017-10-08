@@ -4,7 +4,7 @@
 
 Automating your home, the French Jungleman way.
 
-![alt text](https://img11.hostingpics.net/pics/368956CaptureHA06102017.png)
+![alt text](https://img11.hostingpics.net/pics/732214CaptureHA08102017.png)
 
 My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) :
 - LIFX (2)
