@@ -36,6 +36,18 @@ switch:
         turn_off:
           service: remote.turn_off
           entity_id: remote.hub_salon
+  - platform: template
+    switches:
+      tv:
+        friendly_name: 'Téléviseur Philips'
+        value_template: "{{ is_state('script.philipstv_on', 'on')}}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.philipstv_on
+        turn_off:
+          service: script.turn_on
+          entity_id: script.philipstv_off
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -224,3 +236,19 @@ scene:
           color_temp: 333
           brightness: 131
           transition: 7
+
+script:
+  philipstv_on:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.bedroom
+        data:
+          device: "45999239"
+          command: "PowerOn"
+  philipstv_off:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.bedroom
+        data:
+          device: "45999239"
+          command: "PowerOff"
