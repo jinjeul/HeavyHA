@@ -1,0 +1,86 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INTRO                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+homeassistant:
+  name: Jungle'Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 80
+  unit_system: metric
+  time_zone: Europe/Paris
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+
+http:
+  api_password: !secret api_ha
+  ssl_certificate: /home/pi/jungleman.house.crt
+  ssl_key: /home/pi/jungleman_house.key
+  
+recorder:
+  db_url: !secret recorder_db_url
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INCLUDES                                          #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+group: !include groups.yaml
+sensor: !include sensors.yaml
+zone: !include zones.yaml
+input_select: !include input_selects.yaml
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MAIN CONFIG                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+frontend:
+logger:
+  default: error
+  logs:
+    DenonAVR: fatal
+config:
+updater:
+discovery:
+mqtt:  
+  broker: localhost
+  port: 1883
+  username: !secret mqtt_login_junglenas
+  password: !secret mqtt_password_junglenas
+conversation:
+history:
+  include:
+    domains:
+      - sensor
+      - media_player
+      - light
+      - device_tracker
+      - sun
+logbook:
+  exclude:
+    entities:
+      - sensor.rpi_uptime
+      - group.cuisine
+      - group.salon
+      - group.lumieres_home
+      - light.led_1
+      - sensor.time
+      - sensor.yr_symbol
+      - sensor.yr_temperature
+      - sensor.yr_cloudiness
+      - sensor.yr_humidity
+      - sensor.yr_precipitation
+      - sensor.yr_wind_speed
+      - sensor.yr_wind_direction
+sun:

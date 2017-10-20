@@ -1,0 +1,226 @@
+﻿remote:
+  - platform: harmony
+    name: 'HUB Salon'
+    host: 192.168.1.148
+    port: 5222
+    activity: 'Regarder la TV'
+media_player:
+  - platform: cast
+  - platform: denonavr
+    host: 192.168.1.136
+    name: Denon Salon
+    show_all_sources: False
+    zones:
+      - zone: Zone2
+        name: Denon Chambre
+shell_command:
+  shutdown_z800: 'curl -k http://jungle-pc:8000/?action=System.Shutdown'
+  restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
+  sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
+switch:
+  - platform: wake_on_lan
+    mac_address: "44-8A-5B-CC-56-C5"
+    name: "Jungle PC"
+    host: "JUNGLE-PC"
+    turn_off:
+      service: shell_command.shutdown_z800
+  - platform: template
+    name: 'Harmony HUB Salon'
+    switches:
+      watchtv:
+        friendly_name: 'Chromecast'
+        value_template: "{% if is_state('remote.hub_salon', 'on') %}on{% else %}off{% endif %}"
+        turn_on:
+          service: remote.turn_on
+          entity_id: remote.hub_salon
+        turn_off:
+          service: remote.turn_off
+          entity_id: remote.hub_salon
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MEDIA CONTROL                                     #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+automation:
+  - alias: 'Media - Denon Chambre - Eteindre au départ'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'not_home'
+    condition:
+      condition: state
+      entity_id: media_player.denon_chambre
+      state: 'on'
+    action:
+      service: homeassistant.turn_off
+      entity_id: media_player.denon_chambre
+
+  - alias: 'Media - PLEX - Baisser les lumières play'
+    trigger:
+      platform: state
+      entity_id: sensor.rasplex
+      to: playing
+    condition:
+    - condition: state
+      entity_id: sensor.chromecast_source
+      state: 'Plex'
+    action:
+      service: scene.turn_on
+      entity_id: scene.plexon
+
+  - alias: 'Media - PLEX - Monter les lumières pause'
+    trigger:
+      platform: state
+      entity_id: sensor.rasplex
+      to: paused
+    condition:
+    - condition: state
+      entity_id: sensor.chromecast_source
+      state: 'Plex'
+    action:
+      service: scene.turn_on
+      entity_id: scene.plexpause
+
+  - alias: 'Media - PLEX - Monter les lumières stop'
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: sensor.rasplex
+      to: idle
+      for:
+        hours: 00
+        minutes: 00
+        seconds: 03
+    action:
+      service: scene.turn_on
+      entity_id: scene.plexoff
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                PC CONTROL                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+  
+  - alias: junglepc_redemarrer
+    trigger:
+      platform: state
+      entity_id: input_select.pcoptions
+      to: "Redémarrer"
+    action:
+      - service: shell_command.restart_z800
+      - service: input_select.select_option
+        entity_id: input_select.pcoptions
+        data_template:
+          option: "Choisir une action"
+  
+  - alias: junglepc_eteindre
+    trigger:
+      platform: state
+      entity_id: input_select.pcoptions
+      to: "Eteindre"
+    action:
+      - service: shell_command.shutdown_z800
+      - service: input_select.select_option
+        entity_id: input_select.pcoptions
+        data_template:
+          option: "Choisir une action"
+  
+  - alias: junglepc_veille
+    trigger:
+      platform: state
+      entity_id: input_select.pcoptions
+      to: "Veille"
+    action:
+      - service: shell_command.sleep_z800
+      - service: input_select.select_option
+        entity_id: input_select.pcoptions
+        data_template:
+          option: "Choisir une action"
+  
+  - alias: 'PC - Arrêter au départ'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'not_home'
+    condition:
+      condition: state
+      entity_id: switch.jungle_pc
+      state: 'on'
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.jungle_pc
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                HARMONY HUB                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+  
+  - alias: Harmony
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: input_select.harmony
+      from: 'Choisir la source'
+    action:
+      - service: remote.turn_on
+        entity_id: remote.hub_salon
+        data_template:
+          activity: >
+            {% if is_state("input_select.harmony", "Chromecast") %}
+              27262320
+            {% elif is_state("input_select.harmony", "Chambre Bluetooth") %}
+              28429925
+            {% elif is_state("input_select.harmony", "Vinyle") %}
+              28532020
+            {% else %}
+            {% endif %}
+      - service: input_select.select_option
+        entity_id: input_select.harmony
+        data_template:
+          option: "Choisir la source"
+  
+  - alias: Harmony Off
+    hide_entity: True
+    trigger:
+      platform: state
+      entity_id: input_select.harmony
+      to: 'Arrêt'
+    action:
+      - service: remote.turn_off
+        entity_id: remote.hub_salon
+      - service: input_select.select_option
+        entity_id: input_select.harmony
+        data_template:
+          option: "Choisir la source"
+scene:
+  - name: plexon
+    entities:
+        light.salon:
+          state: on
+          color_temp: 333
+          brightness: 42
+          transition: 10
+  - name: plexoff
+    entities:
+        light.salon:
+          state: on
+          color_temp: 333
+          brightness: 250
+          transition: 30
+  - name: plexpause
+    entities:
+        light.salon:
+          state: on
+          color_temp: 333
+          brightness: 131
+          transition: 7

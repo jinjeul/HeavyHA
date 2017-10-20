@@ -1,0 +1,16 @@
+﻿notify:
+  - name: pushbullet_3t
+    platform: pushbullet
+    api_key: !secret pushbullet_api
+
+automation:
+  - alias: 'Alerte - Pushbullet - Gel à venir'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.yr_temperature
+      below: '5'
+    action:
+      service: notify.pushbullet_3t
+      data:
+        title: 'Alerte GEL'
+        message: 'Rentres les plantes, il va geler'

@@ -1,0 +1,83 @@
+﻿sensor:
+  - platform: mqtt  
+    state_topic: "jungle/sensornode1"  
+    name: "Humidite 1"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode1"  
+    name: "LumSens 1"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"  
+    value_template: '{{ value_json.ldr }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode1"  
+    name: "Motion 1"  
+    value_template: '{{ value_json.motion }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode1"  
+    name: "Temperature 1"  
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: "jungle/sensornode1"
+    name: "Real Feel 1"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+light:
+  - platform: mqtt_json  
+    name: "LED 1"  
+    state_topic: "jungle/sensornode1"  
+    command_topic: "jungle/sensornode1/set"  
+    brightness: true  
+    flash: true  
+    rgb: true  
+    optimistic: false  
+    qos: 0
+group:
+  sensor_node_1_card:
+    name: Cuisine
+    entities:
+      - sensor.temperature_1
+      - sensor.humidite_1 
+      - sensor.lumsens_1
+      - sensor.motion_1
+automation:
+  - alias: 'Lumières - Cuisine - ON mouvement'
+    action:
+      data:
+        entity_id:
+        - light.cuisine
+      service: homeassistant.turn_on
+    condition:
+    - condition: state
+      entity_id: light.cuisine
+      state: 'off'
+    - condition: numeric_state
+      below: '300'
+      entity_id: sensor.lumsens_1
+    trigger:
+    - entity_id: sensor.motion_1
+      from: standby
+      platform: state
+      to: motion detected
+  - alias: 'Lumières - Cuisine - OFF mouvement 10min'
+    trigger:
+      platform: state
+      entity_id: sensor.motion_1
+      to: 'standby'
+      for:
+        minutes: 10
+    action:
+      service: homeassistant.turn_off
+      entity_id: light.cuisine
+  - alias: 'InputSlider - Cuisine - Luminosité'
+    trigger:
+      platform: state
+      entity_id: input_slider.cuisine_brightness
+    action:
+      - service: light.turn_on
+        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+        data_template:
+          entity_id: light.cuisine
+          brightness: '{{ trigger.to_state.state | int }}'

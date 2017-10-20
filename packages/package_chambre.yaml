@@ -1,0 +1,37 @@
+﻿switch:
+  - platform: mqtt
+    name: "Radiateur Chambre"  
+    state_topic: "jungle/radcontrol/rad_chambre/etat"
+    # RETAIN FLAG peut etre trop court si reboot HA alors switch ON par defaut
+    command_topic: "jungle/radcontrol_chambre/set"
+    payload_on: "1"
+    payload_off: "0"  
+    qos: 0
+    optimistic: false
+automation:
+  - alias: 'Chauffage - Chambre - 22 et ON le matin 10h semaine'
+    initial_state: 'off'
+    trigger:
+      platform: time
+      hours: 10
+      minutes: 0
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.chambre
+          temperature: '22'
+      - service : homeassistant.turn_on
+        data:
+          entity_id: switch.radiateur_chambre

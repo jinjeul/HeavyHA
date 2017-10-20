@@ -1,0 +1,66 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                METEO                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- platform: yr
+  monitored_conditions:
+    - symbol
+    - temperature
+    - precipitation
+    - windSpeed
+    - windDirection
+    - humidity
+    - cloudiness
+- platform: moon
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MONITORING                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: ipv4_address
+      arg: eth0
+- platform: command_line
+  name: Rpi Uptime
+  command: "uptime -p"
+  value_template: "{{ value[3:] }}"
+  scan_interval: 60
+- platform: glances
+  host: 192.168.1.132
+  resources:
+    - 'disk_use_percent'
+    - 'disk_use'
+    - 'disk_free'
+    - 'memory_use_percent'
+    - 'memory_use'
+    - 'memory_free'
+    - 'swap_use_percent'
+    - 'swap_use'
+    - 'swap_free'
+    - 'processor_load'
+    - 'process_running'
+    - 'process_total'
+    - 'process_thread'
+    - 'process_sleeping'
+    - 'cpu_temp'
+- platform: command_line
+  name: rasplex
+  command: 'python3 /home/pi/.homeassistant/plexstatus.py'
+  scan_interval: 7

@@ -1,0 +1,206 @@
+﻿sensor:
+  - platform: template
+    sensors:
+      chromecast_source:
+        value_template: '{{ states.media_player.junglecast.attributes["app_name"] }}'
+        friendly_name: 'Chromecast Source'
+      chromecast_state:
+        value_template: '{{ states.media_player.junglecast.state }}'
+        friendly_name: 'Chromecast State'
+  - platform: template
+    sensors:
+      current_activity_hub:
+        friendly_name: 'Activité en cours'
+        value_template: '{{ states.remote.hub_salon.attributes.current_activity }}'
+switch:
+  - platform: mqtt
+    name: "Radiateur Salon"  
+    state_topic: "jungle/radcontrol/rad_salon/etat"
+    # RETAIN FLAG peut etre trop court si reboot HA alors switch ON par defaut
+    command_topic: "jungle/radcontrol_salon/set"
+    payload_on: "1"
+    payload_off: "0"  
+    qos: 0
+    optimistic: false
+  - platform: template
+    switches:
+      tv:
+        friendly_name: 'Téléviseur Philips'
+        value_template: "{{ is_state('script.philipstv_on', 'on')}}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.philipstv_on
+        turn_off:
+          service: script.turn_on
+          entity_id: script.philipstv_off
+script:
+  philipstv_on:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.bedroom
+        data:
+          device: "45999239"
+          command: "PowerOn"
+  philipstv_off:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.bedroom
+        data:
+          device: "45999239"
+          command: "PowerOff"
+automation:
+  - alias: 'Lumières - Salon - Allumer au couché du soleil'
+    initial_state: 'on'
+    trigger:
+      platform: sun
+      event: sunset
+      offset: -01:30:00
+    condition:
+      condition: or
+      conditions:
+        #Tracking OWNTRACK
+        - condition: state
+          entity_id: device_tracker.jungle_owntrack3t
+          state: 'home'
+        #Tracking DD-WRT
+        - condition: state
+          entity_id: device_tracker.jungle3t_wifi
+          state: 'home'
+    action:
+      service: homeassistant.turn_on
+      entity_id: light.salon
+  - alias: 'Lumières - Salon - ON si luminosité basse'
+    action:
+      entity_id: light.salon
+      service: homeassistant.turn_on
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: light.salon
+          state: 'off'
+        - condition: or
+          conditions:
+           #Tracking OWNTRACK
+            - condition: state
+              entity_id: device_tracker.jungle_owntrack3t
+              state: 'home'
+            #Tracking DD-WRT
+            - condition: state
+              entity_id: device_tracker.jungle3t_wifi
+              state: 'home'
+    trigger:
+    - platform: numeric_state
+      below: '300'
+      entity_id: sensor.lumsens_1
+  - alias: 'Lumières - Salon - OFF si luminosité haute'
+    action:
+      entity_id: light.salon
+      service: homeassistant.turn_off
+    condition:
+        condition: or
+        conditions:
+          #Tracking OWNTRACK
+          - condition: state
+            entity_id: device_tracker.jungle_owntrack3t
+            state: 'home'
+          #Tracking DD-WRT
+          - condition: state
+            entity_id: device_tracker.jungle3t_wifi
+            state: 'home'
+    trigger:
+    - platform: numeric_state
+      above: '300'
+      entity_id: sensor.lumsens_1
+    initial_state: 'off'
+  - alias: 'Chauffage - Salon - 22 Arrivée Appart'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'home'
+      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+    action:
+      service: climate.set_temperature
+      data:
+          entity_id: climate.salon
+          temperature: '22'
+  - alias: 'Chauffage - Salon - 17 Départ Appart'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'not_home'
+      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '17'
+      - service : homeassistant.turn_off
+        data:
+          entity_id: switch.radiateur_salon
+  - alias: 'Chauffage - Salon - 17 et OFF le soir'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      hours: 23
+      minutes: 30
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '17'
+      - service : homeassistant.turn_off
+        data:
+          entity_id: switch.radiateur_salon
+  - alias: 'Chauffage - Salon - 22 et ON le matin semaine'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      hours: 8
+      minutes: 0
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '22'
+      - service : homeassistant.turn_on
+        data:
+          entity_id: switch.radiateur_salon
+  - alias: 'InputSlider - Salon - Luminosité'
+    trigger:
+      platform: state
+      entity_id: input_slider.salon_brightness
+    action:
+      - service: light.turn_on
+        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+        data_template:
+          entity_id: light.salon
+          brightness: '{{ trigger.to_state.state | int }}'
+
+  - alias: 'Lumières - Salon - Switch'
+    initial_state: 'on'
+    trigger:
+      platform: mqtt
+      topic: jungle/lightswitch1/update
+    action:
+      service: light.toggle
+      entity_id: light.salon

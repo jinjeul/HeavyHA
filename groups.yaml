@@ -1,0 +1,243 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                VIEWS                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+default_view:
+  view: true
+  icon: mdi:home
+  entities:
+  - group.thermostat
+  - group.lumieres_home
+  - device_tracker.jungle_owntrack3t
+  - device_tracker.androidf1562bd8cb4c4a91
+  - group.meteo
+  - group.date
+  - group.temperature
+
+####################################################################################
+#                                                                                  #
+#                                VIEW                                              #
+#                                TABS                                              #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+lumieres:
+  entities:
+  - group.light_salon
+  - group.light_cuisine
+  - group.light_vestibule
+  - group.all_scenes
+  name: Lumieres
+  view: true
+chauffage:
+  name: Chauffage
+  entities:
+    - group.radiateurs
+    - group.thermostat
+  view: true
+room_sensor:
+  name: Pièces
+  entities:
+    - group.sensor_node_1_card
+    - group.sensor_node_2_card
+  view: true
+media:
+  entities:
+  - group.pccontrol
+  - group.harmony
+  - group.mediaswitches
+  - group.mediaplayers
+  name: Media
+  view: true
+automations_vue:
+  entities:
+    - group.light_automation
+    - group.media_automation
+    - group.alerte_automation
+    - group.chauffage_automation
+    - group.scene_automation
+  name: Automations
+  view: true
+hardware_view:
+  name: Monitoring
+  entities:
+    - group.rpi
+    - group.junglenas
+  view: true
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                LIGHT & MEDIA GROUPS                              #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+Cuisine:
+- light.cuisine
+Salon:
+- light.salon
+- media_player.denon_salon
+- media_player.junglecast
+lumieres_home:
+- group.light_salon
+- group.light_cuisine
+- group.light_vestibule
+light_salon:
+- light.salon
+- input_number.salon_brightness
+light_cuisine:
+- light.cuisine
+- input_number.cuisine_brightness
+light_vestibule:
+- light.vestibule
+- input_number.vestibule_brightness
+mediaplayers:
+- media_player.junglecast
+- media_player.denon_salon
+- media_player.denon_chambre
+Chambre:
+- media_player.denon_chambre
+radiateurs:
+  name: 'Contrôle des radiateurs'
+  entities:
+    - switch.radiateur_salon
+    - switch.radiateur_chambre
+thermostat:
+  name: 'Suivi des thermostats'
+  entities:
+    - climate.salon
+    - climate.chambre
+pccontrol:
+  name: 'Contrôle des PC'
+  entities:
+    - switch.jungle_pc
+    - input_select.pcoptions
+harmony:
+  name: 'Activités Harmony HUB'
+  entities:
+    - sensor.current_activity_hub
+    - input_select.harmony
+mediaswitches:
+  name: 'Contrôle Multimedia'
+  entities:
+    - switch.tv
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSOR GROUPS                                     #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+temperature:
+  name: Suivi des températures
+  entities:
+   - sensor.temperature_1
+   - sensor.temperature_2
+meteo:
+  name: Météo
+  entities:
+    - sensor.yr_symbol
+    - sensor.yr_temperature
+    - sensor.yr_cloudiness
+    - sensor.yr_humidity
+    - sensor.yr_precipitation
+    - sensor.yr_wind_speed
+    - sensor.yr_wind_direction
+date:
+  name: Date & Heure
+  entities:
+    - sensor.time
+    - sensor.date
+rpi:
+  name: JunglePi
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.rpi_uptime
+    - sensor.ipv4_address_eth0
+junglenas:
+  name: JungleNAS
+  entities:
+    - sensor.glances_cpu_load
+    - sensor.glances_disk_free
+    - sensor.glances_disk_use
+    - sensor.glances_ram_free
+    - sensor.glances_ram_use
+    - sensor.glances_swap_use
+    - sensor.glances_swap_use_2
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                AUTOMATION VIEWS                                  #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+media_automation:
+  name: Media Control
+  entities:
+    - automation.media__denon_chambre__eteindre_au_depart
+    - automation.media__plex__baisser_les_lumieres_play
+    - automation.media__plex__monter_les_lumieres_pause
+    - automation.media__plex__monter_les_lumieres_stop
+    - automation.junglepc_eteindre
+    - automation.pc__arreter_au_depart
+light_automation:
+  name: 'Lumières & Mouvements'
+  entities:
+    - automation.lumieres__appartement__off_au_depart
+    - automation.lumieres__appartement__on_arrivee_appart
+    - automation.lumieres__cuisine__off_mouvement_10min
+    - automation.lumieres__cuisine__on_mouvement
+    - automation.lumieres__salon__allumer_au_couche_du_soleil
+    - automation.lumieres__salon__off_si_luminosite_haute
+    - automation.lumieres__salon__on_si_luminosite_basse
+    - automation.lumieres__vestibule__off_mouvement_10min
+    - automation.lumieres__vestibule__on_mouvement
+    - automation.lumieres__salon__switch
+alerte_automation:
+  name: 'Mes Alertes'
+  entities:
+    - automation.alerte__pushbullet__gel_a_venir
+chauffage_automation:
+  name: 'Gestion des thermostats'
+  entities:
+    - automation.chauffage__salon__17_depart_appart
+    - automation.chauffage__salon__17_et_off_le_soir
+    - automation.chauffage__salon__22_arrivee_appart
+    - automation.chauffage__salon__22_et_on_le_matin_semaine
+    - automation.chauffage__chambre__22_et_on_le_matin_10h_semaine
+scene_automation:
+  name: 'Sur lancement de scènes'
+  entities:
+    - automation.lumieres__vestibule__physchedelic_scene
+    - automation.lumieres__vestibule__coolblue_scene
+    - automation.lumieres__vestibule__chaud_scene
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SCENE VIEWS                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+all_scenes:
+  name: Les scènes
+  entities:
+    - scene.chaud
+    - scene.saloncool
+    - scene.chezchouka
+    - scene.coolblue
+    - scene.hot_sex
+    - scene.psychedelic

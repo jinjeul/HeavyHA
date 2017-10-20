@@ -1,0 +1,128 @@
+﻿sensor:
+  - platform: mqtt  
+    state_topic: "jungle/sensornode2"  
+    name: "Humidite 2"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode2"  
+    name: "LumSens 2"
+    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"  
+    value_template: '{{ value_json.ldr }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode2"  
+    name: "Motion 2"  
+    value_template: '{{ value_json.motion }}'  
+  - platform: mqtt  
+    state_topic: "jungle/sensornode2"  
+    name: "Temperature 2"  
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: "jungle/sensornode2"
+    name: "Real Feel 2"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.135:
+        name: Vestibule
+  - platform: mqtt_json  
+    name: "LED 2"  
+    state_topic: "jungle/sensornode2"  
+    command_topic: "jungle/sensornode2/set"  
+    brightness: true  
+    flash: true  
+    rgb: true  
+    optimistic: false  
+    qos: 0
+group:
+  sensor_node_2_card:  
+    name: Vestibule
+    entities:  
+      - sensor.temperature_2
+      - sensor.humidite_2 
+      - sensor.lumsens_2
+      - sensor.motion_2
+automation:
+  - alias: 'Lumières - Vestibule - ON mouvement'
+    action:
+      data:
+        entity_id:
+        - light.vestibule
+        color_temp: 263.0194634402946
+      service: homeassistant.turn_on
+    condition:
+    - condition: state
+      entity_id: light.vestibule
+      state: 'off'
+    trigger:
+      entity_id: sensor.motion_2
+      from: standby
+      platform: state
+      to: motion detected
+  - alias: 'Lumières - Vestibule - OFF mouvement 10min'
+    trigger:
+      platform: state
+      entity_id: sensor.motion_2
+      to: 'standby'
+      for:
+        seconds: 30
+    action:
+      service: homeassistant.turn_off
+      entity_id: light.vestibule
+  - alias: 'Lumières - Vestibule - Physchedelic scene'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        service_data:
+          entity_id: scene.psychedelic
+        domain: scene
+        service: turn_on
+    action:
+      entity_id: light.vestibule
+      service: light.turn_on
+      data:
+       rgb_color: [46,0,137]
+  - alias: 'Lumières - Vestibule - Coolblue scene'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        service_data:
+          entity_id: scene.coolblue
+        domain: scene
+        service: turn_on
+    action:
+      entity_id: light.vestibule
+      service: light.turn_on
+      data:
+       rgb_color: [46,0,137]
+  - alias: 'Lumières - Vestibule - Chaud scene'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: call_service
+      event_data:
+        service_data:
+          entity_id: scene.chaud
+        domain: scene
+        service: turn_on
+    action:
+      entity_id: light.vestibule
+      service: light.turn_off
+  - alias: 'InputSlider - Vestibule - Luminosité'
+    trigger:
+      platform: state
+      entity_id: input_slider.vestibule_brightness
+    action:
+      - service: light.turn_on
+        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
+        data_template:
+          entity_id: light.vestibule
+          brightness: '{{ trigger.to_state.state | int }}'

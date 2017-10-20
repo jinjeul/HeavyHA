@@ -1,0 +1,62 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MAIN COMPONENTS                                   #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+light:
+  - platform: lifx
+
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: admin 
+    password: !secret router_password
+  - platform: gpslogger
+  - platform: owntracks
+    max_gps_accuracy: 200
+scene:
+  - platform: lifx_cloud
+    token: !secret lifxapitoken
+zwave:
+  usb_path: /dev/zwave
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                THERMOSTAT                                        #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+#http://ipESP/control?cmd=GPIO,12,1
+
+climate:
+  - platform: generic_thermostat
+    name: Salon
+    heater: switch.radiateur_salon
+    target_sensor: sensor.temperature_1
+    min_temp: 17
+    max_temp: 25
+    target_temp: 22
+    tolerance: 0.5
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 1
+  - platform: generic_thermostat
+    name: Chambre
+    heater: switch.radiateur_chambre
+    target_sensor: sensor.temperature_1
+    min_temp: 17
+    max_temp: 25
+#    target_temp: 0
+    tolerance: 0.5
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 1
+ifttt:
+  key: !secret ifttt_webhooks_key

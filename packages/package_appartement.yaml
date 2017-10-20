@@ -1,0 +1,28 @@
+﻿automation:
+  - alias: 'Lumières - Appartement - ON Arrivée Appart'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'home'
+    condition:
+      condition: numeric_state
+      entity_id: sensor.lumsens_1
+      below: '300'
+    action:
+      service: homeassistant.turn_on
+      entity_id: light.salon, light.cuisine
+
+  - alias: 'Lumières - Appartement - OFF au Départ'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.jungle3t_wifi
+      to: 'not_home'
+      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+    action:
+      service: homeassistant.turn_off
+      entity_id: light.salon, light.cuisine, light.vestibule
+
+
+
