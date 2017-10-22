@@ -53,6 +53,8 @@ logger:
 config:
 updater:
 discovery:
+  ignore:
+    - harmony
 mqtt:  
   broker: localhost
   port: 1883

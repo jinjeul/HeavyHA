@@ -102,3 +102,5 @@ sensor.glances_swap_use:
 sensor.glances_swap_use_2:
   friendly_name: 'Swap Size'
   icon: mdi:swap-horizontal
+switch.tv:
+  icon: mdi:television-classic
