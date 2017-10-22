@@ -68,6 +68,7 @@ hardware_view:
   entities:
     - group.rpi
     - group.junglenas
+    - group.haveibeenpwned
   view: true
 
 ####################################################################################
@@ -174,6 +175,11 @@ junglenas:
     - sensor.glances_ram_use
     - sensor.glances_swap_use
     - sensor.glances_swap_use_2
+haveibeenpwned:
+  name: Data Leak - HIBP
+  entities:
+    - sensor.breaches_contactjunglemanfr
+    - sensor.breaches_mikaelboulogmailcom
 
 ####################################################################################
 #                                                                                  #

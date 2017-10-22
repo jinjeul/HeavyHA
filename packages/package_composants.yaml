@@ -24,6 +24,11 @@ zwave:
   usb_path: /dev/zwave
 ifttt:
   key: !secret ifttt_webhooks_key
+sensor:
+  platform: haveibeenpwned
+  email: 
+    - mikael.boulo@gmail.com
+    - contact@jungleman.fr
 
 ####################################################################################
 #                                                                                  #

@@ -104,3 +104,9 @@ sensor.glances_swap_use_2:
   icon: mdi:swap-horizontal
 switch.tv:
   icon: mdi:television-classic
+sensor.breaches_contactjunglemanfr:
+  friendly_name: 'Adresse c****t@jungleman.fr'
+  icon: mdi:mail-ru
+sensor.breaches_mikaelboulogmailcom:
+  friendly_name: 'Adresse m****o@gmail.com'
+  icon: mdi:mail-ru
