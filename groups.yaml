@@ -190,7 +190,6 @@ media_automation:
     - automation.media__plex__baisser_les_lumieres_play
     - automation.media__plex__monter_les_lumieres_pause
     - automation.media__plex__monter_les_lumieres_stop
-    - automation.junglepc_eteindre
     - automation.pc__arreter_au_depart
 light_automation:
   name: 'Lumières & Mouvements'
