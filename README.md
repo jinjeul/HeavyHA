@@ -19,9 +19,9 @@ TODO :
 
 - Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
 - Voice recognition via Google (Cloud Speech API ?)
-- TeleInfo EDF (Awaiting Delivery)
+- TeleInfo EDF (Work in progress)
 - Camera ?
-- z-wave ?
+- z-wave (Dongle connected & UP in HA, no sensor to test)
 - Sound level adjustement
 - Bulletproof HA
 
