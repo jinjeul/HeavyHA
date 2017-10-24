@@ -15,6 +15,8 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.1 (pip i
 - $15 MultiSensor by Bruh Automation (thanks man!)
 - Heat control with ESP (fil pilote) + MQTT + generic_thermostat
 
+COMMON ROADMAP : https://mensuel.framapad.org/p/HHAroadmap
+
 TODO :
 
 - Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
