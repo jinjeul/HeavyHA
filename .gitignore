@@ -3,5 +3,6 @@
 !packages
 !.gitignore
 !gitupdate.sh
+!README.md
 secrets.yaml
 known_devices.yaml
