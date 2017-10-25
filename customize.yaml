@@ -24,12 +24,15 @@ group.light_vestibule:
 group.light_cuisine:
   hidden: false
   friendly_name: 'Lumières de la Cuisine'
+#group.light_chambre:
+#  hidden: false
+#  friendly_name: 'Lumières de la cChambre'
 
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
 #                                CUSTOM                                            #
-#                                SENSOR                                            #
+#                             SENSOR-NODES                                         #
 #                                                                                  #
 ####################################################################################
 
@@ -55,6 +58,27 @@ sensor.lumsens_2:
 sensor.motion_2:
   friendly_name: 'Détecteur motion'
   icon: mdi:run
+sensor.temperature_3:
+  friendly_name: 'Température Chambre'
+sensor.humidite_3:
+  friendly_name: 'Taux humidité'
+  icon: mdi:cup-water
+#sensor.lumsens_3:
+#  friendly_name: 'Luminosité'
+#  icon: mdi:spotlight
+sensor.motion_3:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                               SENSOR-HW                                          #
+#                                                                                  #
+####################################################################################
+
+
 sensor.rpi_uptime:
   friendly_name: Uptime
   icon: mdi:clock
@@ -104,6 +128,15 @@ sensor.glances_swap_use_2:
   icon: mdi:swap-horizontal
 switch.tv:
   icon: mdi:television-classic
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                                 HIBP                                             #
+#                                                                                  #
+####################################################################################
+
 sensor.breaches_contactjunglemanfr:
   friendly_name: 'Adresse c****t@jungleman.fr'
   icon: mdi:mail-ru

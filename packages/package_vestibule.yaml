@@ -117,12 +117,3 @@ automation:
     action:
       entity_id: light.vestibule
       service: light.turn_off
-  - alias: 'InputSlider - Vestibule - Luminosité'
-    trigger:
-      platform: state
-      entity_id: input_slider.vestibule_brightness
-    action:
-      - service: light.turn_on
-        data_template:
-          entity_id: light.vestibule
-          brightness: '{{ trigger.to_state.state | int }}'

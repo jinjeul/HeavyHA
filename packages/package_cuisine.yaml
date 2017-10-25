@@ -72,13 +72,3 @@ automation:
     action:
       service: homeassistant.turn_off
       entity_id: light.cuisine
-  - alias: 'InputSlider - Cuisine - Luminosité'
-    trigger:
-      platform: state
-      entity_id: input_slider.cuisine_brightness
-    action:
-      - service: light.turn_on
-        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
-        data_template:
-          entity_id: light.cuisine
-          brightness: '{{ trigger.to_state.state | int }}'

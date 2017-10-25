@@ -1,4 +1,26 @@
-﻿switch:
+﻿sensor:
+  - platform: mqtt  
+    state_topic: "jungle/sensornode3"  
+    name: "Humidite 3"  
+    unit_of_measurement: "%"  
+    value_template: '{{ value_json.humidity | round(1) }}' 
+  - platform: mqtt  
+    state_topic: "jungle/sensornode3"  
+    name: "Temperature 3"  
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: "jungle/sensornode3"
+    name: "Real Feel 3"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+group:
+  sensor_node_3_card:
+    name: Chambre
+    entities:
+      - sensor.temperature_3
+      - sensor.humidite_3
+switch:
   - platform: mqtt
     name: "Radiateur Chambre"  
     state_topic: "jungle/radcontrol/chambre/state"
@@ -8,11 +30,11 @@
     qos: 0
     optimistic: false
 automation:
-  - alias: 'Chauffage - Chambre - 22 et ON le matin 10h semaine'
-    initial_state: 'off'
+  - alias: 'Chauffage - Chambre - thermostat 20 à 06h00 semaine'
+    initial_state: 'on'
     trigger:
       platform: time
-      hours: 10
+      hours: 06
       minutes: 0
       seconds: 0
     condition:
@@ -30,23 +52,24 @@ automation:
       - service: climate.set_temperature
         data:
           entity_id: climate.chambre
-          temperature: '22'
-      - service : homeassistant.turn_on
-        data:
-          entity_id: switch.radiateur_chambre
-  - alias: 'Chauffage - Chambre - thermostat 18 à 23h00'
-    initial_state: 'off'
+          temperature: '20'
+  - alias: 'Chauffage - Chambre - thermostat 17 à 08h00 semaine'
+    initial_state: 'on'
     trigger:
       platform: time
-      hours: 23
+      hours: 08
       minutes: 0
       seconds: 0
     condition:
-      - condition: state
-        entity_id: device_tracker.jungle3t_wifi
-        state: 'home'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
     action:
       - service: climate.set_temperature
         data:
           entity_id: climate.chambre
-          temperature: '18'
+          temperature: '17'

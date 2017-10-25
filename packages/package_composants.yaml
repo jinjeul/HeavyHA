@@ -39,27 +39,29 @@ sensor:
 ####################################################################################
 
 climate:
+#Thermostat Salon
   - platform: generic_thermostat
     name: Salon
     heater: switch.radiateur_salon
     target_sensor: sensor.temperature_1
     min_temp: 17
-    max_temp: 25
+    max_temp: 24
     target_temp: 17
     tolerance: 0.5
     min_cycle_duration:
       seconds: 5
     keep_alive:
       minutes: 1
-#  - platform: generic_thermostat
-#    name: Chambre
-#    heater: switch.radiateur_chambre
-#    target_sensor: sensor.temperature_3
-#    target_temp: 17
-#    min_temp: 17
-#    max_temp: 25
-#    tolerance: 0.5
-#    min_cycle_duration:
-#      seconds: 5
-#    keep_alive:
-#      minutes: 1
+#Thermostat Chambre
+  - platform: generic_thermostat
+    name: Chambre
+    heater: switch.radiateur_chambre
+    target_sensor: sensor.temperature_3
+    target_temp: 17
+    min_temp: 16
+    max_temp: 20
+    tolerance: 0.5
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 1

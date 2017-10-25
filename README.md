@@ -18,8 +18,8 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.2 (pip i
 
 TODO :
 
-- Add Lamps
-- Camera => goo.gl/9SwW2W
+- DIY 433Mhz => Garage Door
+- Camera => https://goo.gl/9SwW2W or https://goo.gl/mHMZDG
 - z-wave (USB Dongle UP, No sensor to test)
 - Sound level adjustement (if show too loud, reduce volume on Denon etc..)
 - Bulletproof HA (High Availability)
@@ -27,11 +27,12 @@ TODO :
 
 STUCK :
 
-- TeleInfo EDF (To debug)
-- Connected ON/OFF Wall switches (ESP01, but not Neutral on wallswitches...)
+- DIY TeleInfo EDF (To debug)
+- DIY ON/OFF Wall switches via ESP-01 (No neutral)
 
 DONE :
 
+- Added Multisensor in Chambre for Temperature control (heater)
 - Added Voice Recognition via Google Assistant
 - Added "Have I Been Pwned ?" alerts
 - Added Harmony Device Switch (Philips TV)

@@ -45,6 +45,7 @@ room_sensor:
   entities:
     - group.sensor_node_1_card
     - group.sensor_node_2_card
+    - group.sensor_node_3_card
   view: true
 media:
   entities:
@@ -142,6 +143,7 @@ temperature:
   entities:
    - sensor.temperature_1
    - sensor.temperature_2
+   - sensor.temperature_3
 meteo:
   name: Météo
   entities:
@@ -224,9 +226,8 @@ chauffage_automation:
     - automation.chauffage__salon__22_arrivee_appart
     - automation.chauffage__salon__22_et_on_le_matin_semaine
     - automation.chauffage__salon__thermostat_17_a_23h00
-    - automation.chauffage__chambre__22_et_on_le_matin_10h_semaine
-    - automation.chauffage__chambre__thermostat_18_a_23h00
-    - automation.chauffage__chambre__thermostat_22_a_06h00
+    - automation.chauffage__chambre__thermostat_20_a_06h00_semaine
+    - automation.chauffage__chambre__thermostat_17_a_08h00_semaine
     
 scene_automation:
   name: 'Sur lancement de scènes'

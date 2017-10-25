@@ -41,6 +41,7 @@ automation:
     action:
       service: homeassistant.turn_on
       entity_id: light.salon
+
   - alias: 'Lumières - Salon - ON si luminosité basse'
     initial_state: 'on'
     action:
@@ -64,6 +65,7 @@ automation:
     - platform: numeric_state
       below: '300'
       entity_id: sensor.lumsens_1
+
   - alias: 'Lumières - Salon - OFF si luminosité haute'
     action:
       entity_id: light.salon
@@ -84,25 +86,25 @@ automation:
       above: '300'
       entity_id: sensor.lumsens_1
     initial_state: 'off'
+
   - alias: 'Chauffage - Salon - 22 Arrivée Appart'
     initial_state: 'on'
     trigger:
       platform: state
       entity_id: device_tracker.jungle3t_wifi
       to: 'home'
-      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
     action:
       service: climate.set_temperature
       data:
           entity_id: climate.salon
           temperature: '22'
+
   - alias: 'Chauffage - Salon - 17 Départ Appart'
     initial_state: 'on'
     trigger:
       platform: state
       entity_id: device_tracker.jungle3t_wifi
       to: 'not_home'
-      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
     action:
       - service: climate.set_temperature
         data:
@@ -111,6 +113,7 @@ automation:
       - service : homeassistant.turn_off
         data:
           entity_id: switch.radiateur_salon
+          
   - alias: 'Chauffage - Salon - 17 et OFF le soir'
     initial_state: 'on'
     trigger:
@@ -130,6 +133,7 @@ automation:
       - service : homeassistant.turn_off
         data:
           entity_id: switch.radiateur_salon
+          
   - alias: 'Chauffage - Salon - 22 et ON le matin semaine'
     initial_state: 'on'
     trigger:
@@ -156,50 +160,6 @@ automation:
       - service : homeassistant.turn_on
         data:
           entity_id: switch.radiateur_salon
-          
-  - alias: 'Chauffage - Salon - thermostat 17 à 23h00'
-    initial_state: 'on'
-    trigger:
-      platform: time
-      hours: 23
-      minutes: 0
-      seconds: 0
-    condition:
-      - condition: state
-        entity_id: device_tracker.jungle3t_wifi
-        state: 'home'
-    action:
-      - service: climate.set_temperature
-        data:
-          entity_id: climate.salon
-          temperature: '17'
-
-  - alias: 'Chauffage - Chambre - thermostat 22 à 06h00'
-    initial_state: 'off'
-    trigger:
-      platform: time
-      hours: 06
-      minutes: 0
-      seconds: 0
-    condition:
-      - condition: state
-        entity_id: device_tracker.jungle3t_wifi
-        state: 'home'
-    action:
-      - service: climate.set_temperature
-        data:
-          entity_id: climate.salon
-          temperature: '22'
-
-  - alias: 'InputSlider - Salon - Luminosité'
-    trigger:
-      platform: state
-      entity_id: input_slider.salon_brightness
-    action:
-      - service: light.turn_on
-        data_template:
-          entity_id: light.salon
-          brightness: '{{ trigger.to_state.state | int }}'
 
   - alias: 'Lumières - Salon - Switch'
     initial_state: 'on'
