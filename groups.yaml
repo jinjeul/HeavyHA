@@ -211,9 +211,11 @@ light_automation:
     - automation.lumieres__vestibule__on_mouvement
     - automation.lumieres__salon__switch
 alerte_automation:
-  name: 'Mes Alertes'
+  name: 'Alertes'
   entities:
     - automation.alerte__pushbullet__gel_a_venir
+    - automation.alerte__pushbullet__i_have_been_pwned_contactjunglemanfr
+    - automation.alerte__pushbullet__i_have_been_pwned_mikaelboulogmailcom
 chauffage_automation:
   name: 'Gestion des thermostats'
   entities:
@@ -221,7 +223,11 @@ chauffage_automation:
     - automation.chauffage__salon__17_et_off_le_soir
     - automation.chauffage__salon__22_arrivee_appart
     - automation.chauffage__salon__22_et_on_le_matin_semaine
+    - automation.chauffage__salon__thermostat_17_a_23h00
     - automation.chauffage__chambre__22_et_on_le_matin_10h_semaine
+    - automation.chauffage__chambre__thermostat_18_a_23h00
+    - automation.chauffage__chambre__thermostat_22_a_06h00
+    
 scene_automation:
   name: 'Sur lancement de scènes'
   entities:

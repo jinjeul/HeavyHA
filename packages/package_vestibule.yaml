@@ -7,7 +7,6 @@
   - platform: mqtt  
     state_topic: "jungle/sensornode2"  
     name: "LumSens 2"
-    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
     unit_of_measurement: "LUX"  
     value_template: '{{ value_json.ldr }}'  
   - platform: mqtt  
@@ -48,6 +47,7 @@ group:
       - sensor.motion_2
 automation:
   - alias: 'Lumières - Vestibule - ON mouvement'
+    initial_state: 'on'
     action:
       data:
         entity_id:
@@ -64,6 +64,7 @@ automation:
       platform: state
       to: motion detected
   - alias: 'Lumières - Vestibule - OFF mouvement 10min'
+    initial_state: 'on'
     trigger:
       platform: state
       entity_id: sensor.motion_2
@@ -122,7 +123,6 @@ automation:
       entity_id: input_slider.vestibule_brightness
     action:
       - service: light.turn_on
-        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
         data_template:
           entity_id: light.vestibule
           brightness: '{{ trigger.to_state.state | int }}'

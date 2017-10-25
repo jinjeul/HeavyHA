@@ -16,7 +16,6 @@ switch:
   - platform: mqtt
     name: "Radiateur Salon"  
     state_topic: "jungle/radcontrol/salon/state"
-    # RETAIN FLAG peut etre trop court si reboot HA alors switch ON par defaut
     command_topic: "jungle/radcontrol/salon/set"
     payload_on: "1"
     payload_off: "0"  
@@ -33,11 +32,9 @@ automation:
     condition:
       condition: or
       conditions:
-        #Tracking OWNTRACK
         - condition: state
           entity_id: device_tracker.jungle_owntrack3t
           state: 'home'
-        #Tracking DD-WRT
         - condition: state
           entity_id: device_tracker.jungle3t_wifi
           state: 'home'
@@ -45,6 +42,7 @@ automation:
       service: homeassistant.turn_on
       entity_id: light.salon
   - alias: 'Lumières - Salon - ON si luminosité basse'
+    initial_state: 'on'
     action:
       entity_id: light.salon
       service: homeassistant.turn_on
@@ -56,11 +54,9 @@ automation:
           state: 'off'
         - condition: or
           conditions:
-           #Tracking OWNTRACK
             - condition: state
               entity_id: device_tracker.jungle_owntrack3t
               state: 'home'
-            #Tracking DD-WRT
             - condition: state
               entity_id: device_tracker.jungle3t_wifi
               state: 'home'
@@ -160,13 +156,47 @@ automation:
       - service : homeassistant.turn_on
         data:
           entity_id: switch.radiateur_salon
+          
+  - alias: 'Chauffage - Salon - thermostat 17 à 23h00'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      hours: 23
+      minutes: 0
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '17'
+
+  - alias: 'Chauffage - Chambre - thermostat 22 à 06h00'
+    initial_state: 'off'
+    trigger:
+      platform: time
+      hours: 06
+      minutes: 0
+      seconds: 0
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '22'
+
   - alias: 'InputSlider - Salon - Luminosité'
     trigger:
       platform: state
       entity_id: input_slider.salon_brightness
     action:
       - service: light.turn_on
-        # Note the use of 'data_template:' below rather than the normal 'data:' if you weren't using an input variable
         data_template:
           entity_id: light.salon
           brightness: '{{ trigger.to_state.state | int }}'

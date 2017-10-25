@@ -86,3 +86,11 @@ logbook:
       - sensor.yr_wind_speed
       - sensor.yr_wind_direction
 sun:
+google_assistant:
+  project_id: !secret gassist_project_id
+  client_id: !secret gassist_client_id
+  access_token: !secret gassist_access_token
+  exposed_domains:
+    - switch
+    - light
+    - climate

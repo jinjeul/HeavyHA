@@ -7,7 +7,6 @@
   - platform: mqtt  
     state_topic: "jungle/sensornode1"  
     name: "LumSens 1"
-    ##This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
     unit_of_measurement: "LUX"  
     value_template: '{{ value_json.ldr }}'  
   - platform: mqtt  
@@ -44,6 +43,7 @@ group:
       - sensor.motion_1
 automation:
   - alias: 'Lumières - Cuisine - ON mouvement'
+    initial_state: 'on'
     action:
       data:
         entity_id:
@@ -62,6 +62,7 @@ automation:
       platform: state
       to: motion detected
   - alias: 'Lumières - Cuisine - OFF mouvement 10min'
+    initial_state: 'on'
     trigger:
       platform: state
       entity_id: sensor.motion_1
