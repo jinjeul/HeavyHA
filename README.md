@@ -5,7 +5,7 @@ Automating your home, the French Jungleman way.
 ![alt text](https://img11.hostingpics.net/pics/548310CaptureHA08102017.png)
 ![alt text](https://img11.hostingpics.net/pics/384676CaptureroomHA08102017.png)
 
-My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) :
+My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.1 (pip install) :
 - LIFX (2)
 - Xiaomi Yeelight (1)
 - Harmony Hub (to control Philips TV and more)
@@ -15,13 +15,15 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant (pip install) 
 - $15 MultiSensor by Bruh Automation (thanks man!)
 - Heat control with ESP (fil pilote) + MQTT + generic_thermostat
 
+COMMON ROADMAP : https://mensuel.framapad.org/p/HHAroadmap
+
 TODO :
 
 - Add Lamps (1 LIFX, 2 small (variable?) white, 1 variable white)
 - Voice recognition via Google (Cloud Speech API ?)
-- TeleInfo EDF (Awaiting Delivery)
+- TeleInfo EDF (Work in progress)
 - Camera ?
-- z-wave ?
+- z-wave (Dongle connected & UP in HA, no sensor to test)
 - Sound level adjustement
 - Bulletproof HA
 
