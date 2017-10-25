@@ -2,7 +2,6 @@
 !*.yaml
 !packages
 !.gitignore
-!README.md
 !gitupdate.sh
 secrets.yaml
 known_devices.yaml
