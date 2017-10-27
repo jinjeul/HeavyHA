@@ -93,6 +93,10 @@ automation:
       platform: state
       entity_id: device_tracker.jungle3t_wifi
       to: 'home'
+    condition:
+      - condition: time
+        before: '23:00:00'
+        after: '08:00:00'
     action:
       service: climate.set_temperature
       data:
