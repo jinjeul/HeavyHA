@@ -37,3 +37,28 @@ automation:
       data:
         title: 'Fuite de donnée détectée'
         message: 'mikael.boulo@gmail.com'
+  - alias: 'Alerte - Pushbullet - Glances JungleNAS down'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: sensor.glances_running
+      from: '1'
+      to: 'unavailable'
+      # Mesuré 30 secondes après coupure du service glances
+    action:
+      service: notify.pushbullet_3t
+      data:
+        title: 'Monitoring'
+        message: 'JungleNAS semble être éteint !'
+  - alias: 'Alerte - Pushbullet - Glances JungleNAS back'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: sensor.glances_running
+      from: 'unavailable'
+      # Mesuré 15 secondes après retour du service glances
+    action:
+      service: notify.pushbullet_3t
+      data:
+        title: 'Monitoring'
+        message: 'JungleNAS est de retour !'

@@ -28,10 +28,11 @@ TODO :
 STUCK :
 
 - DIY TeleInfo EDF (To debug)
-- DIY ON/OFF Wall switches via ESP-01 (No neutral)
+- DIY ON/OFF Wall switches via ESP-01 (No neutral. Dev stopped)
 
 DONE :
 
+- Added Monitoring on NAS & Fixed Home Presence Detection (DDWRT BUG)
 - Added Multisensor in Chambre for Temperature control (heater)
 - Added Voice Recognition via Google Assistant
 - Added "Have I Been Pwned ?" alerts

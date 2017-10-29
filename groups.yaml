@@ -218,6 +218,8 @@ alerte_automation:
     - automation.alerte__pushbullet__gel_a_venir
     - automation.alerte__pushbullet__i_have_been_pwned_contactjunglemanfr
     - automation.alerte__pushbullet__i_have_been_pwned_mikaelboulogmailcom
+    - automation.alerte__pushbullet__glances_junglenas_down
+    - automation.alerte__pushbullet__glances_junglenas_back
 chauffage_automation:
   name: 'Gestion des thermostats'
   entities:
