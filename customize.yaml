@@ -26,7 +26,7 @@ group.light_cuisine:
   friendly_name: 'Lumières de la Cuisine'
 #group.light_chambre:
 #  hidden: false
-#  friendly_name: 'Lumières de la cChambre'
+#  friendly_name: 'Lumières de la Chambre'
 
 ####################################################################################
 #                                                                                  #
@@ -128,6 +128,19 @@ sensor.glances_swap_use_2:
   icon: mdi:swap-horizontal
 switch.tv:
   icon: mdi:television-classic
+switch.lumiere_bureau:
+  friendly_name: 'Bureau'
+  icon: mdi:lamp
+switch.radiateur_salon:
+  friendly_name: 'Salon'
+  icon: mdi:radiator
+switch.radiateur_chambre:
+  friendly_name: 'Chambre'
+  icon: mdi:hot-tub
+climate.salon:
+  friendly_name: 'Chauffage du salon'
+climate.chambre:
+  friendly_name: 'Chauffage de la chambre'
   
 ####################################################################################
 #                                                                                  #

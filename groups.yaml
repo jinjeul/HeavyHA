@@ -13,7 +13,7 @@ default_view:
   - group.thermostat
   - group.lumieres_home
   - device_tracker.jungle_owntrack3t
-  - device_tracker.androidf1562bd8cb4c4a91
+  - device_tracker.jungle3t_wifi
   - group.meteo
   - group.date
   - group.temperature
@@ -92,13 +92,11 @@ lumieres_home:
 - group.light_vestibule
 light_salon:
 - light.salon
-- input_number.salon_brightness
+- switch.lumiere_bureau
 light_cuisine:
 - light.cuisine
-- input_number.cuisine_brightness
 light_vestibule:
 - light.vestibule
-- input_number.vestibule_brightness
 mediaplayers:
 - media_player.junglecast
 - media_player.denon_salon
@@ -111,7 +109,7 @@ radiateurs:
     - switch.radiateur_salon
     - switch.radiateur_chambre
 thermostat:
-  name: 'Suivi des thermostats'
+  name: 'Gestion des thermostats'
   entities:
     - climate.salon
     - climate.chambre
