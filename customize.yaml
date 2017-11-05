@@ -126,6 +126,8 @@ sensor.glances_swap_use:
 sensor.glances_swap_use_2:
   friendly_name: 'Swap Size'
   icon: mdi:swap-horizontal
+switch.jungle_pc:
+  icon: mdi:desktop-classic
 switch.tv:
   icon: mdi:television-classic
 switch.lumiere_bureau:
@@ -156,3 +158,15 @@ sensor.breaches_contactjunglemanfr:
 sensor.breaches_mikaelboulogmailcom:
   friendly_name: 'Adresse m****o@gmail.com'
   icon: mdi:mail-ru
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                               TRACKING                                           #
+#                                                                                  #
+####################################################################################
+
+sensor.junglenut:
+  friendly_name: 'Porte clé'
+  icon: mdi:key-variant

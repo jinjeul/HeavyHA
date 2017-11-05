@@ -14,6 +14,7 @@ default_view:
   - group.lumieres_home
   - device_tracker.jungle_owntrack3t
   - device_tracker.jungle3t_wifi
+  - group.tracking
   - group.meteo
   - group.date
   - group.temperature
@@ -84,6 +85,7 @@ Cuisine:
 - light.cuisine
 Salon:
 - light.salon
+- switch.lumiere_bureau
 - media_player.denon_salon
 - media_player.junglecast
 lumieres_home:
@@ -180,6 +182,10 @@ haveibeenpwned:
   entities:
     - sensor.breaches_contactjunglemanfr
     - sensor.breaches_mikaelboulogmailcom
+tracking:
+  name: Suivi des objets
+  entities:
+    - sensor.junglenut
 
 ####################################################################################
 #                                                                                  #
@@ -197,6 +203,7 @@ media_automation:
     - automation.media__plex__monter_les_lumieres_pause
     - automation.media__plex__monter_les_lumieres_stop
     - automation.pc__arreter_au_depart
+    - automation.pc__light__allumer_bureau
 light_automation:
   name: 'Lumières & Mouvements'
   entities:
@@ -228,6 +235,7 @@ chauffage_automation:
     - automation.chauffage__salon__thermostat_17_a_23h00
     - automation.chauffage__chambre__thermostat_20_a_06h00_semaine
     - automation.chauffage__chambre__thermostat_17_a_08h00_semaine
+    - automation.ha__reboot_esp_radcontrol_a_0300
     
 scene_automation:
   name: 'Sur lancement de scènes'

@@ -24,6 +24,7 @@ TODO :
 - Sound level adjustement (if show too loud, reduce volume on Denon etc..)
 - Bulletproof HA (High Availability)
 - ZigBee Xiaomi Platform (Door sensors, magic cube...)
+- Automations : 'Si expire_after sur MQTT sensor, alors thermostat OFF, et si retour alors si présent remettre à 22'
 
 STUCK :
 

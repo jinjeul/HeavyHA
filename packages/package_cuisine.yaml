@@ -23,16 +23,16 @@
     name: "Real Feel 1"
     unit_of_measurement: "°F"
     value_template: '{{ value_json.heatIndex | round(1) }}'
-light:
-  - platform: mqtt_json  
-    name: "LED 1"  
-    state_topic: "jungle/sensornode1"  
-    command_topic: "jungle/sensornode1/set"  
-    brightness: true  
-    flash: true  
-    rgb: true  
-    optimistic: false  
-    qos: 0
+#light:
+#  - platform: mqtt_json  
+#    name: "LED 1"  
+#    state_topic: "jungle/sensornode1"  
+#    command_topic: "jungle/sensornode1/set"  
+#    brightness: true  
+#    flash: true  
+#    rgb: true  
+#    optimistic: false  
+#    qos: 0
 group:
   sensor_node_1_card:
     name: Cuisine

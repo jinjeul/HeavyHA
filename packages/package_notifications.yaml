@@ -5,7 +5,7 @@
 
 automation:
   - alias: 'Alerte - Pushbullet - Gel à venir'
-    initial_state: 'on'
+    initial_state: 'off'
     trigger:
       platform: numeric_state
       entity_id: sensor.yr_temperature
