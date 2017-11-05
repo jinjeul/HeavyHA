@@ -171,6 +171,7 @@ automation:
         data:
           entity_id: switch.radiateur_salon
 
+# ESP-01 LightSwitch testing
   - alias: 'Lumières - Salon - Switch'
     initial_state: 'on'
     trigger:

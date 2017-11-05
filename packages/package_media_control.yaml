@@ -170,32 +170,26 @@ automation:
     action:
       service: homeassistant.turn_off
       entity_id: switch.jungle_pc
-
       
   - alias: 'PC - Light - Allumer bureau'
     initial_state: 'on'
     trigger:
-      platform: event
-      event_type: call_service
-      event_data:
-        service: turn_on
-        service_data:
-          entity_id: switch.jungle_pc
+      platform: state
+      entity_id: switch.jungle_pc
+      to: 'on'
     action:
       service: switch.turn_on
       entity_id: switch.lumiere_bureau
   - alias: 'PC - Light - Eteindre bureau'
     initial_state: 'on'
     trigger:
-      platform: event
-      event_type: call_service
-      event_data:
-        service: turn_off
-        service_data:
-          entity_id: switch.jungle_pc
+      platform: state
+      entity_id: switch.jungle_pc
+      to: 'off'
     action:
       service: switch.turn_off
       entity_id: switch.lumiere_bureau
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
