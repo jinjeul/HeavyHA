@@ -109,7 +109,7 @@ automation:
           entity_id: climate.salon
           temperature: '22'
 
-  - alias: 'Chauffage - Salon - 17 Départ Appart'
+  - alias: 'Chauffage - Salon - 18 Départ Appart'
     initial_state: 'on'
     trigger:
       platform: state
@@ -119,12 +119,12 @@ automation:
       - service: climate.set_temperature
         data:
           entity_id: climate.salon
-          temperature: '17'
+          temperature: '18'
       - service : homeassistant.turn_off
         data:
           entity_id: switch.radiateur_salon
           
-  - alias: 'Chauffage - Salon - 17 et OFF le soir'
+  - alias: 'Chauffage - Salon - 18 et OFF le soir'
     initial_state: 'on'
     trigger:
       platform: time
@@ -139,7 +139,7 @@ automation:
       - service: climate.set_temperature
         data:
           entity_id: climate.salon
-          temperature: '17'
+          temperature: '18'
       - service : homeassistant.turn_off
         data:
           entity_id: switch.radiateur_salon

@@ -16,6 +16,7 @@ default_view:
   - device_tracker.jungle3t_wifi
   - group.tracking
   - group.meteo
+  - weather.yweather
   - group.date
   - group.temperature
 
@@ -228,13 +229,14 @@ alerte_automation:
 chauffage_automation:
   name: 'Gestion des thermostats'
   entities:
-    - automation.chauffage__salon__17_depart_appart
-    - automation.chauffage__salon__17_et_off_le_soir
+    - automation.chauffage__salon__18_depart_appart
+    - automation.chauffage__salon__18_et_off_le_soir
     - automation.chauffage__salon__22_arrivee_appart
     - automation.chauffage__salon__22_et_on_le_matin_semaine
-    - automation.chauffage__salon__thermostat_17_a_23h00
+    - automation.chauffage__salon__thermostat_18_a_23h00
     - automation.chauffage__chambre__thermostat_20_a_06h00_semaine
     - automation.chauffage__chambre__thermostat_17_a_08h00_semaine
+    - automation.chauffage__chambre__17_depart_appart
     - automation.ha__reboot_esp_radcontrol_a_0300
     
 scene_automation:
