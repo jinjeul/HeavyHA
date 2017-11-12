@@ -62,8 +62,8 @@ climate:
     max_temp: 24
     target_temp: 18
     tolerance: 0.5
-#    min_cycle_duration:
-#      seconds: 5
+    min_cycle_duration:
+      seconds: 5
     keep_alive:
       minutes: 5
 #Thermostat Chambre
@@ -78,4 +78,4 @@ climate:
     min_cycle_duration:
       seconds: 5
     keep_alive:
-      minutes: 1
+      minutes: 5

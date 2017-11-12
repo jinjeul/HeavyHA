@@ -258,7 +258,7 @@ chauffage_automation:
     - automation.chauffage__chambre__thermostat_20_a_06h00_semaine
     - automation.chauffage__chambre__thermostat_17_a_08h00_semaine
     - automation.chauffage__chambre__17_depart_appart
-    - automation.ha__reboot_esp_radcontrol_a_0300
+    - automation.ha__reboot_esp_radcontrol
     
 scene_automation:
   name: 'Sur lancement de scènes'

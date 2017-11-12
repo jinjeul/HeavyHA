@@ -17,7 +17,7 @@ shell_command:
   shutdown_z800: 'curl -k http://jungle-pc:8000/?action=System.Shutdown'
   restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
   sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
-  reboot_esp_radcontrol: 'curl -k http://192.168.1.160/?cmd=reboot > /dev/null'
+  reboot_esprad: 'curl -k http://192.168.1.160/?cmd=reboot > /tmp/radreboot'
 switch:
   - platform: wake_on_lan
     mac_address: "44-8A-5B-CC-56-C5"
@@ -248,15 +248,14 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.tvstate
-  - alias: HA - reboot ESP radcontrol a 03:00
+  - alias: HA - reboot ESP radcontrol
     initial_state: 'on'
     trigger:
       platform: time
-      hours: 03
-      minutes: 0
-      seconds: 0
+      hours: 23
+      minutes: 59
     action:
-      - service: shell_command.reboot_esp_radcontrol
+      - service: shell_command.reboot_esprad
   - alias: Cube event shake_air
     trigger:
       platform: event

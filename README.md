@@ -22,18 +22,20 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.2 (pip i
 
 TODO :
 
-- DIY 433Mhz => Received new receiver, hope to be more accurate
-- Camera => https://goo.gl/9SwW2W or https://goo.gl/mHMZDG
-- Bulletproof HA (High Availability) => Workshop to plan
+- Gate opening using 433mhz => Need to reverse engineer the binary sequence (PRIORITY AVERAGE)
+- Camera => https://goo.gl/9SwW2W or https://goo.gl/mHMZDG (PRORITY LOW)
+- Bulletproof HA (High Availability) => Workshop to plan (PRIORITY HIGH)
 
 STUCK :
 
-- DIY TeleInfo EDF (To debug) => bewbew
+- DIY TeleInfo EDF (To debug) => @ZECK02
 - DIY ON/OFF Wall switches via ESP-01 (No neutral. Dev stopped)
 
 DONE :
 
 - ZigBee Xiaomi Platform (Door sensors, magic cube...) & Automations
+- Added 433Mhz plug control (Chacon-like) using RPi + 433Mhz transmitter & receiver
+- Added BLE tracking => NUT mini + room-presence (linked with MQTT)
 - Added Monitoring on NAS & Fixed Home Presence Detection (DDWRT BUG)
 - Added Multisensor in Chambre for Temperature control (heater)
 - Added Voice Recognition via Google Assistant

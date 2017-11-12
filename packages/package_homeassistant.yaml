@@ -1,0 +1,64 @@
+﻿automation:
+# NOTE: IT IS POSSIBLE TO DO MULTIPLE TRIGGERS INSTEAD OF SPECIFIC AUTOMATIONS
+######
+# ON #
+######
+
+  - alias: 'HA START - Chauffage - 22 salon si présent semaine'
+    trigger:
+      platform: homeassistant
+      event: start
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+      - condition: time
+        before: '23:30:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '22'
+          
+  - alias: 'HA START - Chauffage - 22 salon si présent weekend'
+    trigger:
+      platform: homeassistant
+      event: start
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
+      - condition: time
+        weekday:
+          - sat
+          - sun
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.salon
+          temperature: '22'
+
+#######   
+# OFF #
+#######
+
+  - alias: 'HA STOP - Chauffage - OFF partout'
+    trigger:
+      platform: homeassistant
+      event: 'shutdown'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.radiateur_salon
+      - service: homeassistant.turn_off
+        entity_id: switch.radiateur_chambre
+      
+    
+    
+    
+    
