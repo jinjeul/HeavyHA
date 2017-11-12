@@ -17,15 +17,11 @@ device_tracker:
   - platform: gpslogger
   - platform: owntracks
     max_gps_accuracy: 200
-    
-# Performance Issue with Bluetooth LE tracker : using room-assistant instead with MQTT
-#  - platform: bluetooth_le_tracker
 
 scene:
   - platform: lifx_cloud
     token: !secret lifxapitoken
-zwave:
-  usb_path: /dev/zwave
+
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -41,6 +37,13 @@ sensor:
     away_timeout: 60
 weather:
   - platform: yweather
+
+    
+# Performance Issue with Bluetooth LE tracker : using room-assistant instead with MQTT
+#  - platform: bluetooth_le_tracker
+#zwave:
+#  usb_path: /dev/zwave
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #

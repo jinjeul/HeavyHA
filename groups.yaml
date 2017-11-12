@@ -12,11 +12,6 @@ default_view:
   entities:
   - group.thermostat
   - group.lumieres_home
-  - device_tracker.jungle_owntrack3t
-  - device_tracker.jungle3t_wifi
-  - group.tracking
-  - group.meteo
-  - weather.yweather
   - group.date
   - group.temperature
 
@@ -30,6 +25,8 @@ default_view:
 
 lumieres:
   entities:
+  - group.light_salledebain
+  - group.light_chambre
   - group.light_salon
   - group.light_cuisine
   - group.light_vestibule
@@ -48,6 +45,7 @@ room_sensor:
     - group.sensor_node_1_card
     - group.sensor_node_2_card
     - group.sensor_node_3_card
+    - group.door_window_tracking
   view: true
 media:
   entities:
@@ -57,7 +55,13 @@ media:
   - group.mediaplayers
   name: Media
   view: true
-automations_vue:
+meteo_view:
+  entities:
+  - group.meteo
+  - weather.yweather
+  name: Meteo
+  view: true
+automations_view:
   entities:
     - group.light_automation
     - group.media_automation
@@ -69,6 +73,7 @@ automations_vue:
 hardware_view:
   name: Monitoring
   entities:
+    - group.presence_tracking
     - group.rpi
     - group.junglenas
     - group.haveibeenpwned
@@ -82,17 +87,27 @@ hardware_view:
 #                                                                                  #
 ####################################################################################
 
-Cuisine:
+cuisine:
 - light.cuisine
-Salon:
+salon:
 - light.salon
 - switch.lumiere_bureau
 - media_player.denon_salon
 - media_player.junglecast
+chambre:
+- light.chambre
+salledebain:
+- light.salledebain
 lumieres_home:
+- group.light_chambre
+- group.light_salledebain
 - group.light_salon
 - group.light_cuisine
 - group.light_vestibule
+light_chambre:
+- light.chambre
+light_salledebain:
+- light.salledebain
 light_salon:
 - light.salon
 - switch.lumiere_bureau
@@ -183,10 +198,16 @@ haveibeenpwned:
   entities:
     - sensor.breaches_contactjunglemanfr
     - sensor.breaches_mikaelboulogmailcom
-tracking:
-  name: Suivi des objets
+presence_tracking:
+  name: Détection de présence
   entities:
     - sensor.junglenut
+    - device_tracker.jungle3t_wifi
+door_window_tracking:
+  name: Etat des fenêtres & portes
+  entities:
+    - binary_sensor.door_window_sensor_158d00019fd4b5
+    - binary_sensor.door_window_sensor_158d00019fd569
 
 ####################################################################################
 #                                                                                  #

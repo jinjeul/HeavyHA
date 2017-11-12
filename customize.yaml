@@ -24,9 +24,12 @@ group.light_vestibule:
 group.light_cuisine:
   hidden: false
   friendly_name: 'Lumières de la Cuisine'
-#group.light_chambre:
-#  hidden: false
-#  friendly_name: 'Lumières de la Chambre'
+group.light_chambre:
+  hidden: false
+  friendly_name: 'Lumières de la Chambre'
+group.light_salledebain:
+  hidden: false
+  friendly_name: 'Lumières de la Salle de bain'
 
 ####################################################################################
 #                                                                                  #
@@ -168,5 +171,20 @@ sensor.breaches_mikaelboulogmailcom:
 ####################################################################################
 
 sensor.junglenut:
-  friendly_name: 'Porte clé'
+  friendly_name: 'Porte clé - Principal'
   icon: mdi:key-variant
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                                                                  #
+#                               XIAOMI DEVICES                                     #
+#                                                                                  #
+####################################################################################
+
+binary_sensor.door_window_sensor_158d00019fd4b5:
+  friendly_name: 'Porte Entrée'
+  icon: mdi:door
+binary_sensor.door_window_sensor_158d00019fd569:
+  friendly_name: 'Fenêtre Salon'
+  icon: mdi:door-closed

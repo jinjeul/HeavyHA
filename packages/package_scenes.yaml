@@ -3,4 +3,6 @@
 # Modification de toutes les variables température hautes à 22
 # Modification des variables température absence = 18
 # Modification des variables températures matin 6-8 = 22
+# Sound level adjustement (if show too loud, reduce volume on Denon etc..)
+# 'Si expire_after sur MQTT sensor, alors thermostat OFF, et si retour alors si présent remettre à 22'
 # Mode vacances

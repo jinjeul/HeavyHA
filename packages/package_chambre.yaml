@@ -29,6 +29,11 @@ switch:
     payload_off: "0"  
     qos: 0
     optimistic: false
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.172:
+        name: Chambre
 automation:
   - alias: 'Chauffage - Chambre - thermostat 20 à 06h00 semaine'
     initial_state: 'on'

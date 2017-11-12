@@ -1,4 +1,8 @@
-﻿automation:
+﻿xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_gateway_key
+automation:
   - alias: 'Lumières - Appartement - ON Arrivée Appart'
     initial_state: 'on'
     trigger:
@@ -23,6 +27,57 @@
     action:
       service: homeassistant.turn_off
       entity_id: light.salon, light.cuisine, light.vestibule
-
+  - alias: 'Lumières - Appartement - OFF on single jungletap'
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016bdb71
+        click_type: single
+    action:
+      service: homeassistant.turn_off
+      entity_id: light.salon, light.cuisine, light.vestibule, light.salledebain, light.chambre
+  - alias: 'Lumières - Appartement - ON on double jungletap'
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016bdb71
+        click_type: double
+    action:
+      service: homeassistant.turn_on
+      entity_id: light.salon, light.cuisine, light.vestibule, light.salledebain, light.chambre
+  - alias: 'Lumières - Appartement - Chambre bluetooth on long jungletap'
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d00016bdb71
+        click_type: long_click_press
+    action:
+      - service: remote.turn_on
+        entity_id: remote.hub_salon
+        data_template:
+          activity: 28429925
+  - alias: 'Lumières - Salon - Toggle light on leftswitch'
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_left_158d000163a561
+        click_type: single
+    action:
+      service: homeassistant.toggle
+      entity_id: light.salon, light.cuisine
+  - alias: 'Lumières - Chambre - Toggle light on rightswitch'
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_right_158d000163a561
+        click_type: single
+    action:
+      service: homeassistant.toggle
+      entity_id: light.chambre
 
 

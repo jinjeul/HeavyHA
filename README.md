@@ -8,7 +8,11 @@ Automating your home, the French Jungleman way.
 My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.2 (pip install) :
 
 - LIFX (2)
-- Xiaomi Yeelight (1)
+- Xiaomi Yeelight (3)
+- Xiaomi Door sensor
+- Xiaomi Gateway
+- Xiaomi Cube controller
+- Xiaomi lightswitch (2 in 1)
 - Harmony Hub (to control Philips TV and more)
 - DENON AVR X2200w Media Receiver
 - Chromecast
@@ -18,21 +22,18 @@ My Configuration running on a RPi3 with Raspbian + Home Assistant v0.56.2 (pip i
 
 TODO :
 
-- DIY 433Mhz => Garage Door
+- DIY 433Mhz => Received new receiver, hope to be more accurate
 - Camera => https://goo.gl/9SwW2W or https://goo.gl/mHMZDG
-- z-wave (USB Dongle UP, No sensor to test)
-- Sound level adjustement (if show too loud, reduce volume on Denon etc..)
-- Bulletproof HA (High Availability)
-- ZigBee Xiaomi Platform (Door sensors, magic cube...)
-- Automations : 'Si expire_after sur MQTT sensor, alors thermostat OFF, et si retour alors si présent remettre à 22'
+- Bulletproof HA (High Availability) => Workshop to plan
 
 STUCK :
 
-- DIY TeleInfo EDF (To debug)
+- DIY TeleInfo EDF (To debug) => bewbew
 - DIY ON/OFF Wall switches via ESP-01 (No neutral. Dev stopped)
 
 DONE :
 
+- ZigBee Xiaomi Platform (Door sensors, magic cube...) & Automations
 - Added Monitoring on NAS & Fixed Home Presence Detection (DDWRT BUG)
 - Added Multisensor in Chambre for Temperature control (heater)
 - Added Voice Recognition via Google Assistant

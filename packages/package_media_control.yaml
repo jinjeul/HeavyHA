@@ -257,6 +257,16 @@ automation:
       seconds: 0
     action:
       - service: shell_command.reboot_esp_radcontrol
+  - alias: Cube event shake_air
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.cube_158d000103a40c
+        action_type: shake_air
+    action:
+      - service: media_player.media_next_track
+        entity_id: media_player.junglecast
 scene:
   - name: plexon
     entities:
