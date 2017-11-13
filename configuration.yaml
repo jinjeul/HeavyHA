@@ -55,6 +55,7 @@ updater:
 discovery:
   ignore:
     - harmony
+map:
 mqtt:  
   broker: localhost
   port: 1883

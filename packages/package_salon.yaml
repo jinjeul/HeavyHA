@@ -25,8 +25,8 @@ switch:
     gpio: 17
     switches:
       lumiere_bureau:
-        code_on: 1381715
-        code_off: 1381716
+        code_on: !secret 433_1_on
+        code_off: !secret 433_1_off
 
 automation:
   - alias: 'Lumières - Salon - Allumer au couché du soleil'

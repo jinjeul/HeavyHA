@@ -11,7 +11,7 @@ light:
 
 device_tracker:
   - platform: ddwrt
-    host: 192.168.1.1
+    host: !secret ddwrt_ip
     username: admin 
     password: !secret router_password
   - platform: gpslogger
@@ -27,10 +27,10 @@ ifttt:
 sensor:
   - platform: haveibeenpwned
     email: 
-      - mikael.boulo@gmail.com
-      - contact@jungleman.fr
+      - !secret email_1
+      - !secret email_2
   - platform: mqtt_room
-    device_id: d7b08f66e830
+    device_id: !secret junglenut_id
     name: 'JungleNUT'
     state_topic: 'room_presence'
     timeout: 5
@@ -39,7 +39,7 @@ weather:
   - platform: yweather
 
     
-# Performance Issue with Bluetooth LE tracker : using room-assistant instead with MQTT
+# Performance Issue with Bluetooth LE tracker : using room-assistant with MQTT
 #  - platform: bluetooth_le_tracker
 #zwave:
 #  usb_path: /dev/zwave

@@ -220,12 +220,12 @@ door_window_tracking:
 media_automation:
   name: Media Control
   entities:
-    - automation.media__denon_chambre__eteindre_au_depart
     - automation.media__plex__baisser_les_lumieres_play
     - automation.media__plex__monter_les_lumieres_pause
     - automation.media__plex__monter_les_lumieres_stop
     - automation.pc__arreter_au_depart
     - automation.pc__light__allumer_bureau
+    - automation.mediaplayer__appartement__off_au_depart
 light_automation:
   name: 'Lumières & Mouvements'
   entities:

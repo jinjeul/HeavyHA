@@ -1,13 +1,13 @@
 ﻿remote:
   - platform: harmony
     name: 'HUB Salon'
-    host: 192.168.1.148
+    host: !secret harmony_ip
     port: 5222
     activity: 'Chromecast'
 media_player:
   - platform: cast
   - platform: denonavr
-    host: 192.168.1.136
+    host: !secret denon_ip
     name: Denon Salon
     show_all_sources: False
     zones:
@@ -20,7 +20,7 @@ shell_command:
   reboot_esprad: 'wget --spider -q -o /tmp/radreboot http://192.168.1.160/?cmd=reboot'
 switch:
   - platform: wake_on_lan
-    mac_address: "44-8A-5B-CC-56-C5"
+    mac_address: !secret junglepc_mac
     name: "Jungle PC"
     host: "JUNGLE-PC"
     turn_off:
@@ -226,6 +226,7 @@ automation:
         entity_id: input_select.harmony
         data_template:
           option: "Choisir la source"
+
   - alias: Harmony update TV boolean
     hide_entity: True
     trigger:
@@ -237,6 +238,7 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.tvstate
+
   - alias: HA - reboot ESP radcontrol
     initial_state: 'on'
     trigger:
@@ -245,6 +247,7 @@ automation:
       minutes: 59
     action:
       - service: shell_command.reboot_esprad
+
   - alias: Cube event shake_air
     trigger:
       platform: event
@@ -255,6 +258,7 @@ automation:
     action:
       - service: media_player.media_next_track
         entity_id: media_player.junglecast
+
 scene:
   - name: plexon
     entities:
