@@ -25,17 +25,6 @@ switch:
     host: "JUNGLE-PC"
     turn_off:
       service: shell_command.shutdown_z800
-#  - platform: template
-#    name: 'Harmony HUB Salon'
-#    switches:
-#      remote_hub:
-#        value_template: "{% if is_state('remote.hub_salon', 'on') %}on{% else %}off{% endif %}"
-#        turn_on:
-#          service: remote.turn_on
-#          entity_id: remote.hub_salon
-#        turn_off:
-#          service: remote.turn_off
-#          entity_id: remote.hub_salon
   - platform: template
     switches:
       tv:

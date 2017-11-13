@@ -171,6 +171,32 @@ automation:
         data:
           entity_id: switch.radiateur_salon
 
+  - alias: 'Chauffage - Salon - OFF si fenetre open 5min'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00019fd569
+      to: 'on'
+      for:
+        minutes: 5
+    action:
+      service: climate.set_operation_mode
+      data:
+          entity_id: climate.salon
+          operation_mode: 'off'
+          
+  - alias: 'Chauffage - Salon - AUTO si fenetre closed'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d00019fd569
+      to: 'off'
+    action:
+      service: climate.set_operation_mode
+      data:
+          entity_id: climate.salon
+          operation_mode: 'auto'
+
 # ESP-01 LightSwitch testing
   - alias: 'Lumières - Salon - Switch'
     initial_state: 'on'

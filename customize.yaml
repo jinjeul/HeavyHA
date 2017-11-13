@@ -18,18 +18,26 @@ group.chauffage:
 group.light_salon:
   hidden: false
   friendly_name: 'Lumières du Salon'
+  icon: mdi:ceiling-light
 group.light_vestibule:
   hidden: false
   friendly_name: 'Lumières du Vestibule'
+  icon: mdi:ceiling-light
 group.light_cuisine:
   hidden: false
   friendly_name: 'Lumières de la Cuisine'
+  icon: mdi:ceiling-light
 group.light_chambre:
   hidden: false
   friendly_name: 'Lumières de la Chambre'
+  icon: mdi:ceiling-light
 group.light_salledebain:
   hidden: false
   friendly_name: 'Lumières de la Salle de bain'
+  icon: mdi:ceiling-light
+light.salledebain:
+  hidden: false
+  friendly_name: 'Salle de bain'
 
 ####################################################################################
 #                                                                                  #
