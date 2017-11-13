@@ -17,7 +17,7 @@ shell_command:
   shutdown_z800: 'curl -k http://jungle-pc:8000/?action=System.Shutdown'
   restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
   sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
-  reboot_esprad: 'curl -k http://192.168.1.160/?cmd=reboot > /tmp/radreboot'
+  reboot_esprad: 'wget --spider -q -o /tmp/radreboot http://192.168.1.160/?cmd=reboot'
 switch:
   - platform: wake_on_lan
     mac_address: "44-8A-5B-CC-56-C5"
