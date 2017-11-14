@@ -111,6 +111,7 @@ light_salledebain:
 light_salon:
 - light.salon
 - switch.lumiere_bureau
+- light.gateway_light_34ce008db5a7
 light_cuisine:
 - light.cuisine
 light_vestibule:

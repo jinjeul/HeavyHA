@@ -38,6 +38,9 @@ group.light_salledebain:
 light.salledebain:
   hidden: false
   friendly_name: 'Salle de bain'
+light.gateway_light_34ce008db5a7:
+  hidden: false
+  friendly_name: 'Passerelle Xiaomi'
 
 ####################################################################################
 #                                                                                  #
