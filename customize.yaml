@@ -12,9 +12,11 @@ group.all_lights:
 group.lumieres_home:
   hidden: false
   friendly_name: 'Réglage des Lumières'
+  google_assistant: false
 group.chauffage:
   hidden: false
   friendly_name: 'Chauffage'
+  google_assistant: false
 group.light_salon:
   hidden: false
   friendly_name: 'Lumières du Salon'
@@ -35,12 +37,86 @@ group.light_salledebain:
   hidden: false
   friendly_name: 'Lumières de la Salle de bain'
   icon: mdi:ceiling-light
+light.salon:
+  friendly_name: 'LIFX Salon'
+light.cuisine:
+  friendly_name: 'LIFX Cuisine'
 light.salledebain:
   hidden: false
   friendly_name: 'Salle de bain'
 light.gateway_light_34ce008db5a7:
   hidden: false
   friendly_name: 'Passerelle Xiaomi'
+group.alerte_automation:
+  google_assistant: false
+group.all_automations:
+  google_assistant: false
+group.all_devices:
+  google_assistant: false
+group.all_remotes:
+  google_assistant: false
+group.all_scenes:
+  google_assistant: false
+group.all_scripts:
+  google_assistant: false
+group.all_switches:
+  google_assistant: false
+group.automations_view:
+  google_assistant: false
+group.chambre_2:
+  google_assistant: false
+group.chauffage_automation:
+  google_assistant: false
+group.date:
+  google_assistant: false
+group.default_view:
+  google_assistant: false
+group.door_window_tracking:
+  google_assistant: false
+group.hardware_view:
+  google_assistant: false
+group.harmony:
+  google_assistant: false
+group.haveibeenpwned:
+  google_assistant: false
+group.junglenas:
+  google_assistant: false
+group.light_automation:
+  google_assistant: false
+group.media:
+  google_assistant: false
+group.media_automation:
+  google_assistant: false
+group.mediaplayers:
+  google_assistant: false
+group.mediaswitches:
+  google_assistant: false
+group.meteo:
+  google_assistant: false
+group.meteo_view:
+  google_assistant: false
+group.pccontrol:
+  google_assistant: false
+group.presence_tracking:
+  google_assistant: false
+group.radiateurs:
+  google_assistant: false
+group.room_sensor:
+  google_assistant: false
+group.rpi:
+  google_assistant: false
+group.scene_automation:
+  google_assistant: false
+group.sensor_node_1_card:
+  google_assistant: false
+group.sensor_node_2_card:
+  google_assistant: false
+group.sensor_node_3_card:
+  google_assistant: false
+group.temperature:
+  google_assistant: false
+group.thermostat:
+  google_assistant: false
 
 ####################################################################################
 #                                                                                  #
@@ -147,6 +223,7 @@ switch.tv:
 switch.lumiere_bureau:
   friendly_name: 'Bureau'
   icon: mdi:lamp
+  google_assistant_type: light
 switch.radiateur_salon:
   friendly_name: 'Salon'
   icon: mdi:radiator
@@ -154,9 +231,9 @@ switch.radiateur_chambre:
   friendly_name: 'Chambre'
   icon: mdi:hot-tub
 climate.salon:
-  friendly_name: 'Chauffage du salon'
+  friendly_name: 'Salon'
 climate.chambre:
-  friendly_name: 'Chauffage de la chambre'
+  friendly_name: 'Chambre'
   
 ####################################################################################
 #                                                                                  #

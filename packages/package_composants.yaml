@@ -38,12 +38,6 @@ sensor:
 weather:
   - platform: yweather
 
-    
-# Performance Issue with Bluetooth LE tracker : using room-assistant with MQTT
-#  - platform: bluetooth_le_tracker
-#zwave:
-#  usb_path: /dev/zwave
-
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -53,7 +47,6 @@ weather:
 ####################################################################################
 
 climate:
-#Thermostat Salon
   - platform: generic_thermostat
     name: Salon
     heater: switch.radiateur_salon
@@ -66,14 +59,13 @@ climate:
       seconds: 5
     keep_alive:
       minutes: 5
-#Thermostat Chambre
   - platform: generic_thermostat
     name: Chambre
     heater: switch.radiateur_chambre
     target_sensor: sensor.temperature_3
     target_temp: 17
-    min_temp: 16
-    max_temp: 20
+    min_temp: 17
+    max_temp: 24
     tolerance: 0.5
     min_cycle_duration:
       seconds: 5

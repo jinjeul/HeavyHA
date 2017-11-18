@@ -46,6 +46,7 @@ input_select: !include input_selects.yaml
 ####################################################################################
 
 frontend:
+  javascript_version: latest
 logger:
   default: error
   logs:
@@ -94,4 +95,7 @@ google_assistant:
   exposed_domains:
     - switch
     - light
+    - group
+    - scene
+#    - media_player
     - climate
