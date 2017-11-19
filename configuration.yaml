@@ -87,6 +87,9 @@ logbook:
       - sensor.yr_precipitation
       - sensor.yr_wind_speed
       - sensor.yr_wind_direction
+      - sensor.france
+      - sensor.finlande
+      - sensor.turquie
 sun:
 google_assistant:
   project_id: !secret gassist_project_id

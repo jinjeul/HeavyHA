@@ -8,7 +8,6 @@
 
 light:
   - platform: lifx
-
 device_tracker:
   - platform: ddwrt
     host: !secret ddwrt_ip
@@ -17,11 +16,9 @@ device_tracker:
   - platform: gpslogger
   - platform: owntracks
     max_gps_accuracy: 200
-
 scene:
   - platform: lifx_cloud
     token: !secret lifxapitoken
-
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -46,6 +43,10 @@ sensor:
     name: Turquie
 weather:
   - platform: yweather
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_gateway_key
 
 ####################################################################################
 #                                                                                  #

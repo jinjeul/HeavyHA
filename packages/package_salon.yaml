@@ -198,11 +198,11 @@ automation:
           operation_mode: 'auto'
 
 # ESP-01 LightSwitch testing
-  - alias: 'Lumières - Salon - Switch'
-    initial_state: 'on'
-    trigger:
-      platform: mqtt
-      topic: jungle/lightswitch1/update
-    action:
-      service: light.toggle
-      entity_id: light.salon
+#  - alias: 'Lumières - Salon - Switch'
+#    initial_state: 'on'
+#    trigger:
+#      platform: mqtt
+#      topic: jungle/lightswitch1/update
+#    action:
+#      service: light.toggle
+#      entity_id: light.salon

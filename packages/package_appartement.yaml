@@ -1,8 +1,4 @@
-﻿xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_gateway_key
-automation:
+﻿automation:
   - alias: 'Lumières - Appartement - ON Arrivée Appart'
     initial_state: 'on'
     trigger:
@@ -23,7 +19,9 @@ automation:
       platform: state
       entity_id: device_tracker.jungle3t_wifi
       to: 'not_home'
-      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+      ##############################################################
+      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE #
+      ##############################################################
     action:
       service: light.turn_off
       entity_id: group.all_lights
@@ -34,7 +32,9 @@ automation:
       platform: state
       entity_id: device_tracker.jungle3t_wifi
       to: 'not_home'
-      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE
+      ##############################################################
+      # AJOUTER UN TRIGGER SI LAST MOTION ENTREE MOINS DE 2 MINUTE #
+      ##############################################################
     action:
       - service: media_player.turn_off
         entity_id: group.mediaplayers
@@ -42,6 +42,9 @@ automation:
         entity_id: automation.harmony_off
       - service: switch.turn_off
         entity_id: switch.jungle_pc
+        
+        
+        
   - alias: 'Lumières - Appartement - OFF on single jungletap'
     trigger:
       platform: event
@@ -52,6 +55,7 @@ automation:
     action:
       service: light.turn_off
       entity_id: group.all_lights
+      
   - alias: 'Lumières - Appartement - ON on double jungletap'
     trigger:
       platform: event
@@ -62,6 +66,7 @@ automation:
     action:
       service: homeassistant.turn_on
       entity_id: light.salon, light.cuisine, light.vestibule, light.salledebain, light.chambre
+      
   - alias: 'Lumières - Appartement - Chambre bluetooth on long jungletap'
     trigger:
       platform: event
@@ -75,6 +80,7 @@ automation:
         data_template:
           activity: 28429925
   - alias: 'Lumières - Salon - Toggle light on leftswitch'
+  
     trigger:
       platform: event
       event_type: click
@@ -84,6 +90,7 @@ automation:
     action:
       service: homeassistant.toggle
       entity_id: light.salon, light.cuisine
+      
   - alias: 'Lumières - Chambre - Toggle light on rightswitch'
     trigger:
       platform: event
