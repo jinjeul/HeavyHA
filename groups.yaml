@@ -10,10 +10,12 @@ default_view:
   view: true
   icon: mdi:home
   entities:
-  - group.thermostat
-  - group.lumieres_home
   - group.date
+  - group.lumieres_home
   - group.temperature
+  - group.presence_tracking
+  - group.door_window_tracking
+  - media_player.junglecast
 
 ####################################################################################
 #                                                                                  #
@@ -46,6 +48,7 @@ room_sensor:
     - group.sensor_node_2_card
     - group.sensor_node_3_card
     - group.door_window_tracking
+    - group.presence_tracking
   view: true
 media:
   entities:
@@ -73,10 +76,10 @@ automations_view:
 hardware_view:
   name: Monitoring
   entities:
-    - group.presence_tracking
     - group.rpi
     - group.junglenas
     - group.haveibeenpwned
+    - group.transmission
   view: true
 
 ####################################################################################
@@ -174,7 +177,9 @@ meteo:
 date:
   name: Date & Heure
   entities:
-    - sensor.time
+    - sensor.france
+    - sensor.finlande
+    - sensor.turquie
     - sensor.date
 rpi:
   name: JunglePi
@@ -209,6 +214,20 @@ door_window_tracking:
   entities:
     - binary_sensor.door_window_sensor_158d00019fd4b5
     - binary_sensor.door_window_sensor_158d00019fd569
+transmission:
+  name: Serveur de Torrents
+  entities:
+    - sensor.transmission_active_torrents
+    - sensor.transmission_down_speed
+    - sensor.transmission_up_speed
+    - sensor.transmission_status
+    
+worldhorloge:
+  name: Horloge
+  entities:
+    - sensor.france
+    - sensor.finlande
+    - sensor.turquie
 
 ####################################################################################
 #                                                                                  #

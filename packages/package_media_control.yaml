@@ -36,6 +36,17 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.philipstv_off
+          
+sensor:
+  - platform: transmission
+    host: !secret junglenas_ip
+    username: !secret transmission_user
+    password: !secret transmission_pass
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+      - 'active_torrents'
 
 ####################################################################################
 #                                                                                  #

@@ -234,6 +234,27 @@ climate.salon:
   friendly_name: 'Salon'
 climate.chambre:
   friendly_name: 'Chambre'
+sensor.france:
+  friendly_name: 'France'
+  icon: mdi:clock
+sensor.finlande:
+  friendly_name: 'Finlande'
+  icon: mdi:clock
+sensor.turquie:
+  friendly_name: 'Turquie'
+  icon: mdi:clock
+sensor.transmission_active_torrents:
+  friendly_name: 'Torrents Actifs'
+  icon: mdi:clipboard-flow
+sensor.transmission_down_speed:
+  friendly_name: 'Vitesse Download'
+  icon: mdi:download
+sensor.transmission_status:
+  friendly_name: 'Etat global'
+  icon: mdi:server
+sensor.transmission_up_speed:
+  friendly_name: 'Vitesse Upload'
+  icon: mdi:upload
   
 ####################################################################################
 #                                                                                  #
@@ -244,10 +265,10 @@ climate.chambre:
 ####################################################################################
 
 sensor.breaches_contactjunglemanfr:
-  friendly_name: 'Adresse c****t@jungleman.fr'
+  friendly_name: 'c****t@jungleman.fr'
   icon: mdi:mail-ru
 sensor.breaches_mikaelboulogmailcom:
-  friendly_name: 'Adresse m****o@gmail.com'
+  friendly_name: 'm****o@gmail.com'
   icon: mdi:mail-ru
 
 ####################################################################################

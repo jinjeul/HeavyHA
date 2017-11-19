@@ -35,6 +35,15 @@ sensor:
     state_topic: 'room_presence'
     timeout: 5
     away_timeout: 60
+  - platform: worldclock
+    time_zone: Europe/Paris
+    name: France
+  - platform: worldclock
+    time_zone: Europe/Helsinki
+    name: Finlande
+  - platform: worldclock
+    time_zone: Europe/Istanbul
+    name: Turquie
 weather:
   - platform: yweather
 

@@ -94,5 +94,3 @@ automation:
     action:
       service: homeassistant.toggle
       entity_id: light.chambre
-
-
