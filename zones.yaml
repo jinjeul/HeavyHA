@@ -8,3 +8,8 @@
   longitude: !secret longitude_work
   radius: 500
   icon: mdi:briefcase
+- name: Orly
+  latitude: !secret latitude_orly_ouest
+  longitude: !secret longitude_orly_ouest
+  radius: 500
+  icon: mdi:airplane

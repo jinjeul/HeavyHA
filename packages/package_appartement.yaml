@@ -79,8 +79,8 @@
         entity_id: remote.hub_salon
         data_template:
           activity: 28429925
+          
   - alias: 'Lumières - Salon - Toggle light on leftswitch'
-  
     trigger:
       platform: event
       event_type: click

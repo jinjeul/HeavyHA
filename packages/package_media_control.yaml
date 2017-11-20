@@ -254,8 +254,8 @@ automation:
     initial_state: 'on'
     trigger:
       platform: time
-      hours: 23
-      minutes: 59
+      hours: 01
+      minutes: 00
     action:
       - service: shell_command.reboot_esprad
 
