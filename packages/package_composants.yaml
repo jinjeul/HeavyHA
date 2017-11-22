@@ -48,6 +48,8 @@ xiaomi_aqara:
   gateways:
     - key: !secret xiaomi_gateway_key
 
+#panel_iframe: Not working with SSL
+
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
