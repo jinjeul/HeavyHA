@@ -16,6 +16,7 @@ default_view:
   - group.presence_tracking
   - group.door_window_tracking
   - media_player.junglecast
+  - group.liens_accesrapide
 
 ####################################################################################
 #                                                                                  #
@@ -56,6 +57,8 @@ media:
   - group.harmony
   - group.mediaswitches
   - group.mediaplayers
+  - group.liens_junglenas
+  - group.liens_routeur
   name: Media
   view: true
 meteo_view:
@@ -306,3 +309,30 @@ all_scenes:
     - scene.coolblue
     - scene.hot_sex
     - scene.psychedelic
+    
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                WEBLINKS                                          #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+liens_junglenas:
+  name: JungleNAS Apps
+  entities:
+    - weblink.monitorix
+    - weblink.plex_py
+    - weblink.serveur_de_torrents
+    - weblink.sonarr
+liens_routeur:
+  name: Mon Routeur
+  entities:
+    - weblink.routeur_logs
+    - weblink.routeur_status
+liens_accesrapide:
+  name: Accès rapide
+  entities:
+    - weblink.github_heavyha
+    - weblink.junglemanfr
+    - weblink.plex_media_server

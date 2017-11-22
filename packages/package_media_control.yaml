@@ -47,6 +47,39 @@ sensor:
       - 'download_speed'
       - 'upload_speed'
       - 'active_torrents'
+      
+weblink:
+  entities:
+    - name: Routeur Status
+      url: !secret url_routeur_status
+      icon: mdi:web
+    - name: Routeur Logs
+      url: !secret url_routeur_logs
+      icon: mdi:web
+    - name: 'Serveur de Torrents'
+      url: !secret url_torrent
+      icon: mdi:web
+    - name: Sonarr
+      url: !secret url_sonarr
+      icon: mdi:web
+    - name: Plex Py
+      url: !secret url_plexpy
+      icon: mdi:web
+    - name: Plex Media Server
+      url: !secret url_plex
+      icon: mdi:web
+    - name: JungleMan.fr
+      url: !secret url_junglemanfr
+      icon: mdi:web
+    - name: Ihanatarina.com
+      url: !secret url_ihanatarina
+      icon: mdi:web
+    - name: Monitorix
+      url: !secret url_monitorix
+      icon: mdi:web
+    - name: Github HeavyHA
+      url: !secret url_github_heavyha
+      icon: mdi:web
 
 ####################################################################################
 #                                                                                  #
@@ -177,9 +210,14 @@ automation:
       platform: state
       entity_id: switch.jungle_pc
       to: 'on'
+    condition:
+      - condition: state
+        entity_id: device_tracker.jungle3t_wifi
+        state: 'home'
     action:
       service: switch.turn_on
       entity_id: switch.lumiere_bureau
+
   - alias: 'PC - Light - Eteindre bureau'
     initial_state: 'on'
     trigger:
