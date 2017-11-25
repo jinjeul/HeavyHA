@@ -41,12 +41,14 @@ sensor:
   - platform: worldclock
     time_zone: Europe/Istanbul
     name: Turquie
+  - platform: cpuspeed
 weather:
   - platform: yweather
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - key: !secret xiaomi_gateway_key
+
 
 #panel_iframe: Not working with SSL
 
@@ -66,7 +68,7 @@ climate:
     min_temp: 17
     max_temp: 24
     target_temp: 18
-    tolerance: 0.5
+    tolerance: 0.3
     min_cycle_duration:
       seconds: 5
     keep_alive:
@@ -78,7 +80,7 @@ climate:
     target_temp: 17
     min_temp: 17
     max_temp: 24
-    tolerance: 0.5
+    tolerance: 0.3
     min_cycle_duration:
       seconds: 5
     keep_alive:

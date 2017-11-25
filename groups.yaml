@@ -187,7 +187,8 @@ date:
 rpi:
   name: JunglePi
   entities:
-    - sensor.cpu_use
+    - sensor.cpu_speed
+    - sensor.cpu_used
     - sensor.disk_use_home
     - sensor.ram_free
     - sensor.rpi_uptime
