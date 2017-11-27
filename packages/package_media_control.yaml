@@ -18,6 +18,8 @@ shell_command:
   restart_z800: 'curl -k http://jungle-pc:8000/?action=System.Restart'
   sleep_z800: 'curl -k http://jungle-pc:8000/?action=System.Sleep'
   reboot_esprad: 'wget --spider -q -o /tmp/radreboot http://192.168.1.160/?cmd=reboot'
+  junglenas_killit: !secret junglenas_poweroff
+  junglenas_powerback: !secret junglenas_poweron
 switch:
   - platform: wake_on_lan
     mac_address: !secret junglepc_mac
@@ -47,7 +49,15 @@ sensor:
       - 'download_speed'
       - 'upload_speed'
       - 'active_torrents'
-      
+  - platform: sonarr
+    api_key: !secret sonarr_api
+    host: !secret junglenas_ip
+    monitored_conditions:
+      - upcoming
+      - diskspace
+      # NOT WORKING #
+      #- series     #
+    include_paths: !secret sonarr_series_path
 weblink:
   entities:
     - name: Routeur Status

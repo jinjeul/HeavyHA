@@ -255,7 +255,13 @@ sensor.transmission_status:
 sensor.transmission_up_speed:
   friendly_name: 'Vitesse Upload'
   icon: mdi:upload
-  
+sensor.sonarr_disk_space:
+  friendly_name: 'Espace disque disponible'
+  icon: mdi:harddisk
+  unit_of_measurement: Go
+sensor.sonarr_upcoming:
+  friendly_name: 'Demain seront diffusés :'
+  icon: mdi:youtube-tv
 ####################################################################################
 #                                                                                  #
 #                                                                                  #

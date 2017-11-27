@@ -145,7 +145,7 @@ automation:
           entity_id: switch.radiateur_salon
           
   - alias: 'Chauffage - Salon - 22 et ON le matin semaine'
-    initial_state: 'on'
+    initial_state: 'off'
     trigger:
       platform: time
       hours: 8

@@ -83,6 +83,7 @@ hardware_view:
     - group.junglenas
     - group.haveibeenpwned
     - group.transmission
+    - group.sonarr
   view: true
 
 ####################################################################################
@@ -232,6 +233,11 @@ worldhorloge:
     - sensor.france
     - sensor.finlande
     - sensor.turquie
+sonarr:
+  name: Suivi des séries - Sonarr
+  entities:
+    - sensor.sonarr_disk_space
+    - sensor.sonarr_upcoming
 
 ####################################################################################
 #                                                                                  #
@@ -250,6 +256,7 @@ media_automation:
     - automation.pc__arreter_au_depart
     - automation.pc__light__allumer_bureau
     - automation.mediaplayer__appartement__off_au_depart
+    - automation.power__server__bring_it_back_up
 light_automation:
   name: 'Lumières & Mouvements'
   entities:
