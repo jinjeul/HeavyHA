@@ -1,0 +1,19 @@
+room_cuisine:
+ - binary_sensor.motion_sensor_158d0001ab3533
+ - sensor.temperature_158d0001f52004
+ - sensor.humidity_158d0001f52004
+ - sensor.illumination_158d0001ab3533
+ - sensor.pressure_158d0001f52004
+room_chambre:
+ - sensor.temperature_158d0002273c15
+ - sensor.humidity_158d0002273c15
+ - sensor.pressure_158d0002273c15
+room_vestibule:
+ - binary_sensor.motion_sensor_158d0001ad6284
+ - sensor.illumination_158d0001ad6284
+room_salledebain:
+ - binary_sensor.motion_sensor_158d0001b1d2c3
+ - sensor.temperature_158d0001fa768f
+ - sensor.humidity_158d0001fa768f
+ - sensor.illumination_158d0001b1d2c3
+ - sensor.pressure_158d0001fa768f

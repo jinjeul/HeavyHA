@@ -1,0 +1,79 @@
+﻿- alias: 'Chauffage - Chambre - thermostat 20 à 06h00 semaine'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 06
+    minutes: 0
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.chambre
+        temperature: '20'
+- alias: 'Chauffage - Chambre - thermostat 17 à 08h00 semaine'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 08
+    minutes: 0
+    seconds: 0
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.chambre
+        temperature: '17'
+- alias: 'Chauffage - Chambre - 17 Départ Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.chambre
+        temperature: '17'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_chambre
+- alias: 'Chauffage - Chambre - lit ON a 22h15 semaine'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 22
+    minutes: 15
+    seconds: 00
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+    - condition: time
+      weekday:
+        - sun
+        - mon
+        - tue
+        - wed
+        - thu
+  action:
+    - service : homeassistant.turn_on
+      data:
+        entity_id: switch.sonoff_bed

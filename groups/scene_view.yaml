@@ -1,0 +1,17 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SCENE VIEWS                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+all_scenes:
+  name: Les scènes
+  entities:
+    - scene.chaud
+    - scene.saloncool
+    - scene.chezchouka
+    - scene.coolblue
+    - scene.hot_sex
+    - scene.psychedelic

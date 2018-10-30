@@ -1,0 +1,19 @@
+﻿- alias: 'Power - Server - bring it back up'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: sensor.glances_running
+    from: '1'
+    to: 'unavailable'
+    # Mesuré 30 secondes après coupure du service glances
+    for: 
+      minutes: 10
+      # Si instabilité du circuit éléctrique
+  action:
+    - service: notify.pushbullet_3t
+      data:
+        title: 'Power Outage'
+        message: 'RESET EDF de JUNGLENAS en cours'
+    - service: shell_command.junglenas_killit
+    - delay: 0:01
+    - service: shell_command.junglenas_powerback

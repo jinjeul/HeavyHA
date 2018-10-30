@@ -1,0 +1,19 @@
+﻿pcoptions:
+  name: 'Actions'
+  options:
+    - Choisir une action
+    - Eteindre
+    - Redémarrer
+    - Veille
+  initial: Choisir une action
+  icon: mdi:desktop-tower
+harmony:   
+  name: Mettre une activité
+  options:
+    - Choisir la source
+    - Chromecast
+    - Chambre Bluetooth
+    - Vinyle
+    - Arrêt
+  initial: Choisir la source
+  icon: mdi:monitor

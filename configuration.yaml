@@ -1,0 +1,131 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INTRO                                             #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+homeassistant:
+  name: Jungle'Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  elevation: 80
+  unit_system: metric
+  time_zone: Europe/Paris
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+  customize_glob:
+    "*":
+      homebridge_hidden: true
+      google_assistant: false
+
+http:
+  api_password: !secret api_ha
+  ssl_certificate: !secret ssl_cert_crt
+  ssl_key: !secret ssl_cert_key
+  base_url: !secret ha_url
+  
+recorder:
+  #db_url: !secret recorder_mariadb_docker
+  purge_keep_days: 5
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                INCLUDES                                          #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+group: !include_dir_merge_named groups/
+automation: !include_dir_merge_list automations/
+frontend:
+  themes: !include themes.yaml
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                MAIN CONFIG                                       #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+logger:
+  default: error
+config:
+updater:
+  reporting: False
+discovery:
+  ignore:
+    - harmony
+map:
+history:
+  include:
+    domains:
+      - sensor
+      - media_player
+      - light
+      - device_tracker
+      - sun
+  exclude:
+    entities:
+      - sensor.alarm_time
+      - sensor.breaches_contactjunglemanfr
+      - sensor.breaches_mikaelboulogmailcom
+      - sensor.date
+      - sensor.finlande
+      - sensor.france
+      - sensor.turquie
+      - sensor.gmail_imap
+      - sensor.hp_ilo_nom_du_serveur
+      - sensor.ipv4_address_eth0
+      - sensor.rpi_uptime
+      - sensor.sonarr_queue
+      - sensor.sonarr_upcoming
+      - sensor.sonarr_wanted
+      - sensor.time
+      - sensor.transmission_active_torrents
+      - sensor.transmission_status
+      - sensor.yr_symbol
+logbook:
+  exclude:
+    entities:
+      - sensor.time
+      - sensor.alarm_time
+      - sensor.rpi_uptime
+      - group.cuisine
+      - group.salon
+      - group.lumieres_home
+      - sensor.time
+      - sensor.yr_symbol
+      - sensor.yr_temperature
+      - sensor.yr_cloudiness
+      - sensor.yr_humidity
+      - sensor.yr_precipitation
+      - sensor.yr_wind_speed
+      - sensor.yr_wind_direction
+      - sensor.france
+      - sensor.finlande
+      - sensor.turquie
+      - sensor.transmission_status
+      - sensor.gmail_imap
+      - sensor.rasplex
+      - sensor.chromecast_source
+      - sensor.chromecast_state
+      - sensor.transmission_active_torrents
+      - sensor.transmission_down_speed
+      - sensor.transmission_up_speed
+      - binary_sensor.gmail_new
+      - media_player.junglehomemini
+      - media_player.la_tele
+      - automation.keep_google_home_alive
+      - automation.edf__calcul_cout_journalier
+      - automation.edf__remise_a_zero_journalier
+      - automation.reveil__send_tasker_event
+      - sensor.cout_wh_instant
+      - sensor.releve_consommation_wh
+      - sensor.cout_journalier
+      - sensor.cout_journalier_view
+      - sensor.hp_edf_view
+      - weather.yweather

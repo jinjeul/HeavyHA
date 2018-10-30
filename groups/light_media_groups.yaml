@@ -1,0 +1,98 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                LIGHT & MEDIA GROUPS                              #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+cuisine:
+  entities:
+    - light.cuisine
+salon:
+  entities:
+    - light.salon
+    - light.tv_strip
+    - switch.lumiere_bureau
+    - media_player.denon_salon
+    - media_player.la_tele
+chambre:
+  entities:
+    - light.chambre
+salledebain:
+  entities:
+    - light.salledebain
+lumieres_home:
+  entities:
+    - group.light_chambre
+    - group.light_salledebain
+    - group.light_salon
+    - group.light_cuisine
+    - group.light_vestibule
+light_chambre:
+  entities:
+    - light.chambre
+light_salledebain:
+  entities:
+    - light.salledebain
+light_salon:
+  entities:
+    - light.salon
+    - light.tv_strip
+    - switch.lumiere_bureau
+    - light.gateway_light_34ce008db5a7
+light_cuisine:
+  entities:
+    - light.cuisine
+light_vestibule:
+  entities:
+    - light.vestibule
+mediaplayers:
+  entities:
+    - media_player.la_tele
+    - media_player.junglehomemini
+    - media_player.denon_salon
+    - media_player.denon_bureau
+radiateurs:
+  control: hidden
+  name: 'Contrôle des radiateurs'
+  entities:
+    - switch.radiateur_salon
+    - switch.radiateur_chambre
+    - switch.sonoff_bed
+thermostat:
+  name: 'Gestion des thermostats'
+  entities:
+    - climate.salon
+    - climate.chambre
+pccontrol:
+  name: 'Contrôle des PC'
+  entities:
+    - switch.jungle_pc
+    - input_select.pcoptions
+harmony:
+  name: 'Activités Harmony HUB'
+  entities:
+    - sensor.current_activity_hub
+    - input_select.harmony
+mediaswitches:
+  control: hidden
+  name: 'Contrôle Multimedia'
+  entities:
+    - light.tv_strip
+    - switch.tv
+    - switch.allzonestereo
+portail_switch:
+  name: 'Contrôle des Portails'
+  entities:
+    - switch.portail
+covers:
+  name: 'Contrôle des Volets'
+  entities:
+    - cover.volet_du_salon
+home_domotique:
+  control: hidden
+  name: 'Contrôle Domotique'
+  entities:
+    - cover.volet_du_salon
+    - switch.portail

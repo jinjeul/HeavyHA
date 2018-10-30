@@ -1,0 +1,152 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                SENSOR GROUPS                                     #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+temperature:
+  name: Suivi des températures
+  entities:
+   - sensor.temperature_158d0001f52004
+   - sensor.temperature_158d0002273c15
+   - sensor.temperature_158d0001fa768f
+rad_stats:
+  name: Statistiques Journalières
+  entities:
+    - sensor.radiateur_salon_on_today_view
+    - sensor.radiateur_chambre_on_today_view
+    - sensor.radiateur_lit_on_today_view
+meteo:
+  name: Météo
+  entities:
+    - sensor.yr_symbol
+    - sensor.yr_temperature
+    - sensor.yr_cloudiness
+    - sensor.yr_humidity
+    - sensor.yr_precipitation
+    - sensor.yr_wind_speed
+    - sensor.yr_wind_direction
+date:
+  name: Date & Heure
+  entities:
+    - sensor.france
+    - sensor.finlande
+    - sensor.turquie
+    - sensor.date
+monitoring_ip:
+  name: Monitoring IP
+  entities:
+    - binary_sensor.denon_avr
+    - binary_sensor.esp_lit
+    - binary_sensor.harmony_hub
+    - binary_sensor.junglenas_ilo
+    - binary_sensor.junglehome
+    - binary_sensor.junglenas
+    - binary_sensor.lifx_cuisine
+    - binary_sensor.lifx_salon
+    - binary_sensor.xiaomi_gateway
+    - binary_sensor.yeelight_chambre
+    - binary_sensor.yeelight_sdb
+    - binary_sensor.yeelight_tv_strip
+rpi:
+  name: JunglePi
+  entities:
+    - sensor.cpu_speed
+    - sensor.cpu_used
+    - sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.rpi_uptime
+    - sensor.ipv4_address_eth0
+junglenas:
+  name: JungleNAS
+  entities:
+    - sensor.hp_ilo_alimentation
+    - sensor.glances_cpu_load
+    - sensor.glances_disk_free
+    - sensor.glances_disk_use
+    - sensor.glances_ram_free
+    - sensor.glances_ram_use
+    - sensor.glances_swap_use
+    - sensor.glances_swap_use_2
+haveibeenpwned:
+  name: Data Leak - HIBP
+  entities:
+    - sensor.breaches_contactjunglemanfr
+    - sensor.breaches_mikaelboulogmailcom
+presence_tracking:
+  name: Détection de présence
+  entities:
+    - binary_sensor.motion_sensor_158d0001ab3533
+    - binary_sensor.motion_sensor_158d0001ad6284
+    - binary_sensor.motion_sensor_158d0001b1d2c3
+    - device_tracker.jungle3t_wifi
+door_window_tracking:
+  name: Etat des fenêtres & portes
+  entities:
+    - binary_sensor.door_window_sensor_158d00019fd4b5
+    - binary_sensor.door_window_sensor_158d00019fd569
+    - binary_sensor.door_window_sensor_158d0001f381a2
+    - binary_sensor.door_window_sensor_158d000201e249
+transmission:
+  name: Serveur de Torrents
+  entities:
+    - sensor.transmission_active_torrents
+    - sensor.transmission_down_speed
+    - sensor.transmission_up_speed
+    - sensor.transmission_status 
+worldhorloge:
+  name: Horloge
+  entities:
+    - sensor.france
+    - sensor.finlande
+    - sensor.turquie
+sonarr:
+  name: Suivi des séries - Sonarr
+  entities:
+    - sensor.sonarr_disk_space
+    - sensor.sonarr_upcoming
+    - sensor.sonarr_queue
+    - sensor.sonarr_wanted
+fleur_1:
+  name: Suivi Fleur - Hedera Helix
+  entities:
+    - sensor.fleur_1_battery
+    - sensor.fleur_1_conductivity
+    - sensor.fleur_1_light_intensity
+    - sensor.fleur_1_moisture
+    - sensor.fleur_1_temperature
+fleur_2:
+  name: Suivi Fleur - Aloe Vera
+  entities:
+    - sensor.fleur_2_battery
+    - sensor.fleur_2_conductivity
+    - sensor.fleur_2_light_intensity
+    - sensor.fleur_2_moisture
+    - sensor.fleur_2_temperature
+alarmclock:
+  name: "Radio réveil"
+  control: hidden
+  entities: 
+    - input_boolean.alarmweekon
+    - sensor.alarm_time
+    - input_number.alarmhour
+    - input_number.alarmminutes
+    - input_boolean.alarmweeknoisy
+infos_conso_instant:
+  name: "Relevé de compteur EDF"
+  entities:
+    - sensor.hp_edf_view
+    - sensor.releve_consommation_esp
+    - sensor.releve_consommation_wh
+    - sensor.cout_wh_instant
+infos_conso_stats:
+  name: "Statistiques de consommation"
+  entities:
+    - sensor.cout_journalier_view
+    - sensor.conso_journaliere
+tracking_jungle:
+  name: "Détection de présence"
+  entities:
+    - device_tracker.jungle3t_wifi

@@ -1,0 +1,293 @@
+﻿remote:
+  - platform: harmony
+    name: 'HUB Salon'
+    host: !secret harmony_ip
+    port: !secret harmony_port
+    activity: 'Chromecast'
+media_player:
+  - platform: denonavr
+    host: !secret denon_ip
+    name: Denon Salon
+    show_all_sources: False
+    zones:
+      - zone: Zone2
+        name: Denon Bureau
+shell_command:
+  junglepc_shutdown: !secret junglepc_shutdown
+  junglepc_restart: !secret junglepc_restart
+  junglepc_sleep: !secret junglepc_sleep
+  junglenas_killit: !secret junglenas_poweroff
+  junglenas_powerback: !secret junglenas_poweron
+  433_ouvrir_portail: !secret portail_ouvrir
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret junglepc_mac
+    name: "Jungle PC"
+    host: !secret junglepc_ip
+    turn_off:
+      service: shell_command.junglepc_shutdown
+  - platform: template
+    switches:
+      tv:
+        friendly_name: 'Télé Philips'
+        value_template: "{{ is_state('input_boolean.tvstate', 'on')}}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.philipstv_on
+        turn_off:
+          service: script.turn_on
+          entity_id: script.philipstv_off
+      allzonestereo:
+        friendly_name: 'Toutes Zones Stereo'
+        value_template: "{{ is_state('input_boolean.allzonestereostate', 'on')}}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.allzonestereo_on
+        turn_off:
+          service: script.turn_on
+          entity_id: script.allzonestereo_off
+sensor:
+  - platform: transmission
+    host: !secret junglenas_ip
+    username: !secret transmission_user
+    password: !secret transmission_pass
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+      - 'active_torrents'
+  - platform: sonarr
+    api_key: !secret sonarr_api
+    host: !secret junglenas_ip
+    monitored_conditions:
+      - upcoming
+      - diskspace
+      - wanted
+      - queue
+    days: 2
+    include_paths: !secret sonarr_series_path
+  - platform: hp_ilo
+    host: !secret junglenas_ilo_ip
+    username: !secret junglenas_ilo_username
+    password: !secret junglenas_ilo_password
+    monitored_variables:
+      - name: Nom du serveur
+        sensor_type: server_name
+      - name: Alimentation
+        sensor_type: server_power_status
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: processor_use
+      - type: ipv4_address
+        arg: eth0
+  - platform: command_line
+    name: Rpi Uptime
+    command: "uptime -p"
+    value_template: "{{ value[3:] }}"
+    scan_interval: 60
+  - platform: glances
+    host: !secret junglenas_ip
+    resources:
+      - 'disk_use_percent'
+      - 'disk_use'
+      - 'disk_free'
+      - 'memory_use_percent'
+      - 'memory_use'
+      - 'memory_free'
+      - 'swap_use_percent'
+      - 'swap_use'
+      - 'swap_free'
+      - 'processor_load'
+      - 'process_running'
+      - 'process_total'
+      - 'process_thread'
+      - 'process_sleeping'
+      - 'cpu_temp'
+  - platform: plex_client
+    name: plex_chromecast_status
+    host: !secret junglenas_ip
+    port: 32400
+    username: !secret plex_username
+    password: !secret plex_password
+    token: !secret plex_token
+    machine_id: !secret plex_machineid_chromecast
+weblink:
+  entities:
+    - name: Routeur Status
+      url: !secret url_routeur_status
+      icon: mdi:web
+    - name: Routeur Logs
+      url: !secret url_routeur_logs
+      icon: mdi:web
+    - name: 'Serveur de Torrents'
+      url: !secret url_torrent
+      icon: mdi:web
+    - name: Sonarr
+      url: !secret url_sonarr
+      icon: mdi:web
+    - name: Plex Py
+      url: !secret url_plexpy
+      icon: mdi:web
+    - name: Plex Media Server
+      url: !secret url_plex
+      icon: mdi:web
+    - name: JungleMan.fr
+      url: !secret url_junglemanfr
+      icon: mdi:web
+    - name: Ihanatarina.com
+      url: !secret url_ihanatarina
+      icon: mdi:web
+    - name: Monitorix
+      url: !secret url_monitorix
+      icon: mdi:web
+    - name: Github HeavyHA
+      url: !secret url_github_heavyha
+      icon: mdi:web
+input_boolean:
+  tvstate:
+    name: 'Etat du téléviseur'
+    initial: off
+    icon: mdi:television-classic
+  allzonestereostate:
+    name: 'All Zone ON/OFF'
+    initial: off
+    icon: mdi:speaker
+  vacancesstate:
+    name: 'Mode Vacances'
+    initial: off
+    icon: mdi:airplane-takeoff
+input_select:
+  pcoptions:
+    name: 'Actions'
+    options:
+      - Choisir une action
+      - Eteindre
+      - Redémarrer
+      - Veille
+    initial: Choisir une action
+    icon: mdi:desktop-tower
+  harmony:   
+    name: Mettre une activité
+    options:
+      - Choisir la source
+      - Arrêt
+      - Chromecast Salon
+      - Vinyle Salon
+      - PC Video Salon
+      - Bluetooth Bureau
+      - Vinyle Bureau
+      - PC Musique Bureau
+      - Google Home AVR BT
+    initial: Choisir la source
+    icon: mdi:monitor
+script:
+  philipstv_on:
+    sequence:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.tvstate
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999239"
+          command: "PowerOn"
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999239"
+          command: "InputHdmi1"
+  philipstv_off:
+    sequence:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.tvstate
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999239"
+          command: "PowerOff"
+      # Si TV OFF alors éteindre Harmony CHROMECAST
+      - service: script.turn_on
+        entity_id: script.la_tele_off
+  la_tele_off:
+    sequence:
+      - condition: template
+        value_template: '{{ states.remote.hub_salon.attributes.current_activity == "Chromecast" }}'
+      - service: remote.turn_off
+        entity_id: remote.hub_salon
+  allzonestereo_on:
+    sequence:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.allzonestereostate
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999099"
+          command: "AllZoneStereoOn"
+  allzonestereo_off:
+    sequence:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.allzonestereostate
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999099"
+          command: "AllZoneStereoOff"
+binary_sensor:
+  - platform: ping
+    host: !secret junglenas_ip
+    name: JungleNAS
+  - platform: ping
+    host: !secret xiaomi_gateway_ip
+    name: Xiaomi Gateway
+  - platform: ping
+    host: !secret junglepc_ip
+    name: Jungle PC
+  - platform: ping
+    host: !secret ip_google_home
+    name: JungleHome
+  - platform: ping
+    host: !secret denon_ip
+    name: Denon AVR
+  - platform: ping
+    host: !secret esprad_ip
+    name: ESP Radiateurs
+  - platform: ping
+    host: !secret lifx_cuisine_ip
+    name: LIFX Cuisine
+  - platform: ping
+    host: !secret lifx_salon_ip
+    name: LIFX Salon
+  - platform: ping
+    host: !secret harmony_ip
+    name: Harmony Hub
+  - platform: ping
+    host: !secret yeelight_sdb_ip
+    name: Yeelight SDB
+  - platform: ping
+    host: !secret yeelight_chambre_ip
+    name: Yeelight Chambre
+  - platform: ping
+    host: !secret junglenas_ilo_ip
+    name: Jungle NAS ILO
+  - platform: ping
+    host: !secret sonoff_bed_ip
+    name: ESP Lit
+  - platform: ping
+    host: !secret yeelight_tvstrip_ip
+    name: Yeelight TV Strip
+  - platform: ping
+    host: !secret espedf_ip
+    name: ESP EDF
+camera:
+  - platform: generic
+    name: Grafana_temps
+    still_image_url: !secret grafana_temps_url
+    username: !secret grafana_user
+    password: !secret grafana_pass
+  - platform: generic
+    name: Grafana_conso
+    still_image_url: !secret grafana_conso_url
+    username: !secret grafana_user
+    password: !secret grafana_pass

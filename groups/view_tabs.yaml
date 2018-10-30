@@ -1,0 +1,105 @@
+﻿####################################################################################
+#                                                                                  #
+#                                VIEW                                              #
+#                                TABS                                              #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+lumieres:
+  icon: mdi:lightbulb-on-outline
+  entities:
+  - group.light_salledebain
+  - group.light_chambre
+  - group.light_salon
+  - group.light_cuisine
+  - group.light_vestibule
+  - group.all_scenes
+  name: Lumieres
+  view: true
+chauffage:
+  icon: mdi:thermometer-lines
+  name: Chauffage
+  entities:
+    - group.radiateurs
+    - group.thermostat
+    - group.rad_stats
+    - history_graph.temperature_appartement
+    - camera.grafana_temps
+  view: true
+room_sensor:
+  icon: mdi:home-assistant
+  name: Pièces
+  entities:
+    - group.room_cuisine
+    - group.room_vestibule
+    - group.room_chambre
+    - group.room_salledebain
+    - group.door_window_tracking
+    - group.presence_tracking
+    - group.home_domotique
+  view: true
+media:
+  icon: mdi:play-network
+  entities:
+  - group.pccontrol
+  - group.harmony
+  - group.mediaswitches
+  - group.mediaplayers
+  name: Media
+  view: true
+meteo_view:
+  icon: mdi:weather-partlycloudy
+  entities:
+  - group.meteo
+  - weather.yweather
+  name: Meteo
+  view: true
+automations_view:
+  icon: mdi:settings
+  entities:
+    - group.light_automation
+    - group.media_automation
+    - group.alerte_automation
+    - group.chauffage_automation
+    - group.scene_automation
+    - group.reveil_automation
+  name: Automations
+  view: true
+hardware_view:
+  icon: mdi:thermostat
+  name: Monitoring
+  entities:
+    - group.rpi
+    - group.junglenas
+    - group.haveibeenpwned
+    - group.transmission
+    - group.sonarr
+    - group.monitoring_ip
+  view: true
+conso_view:
+  icon: mdi:power-plug
+  name: Consommation
+  entities:
+    - history_graph.consommation_wh_jour
+    - history_graph.consommation_wh_semaine
+    - history_graph.cout_du_wh_instantane
+    - group.infos_conso_instant
+    - group.infos_conso_stats
+    - camera.grafana_conso
+  view: true
+links_view:
+  icon: mdi:link-variant
+  name: Liens
+  entities:
+    - group.liens_junglenas
+    - group.liens_routeur
+    - group.liens_accesrapide
+    - input_boolean.vacancesstate
+  view: true
+flower_view:
+  name: Plantes
+  entities:
+    - group.fleur_1
+    - group.fleur_2
+  view: false

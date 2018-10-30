@@ -1,0 +1,26 @@
+﻿- alias: 'Lumières - Cuisine - ON mouvement'
+  initial_state: 'on'
+  condition:
+  - condition: state
+    entity_id: light.cuisine
+    state: 'off'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001ab3533
+    from: 'off'
+    to: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.cuisine
+- alias: 'Lumières - Cuisine - OFF mouvement 10min'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0001ab3533
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 15
+  action:
+    service: scene.turn_on
+    entity_id: scene.cuisineoff

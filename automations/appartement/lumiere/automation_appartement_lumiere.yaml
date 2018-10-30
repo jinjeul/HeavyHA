@@ -1,0 +1,128 @@
+﻿- alias: 'Lumières - Appartement - ON Arrivée Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'home'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.illumination_158d0001ab3533
+    below: '300'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.salon, light.cuisine, light.gateway_light_34ce008db5a7, light.tv_strip
+- alias: 'Lumières - Appartement - OFF au Départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+#    condition:
+#      condition: template
+#        # si changement etat porte il y a moins de 5 minutes
+#      value_template: '{{(as_timestamp(now())-as_timestamp(states.binary_sensor.door_window_sensor_158d00019fd4b5.last_updated)) < 300 }}'
+  action:
+    service: light.turn_off
+    entity_id: group.all_lights
+- alias: 'Lumières - Appartement - OFF on single jungletap'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: single
+  action:
+    service: light.turn_off
+    entity_id: group.all_lights    
+- alias: 'Lumières - Appartement - ON on double jungletap'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: double
+  action:
+    - service: homeassistant.turn_on
+      entity_id: light.salon, light.cuisine, light.vestibule, light.salledebain, light.gateway_light_34ce008db5a7, light.tv_strip
+    - service: scene.turn_on
+      entity_id: scene.chambre_on
+- alias: 'Lumières - Salon - Toggle light on leftswitch bis'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000163a561
+      click_type: single
+  condition:
+    - condition: state
+      entity_id: light.cuisine
+      state: 'off'
+    - condition: state
+      entity_id: light.salon
+      state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.salon
+- alias: 'Lumières - Salon - Toggle light on leftswitch'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000163a561
+      click_type: single
+  condition:
+    condition: state
+    entity_id: light.cuisine
+    state: 'on'
+  action:
+    service: homeassistant.toggle
+    entity_id: light.salon, light.cuisine
+- alias: 'Lumières - Salon - Toggle light on leftswitch trois'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000163a561
+      click_type: single
+  condition:
+    - condition: state
+      entity_id: light.cuisine
+      state: 'off'
+    - condition: state
+      entity_id: light.salon
+      state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.salon, light.cuisine
+- alias: 'Lumières - Chambre - Toggle light on rightswitch'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000163a561
+      click_type: single
+  action:
+    service: homeassistant.toggle
+    entity_id: light.chambre
+- alias: 'Lumières - Bureau - PC ON Allumer bureau'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: switch.jungle_pc
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+  action:
+    service: switch.turn_on
+    entity_id: switch.lumiere_bureau
+- alias: 'Lumières - Bureau - PC OFF éteindre bureau'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: switch.jungle_pc
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.lumiere_bureau

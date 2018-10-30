@@ -1,0 +1,117 @@
+﻿###########
+# UPDATER #
+###########
+- alias: 'Update HomeAssistant Disponible'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.gmail_smtp
+    data:
+      message: 'Nouvelle version de HomeAssistant disponible !'
+######
+# ON #
+######
+- alias: 'HA START - Chauffage - 22 salon si présent semaine'
+  trigger:
+    platform: homeassistant
+    event: start
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+    - condition: time
+      before: '23:30:00'
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '23'
+- alias: 'HA START - Chauffage - 22 salon si présent weekend'
+  trigger:
+    platform: homeassistant
+    event: start
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '23'
+- alias: 'Set theme at startup'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: Light - Navy Blue
+- alias: 'Set HA theme for day and night'
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sun.sun
+      to: above_horizon
+    - platform: state
+      entity_id: sun.sun
+      to: below_horizon
+  action:
+    - service_template: frontend.set_theme
+      data_template:
+        name: >
+          {% if states.sun.sun.state == "above_horizon" %}
+            Light - Navy Blue
+          {% else %}
+            midnight
+          {% endif %}
+#######
+# OFF #
+#######
+- alias: 'HA STOP - Chauffage - OFF partout'
+  trigger:
+    platform: homeassistant
+    event: 'shutdown'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: switch.radiateur_salon
+    - service: homeassistant.turn_off
+      entity_id: switch.radiateur_chambre
+      
+##########
+# OTHERS #
+##########
+
+- alias: Keep Google Home Alive
+  initial_state: 'off'
+  trigger:
+    platform: time
+    minutes: '/2'
+    seconds: 00
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: media_player.junglehomemini
+        state: 'off'
+      - condition: state
+        entity_id: media_player.junglehomemini
+        state: 'idle'
+  action:
+    service: media_player.play_media
+    entity_id: media_player.junglehomemini
+    data:
+      media_content_id: !secret url_mp3_1sec
+      media_content_type: music

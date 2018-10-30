@@ -1,0 +1,98 @@
+﻿- alias: Harmony
+  initial_state: 'on'
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    from: 'Choisir la source'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.hub_salon
+      data_template:
+        activity: >
+          {% if is_state("input_select.harmony", "Chromecast Salon") %}
+            27262320
+          {% elif is_state("input_select.harmony", "Vinyle Salon") %}
+            28532020
+          {% elif is_state("input_select.harmony", "PC Video Salon") %}
+            31310455
+          {% elif is_state("input_select.harmony", "Bluetooth Bureau") %}
+            28429925
+          {% elif is_state("input_select.harmony", "Vinyle Bureau") %}
+            32401323
+          {% elif is_state("input_select.harmony", "PC Musique Bureau") %}
+            32401524
+          {% elif is_state("input_select.harmony", "Google Home AVR BT") %}
+            35366534
+          {% else %}
+          {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Choisir la source"
+- alias: Harmony Off
+  initial_state: 'on'
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    to: 'Arrêt'
+  action:
+    - service: remote.turn_off
+      entity_id: remote.hub_salon
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.tvstate
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Choisir la source"
+- alias: Harmony update TV boolean
+  initial_state: 'on'
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+  # OR PC Video Salon
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast" }}'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.tvstate
+- alias: Harmony Vinyle AllZoneStereo
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+  # OR PC Video Salon
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Vinyle Salon" }}'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.allzonestereo
+- alias: Harmony Chromecast AllZoneStereoOFF
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+    condition: template
+    value_template: '{{ trigger.to_state.attributes.current_activity == "Chromecast Salon" }}'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.allzonestereo
+- alias: Harmony GoogleHome stop
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+    - condition: state
+      entity_id: media_player.junglehomemini
+      state: 'playing'
+    - condition: template
+      value_template: "{{ is_state_attr('media_player.junglehomemini', 'app_name', 'Spotify') }}"
+  action:
+    - service: media_player.turn_off
+      entity_id: media_player.junglehomemini

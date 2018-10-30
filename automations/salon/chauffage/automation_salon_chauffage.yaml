@@ -1,0 +1,98 @@
+﻿- alias: 'Chauffage - Salon - 22 Arrivée Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'home'
+  condition:
+    - condition: time
+      before: '23:00:00'
+      after: '08:00:00'
+  action:
+    service: climate.set_temperature
+    data:
+        entity_id: climate.salon
+        temperature: '23'
+- alias: 'Chauffage - Salon - 18 Départ Appart'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '18'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_salon
+- alias: 'Chauffage - Salon - 18 et OFF le soir'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 23
+    minutes: 30
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '18'
+    - service : homeassistant.turn_off
+      data:
+        entity_id: switch.radiateur_salon
+- alias: 'Chauffage - Salon - 22 et ON le matin semaine'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    hours: 8
+    minutes: 0
+    seconds: 0
+  condition:
+    - condition: state
+      entity_id: device_tracker.jungle3t_wifi
+      state: 'home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '23'
+    - service : homeassistant.turn_on
+      data:
+        entity_id: switch.radiateur_salon
+- alias: 'Chauffage - Salon - OFF si fenetre open 5min'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00019fd569
+    to: 'on'
+    for:
+      minutes: 5
+  action:
+    service: climate.set_operation_mode
+    data:
+        entity_id: climate.salon
+        operation_mode: 'off'
+- alias: 'Chauffage - Salon - AUTO si fenetre closed'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d00019fd569
+    to: 'off'
+  action:
+    service: climate.set_operation_mode
+    data:
+        entity_id: climate.salon
+        operation_mode: 'heat'

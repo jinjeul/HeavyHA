@@ -1,0 +1,109 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                AUTOMATION VIEWS                                  #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+media_automation:
+  name: Media Control
+  entities:
+    - automation.update_homeassistant_disponible
+    - automation.media__plex__baisser_les_lumieres_play
+    - automation.media__plex__monter_les_lumieres_pause
+    - automation.media__plex__monter_les_lumieres_stop
+    - automation.pc__arreter_au_depart
+    - automation.mediaplayer__appartement__off_au_depart
+    - automation.power__server__bring_it_back_up
+    - automation.keep_google_home_alive
+    - automation.cube_event_shake_air
+    - automation.cube_event_flip180
+    - automation.cube_event_flip90
+    - automation.cube_event_tap_twice
+    - automation.harmony
+    - automation.harmony_off
+    - automation.harmony_update_tv_boolean
+    - automation.junglepc_eteindre
+    - automation.junglepc_redemarrer
+    - automation.junglepc_veille
+    - automation.media__denon_chambre__eteindre_au_depart
+    - automation.media__appartement__electronics_off_single_jungletap
+    - automation.media__appartement__chambre_bluetooth_on_long_jungletap
+
+light_automation:
+  name: 'Lumières & Mouvements'
+  entities:
+    - automation.lumieres__appartement__off_au_depart
+    - automation.lumieres__appartement__on_arrivee_appart
+    - automation.lumieres__appartement__off_on_single_jungletap
+    - automation.lumieres__appartement__on_on_double_jungletap
+    - automation.lumieres__cuisine__off_mouvement_10min
+    - automation.lumieres__cuisine__on_mouvement
+    - automation.lumieres__salon__allumer_au_couche_du_soleil
+    - automation.lumieres__salon__off_si_luminosite_haute
+    - automation.lumieres__salon__on_si_luminosite_basse
+    - automation.lumieres__salon__toggle_light_on_leftswitch
+    - automation.lumieres__salon__toggle_light_on_leftswitch_bis
+    - automation.lumieres__salon__toggle_light_on_leftswitch_trois
+    - automation.lumieres__vestibule__off_mouvement_10min
+    - automation.lumieres__vestibule__on_mouvement
+    - automation.lumieres__vestibule__on_porte_ouverte
+    - automation.lumieres__vestibule__off_porte_fermee
+    - automation.lumieres__vestibule__physchedelic_scene
+    - automation.lumieres__vestibule__coolblue_scene
+    - automation.lumieres__vestibule__chaud_scene
+    - automation.lumieres__chambre__toggle_light_on_rightswitch
+    - automation.lumieres__salledebain__on_mouvement
+    - automation.lumieres__salledebain__off_mouvement_30min
+    - automation.lumieres__bureau__pc_off_eteindre_bureau
+    - automation.lumieres__bureau__pc_on_allumer_bureau
+    
+alerte_automation:
+  name: 'Alertes'
+  entities:
+    - automation.alerte__pushbullet__gel_a_venir
+    - automation.alerte__pushbullet__i_have_been_pwned_contactjunglemanfr
+    - automation.alerte__pushbullet__i_have_been_pwned_mikaelboulogmailcom
+    - automation.alerte__pushbullet__glances_junglenas_down
+    - automation.alerte__pushbullet__glances_junglenas_back
+    - automation.alerte__pushbullet__portail_terrasses_ouvert
+    - automation.alerte__pushbullet__volet_ferme
+    - automation.alerte__pushbullet__volet_ouvert
+    - automation.tts__googlehome__keupon_arrive
+    - automation.tts__googlehome__nouveau_mail
+    
+chauffage_automation:
+  name: 'Gestion des thermostats'
+  entities:
+    - automation.chauffage__appartement__18_salon_on_single_jungletap
+    - automation.chauffage__appartement__22_salon_on_double_jungletap
+    - automation.chauffage__salon__18_depart_appart
+    - automation.chauffage__salon__18_et_off_le_soir
+    - automation.chauffage__salon__22_arrivee_appart
+    - automation.chauffage__salon__22_et_on_le_matin_semaine
+    - automation.chauffage__salon__off_si_fenetre_open_5min
+    - automation.chauffage__salon__auto_si_fenetre_closed
+    - automation.chauffage__chambre__thermostat_20_a_06h00_semaine
+    - automation.chauffage__chambre__thermostat_17_a_08h00_semaine
+    - automation.chauffage__chambre__17_depart_appart
+    - automation.chauffage__chambre__lit_on_a_22h15_semaine
+    - automation.ha__reboot_esp_radcontrol
+    - automation.ha_start__chauffage__22_salon_si_present_semaine
+    - automation.ha_start__chauffage__22_salon_si_present_weekend
+    - automation.ha_stop__chauffage__off_partout
+    
+reveil_automation:
+  name: 'Réveil'
+  entities:
+    - automation.reveil_matin_aurore_semaine
+    - automation.reveil_matin_aurore_les_weekend
+    - automation.reveil__chambre__matin_semaine
+    - automation.reveil__chambre__sonore_matin_semaine
+    - automation.reveil__send_tasker_event
+covers_automation:
+  name: 'Volets'
+  entities:
+    - automation.volet__appartement__fermer_tombee_nuit
+    - automation.volet__appartement__ouvrir_journee_si_absent
+    

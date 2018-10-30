@@ -1,0 +1,37 @@
+﻿light:
+  - platform: yeelight
+    devices:
+      192.168.1.172:
+        name: Chambre
+climate:
+  - platform: generic_thermostat
+    name: Chambre
+    heater: switch.radiateur_chambre
+    target_sensor: sensor.temperature_158d0002273c15
+    target_temp: 16
+    min_temp: 16
+    max_temp: 24
+    cold_tolerance: 0.5
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 5
+    away_temp: 16
+switch:
+  - platform: mqtt
+    name: "Radiateur Chambre"  
+    state_topic: "jungle/radcontrol/chambre/state"
+    command_topic: "jungle/radcontrol/chambre/set"
+    payload_on: "1"
+    payload_off: "0"  
+    qos: 0
+    optimistic: false
+  - platform: mqtt
+    name: sonoff_bed  
+    state_topic: "jungle/sonoff_bed/state"
+    command_topic: "jungle/sonoff_bed/set"
+    payload_on: "1"
+    payload_off: "0"  
+    qos: 0
+    optimistic: false

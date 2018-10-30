@@ -1,0 +1,26 @@
+﻿- alias: 'Chauffage - Appartement - 18 salon on single jungletap'
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: single
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '18'
+- alias: 'Chauffage - Appartement - 22 salon on double jungletap'
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: double
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.salon
+        temperature: '23'

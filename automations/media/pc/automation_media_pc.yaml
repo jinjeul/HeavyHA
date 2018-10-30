@@ -1,0 +1,48 @@
+﻿- alias: junglepc_redemarrer
+  trigger:
+    platform: state
+    entity_id: input_select.pcoptions
+    to: "Redémarrer"
+  action:
+    - service: shell_command.junglepc_restart
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
+- alias: junglepc_eteindre
+  trigger:
+    platform: state
+    entity_id: input_select.pcoptions
+    to: "Eteindre"
+  action:
+    - service: shell_command.junglepc_shutdown
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
+- alias: junglepc_veille
+  trigger:
+    platform: state
+    entity_id: input_select.pcoptions
+    to: "Veille"
+  action:
+    - service: shell_command.junglepc_sleep
+    - service: input_select.select_option
+      entity_id: input_select.pcoptions
+      data_template:
+        option: "Choisir une action"
+- alias: 'PC - Arrêter au départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+    for:
+      minutes: 15
+  condition:
+    condition: state
+    entity_id: switch.jungle_pc
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.jungle_pc

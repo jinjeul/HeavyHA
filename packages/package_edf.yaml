@@ -1,0 +1,69 @@
+﻿sensor:
+  - platform: mqtt
+    state_topic: "jungle/edf/compteur/count"
+    name: Relevé Consommation ESP
+  - platform: mqtt
+    state_topic: "jungle/edf/cout_today"
+    name: Coût Journalier
+  - platform: mqtt
+    state_topic: "jungle/edf/conso_today"
+    name: Conso Journalière
+  - platform: template
+    sensors:
+      releve_consommation_wh:
+        friendly_name: Relevé Compteur EDF
+        value_template: '{{ ((states.sensor.releve_consommation_esp.state | float * 3600 / 60)) | round(0) }}'
+        unit_of_measurement: Wh
+      cout_wh_instant:
+        friendly_name: Coût Wh Instantané
+        value_template: >-
+          {% if is_state('binary_sensor.hp_edf', 'on') %}
+            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001466) | round(4) }}
+          {% else %}
+            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001200) | round(4) }}
+          {% endif %}
+        unit_of_measurement: €
+      hp_edf_view:
+        value_template: >-
+          {% if states.binary_sensor.hp_edf.state == 'on' %}
+            HP = 0.1466€/kWh
+          {% elif states.binary_sensor.hp_edf.state == 'off' %}
+            HC = 0.1200€/kWh
+          {% else %}
+            N/A
+          {% endif %}
+      cout_journalier_view:
+        value_template: '{{ states.sensor.cout_journalier.state | float | round(2) }}'
+binary_sensor:
+  - platform: template
+    sensors:
+      hp_edf:
+        friendly_name: "Heures Pleines EDF"
+        value_template: >-
+          {{ now().strftime("%H%M") | int > 0632
+             and now().strftime("%H%M")| int < 2232 }}
+history_graph:
+  compteur_7j:
+    name: Consommation Wh Semaine
+    entities:
+      - sensor.releve_consommation_wh
+    hours_to_show: 168
+    refresh: 120
+  compteur_2j:
+    name: Consommation Wh Jour
+    entities:
+      - sensor.releve_consommation_wh
+    hours_to_show: 168
+    refresh: 120
+  cout_conso_7j:
+    name: Consommation Journalière
+    entities:
+      - sensor.cout_journalier_view
+    hours_to_show: 168
+    refresh: 120
+  prix_wh_inst_j:
+    name: Coût du Wh Instantané
+    entities:
+      - sensor.cout_wh_instant
+    hours_to_show: 24
+    refresh: 120

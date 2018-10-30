@@ -1,0 +1,59 @@
+﻿light:
+  - platform: yeelight
+    devices:
+      192.168.1.173:
+        name: TV Strip
+climate:
+  - platform: generic_thermostat
+    name: Salon
+    heater: switch.radiateur_salon
+    target_sensor: sensor.temperature_158d0001f52004
+    min_temp: 17
+    max_temp: 24
+    target_temp: 16
+    cold_tolerance: 0.3
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 5
+    away_temp: 16
+sensor:
+  - platform: template
+    sensors:
+      chromecast_source:
+        value_template: '{{ states.media_player.la_tele.attributes["app_name"] }}'
+        friendly_name: 'Chromecast Source'
+      chromecast_state:
+        value_template: '{{ states.media_player.la_tele.state }}'
+        friendly_name: 'Chromecast State'
+  - platform: template
+    sensors:
+      current_activity_hub:
+        friendly_name: 'Activité en cours'
+        value_template: '{{ states.remote.hub_salon.attributes.current_activity }}'
+switch:
+  - platform: mqtt
+    name: "Radiateur Salon"  
+    state_topic: "jungle/radcontrol/salon/state"
+    command_topic: "jungle/radcontrol/salon/set"
+    payload_on: "1"
+    payload_off: "0"  
+    qos: 0
+    optimistic: false
+  - platform: command_line
+    switches:
+      lumiere_bureau:
+        command_on: !secret 433_1_on_pi
+        command_off: !secret 433_1_off_pi
+cover:
+  - platform: command_line
+    covers:
+      volet_salon:
+        command_open: !secret cover_open
+        command_close: !secret cover_close
+        command_stop: !secret cover_stop
+        friendly_name: Volet du salon
+device_sun_light_trigger:
+  light_group: group.light_salon
+  device_group: group.tracking_jungle

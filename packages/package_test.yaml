@@ -1,0 +1,39 @@
+﻿# ESP-01 LightSwitch testing
+#  - alias: 'Lumières - Salon - Switch'
+#    initial_state: 'on'
+#    trigger:
+#      platform: mqtt
+#      topic: jungle/lightswitch1/update
+#    action:
+#      service: light.toggle
+#      entity_id: light.salon
+#sensor:
+#  - platform: miflora
+#    mac: !secret miplant_1_mac
+#    name: Fleur 1
+#    force_update: false
+#    median: 3
+#    monitored_conditions:
+#      - moisture
+#      - light
+#      - temperature
+#      - conductivity
+#      - battery
+#  - platform: miflora
+#    mac: !secret miplant_2_mac
+#    name: Fleur 2
+#    force_update: false
+#    median: 3
+#    monitored_conditions:
+#      - moisture
+#      - light
+#      - temperature
+#      - conductivity
+#      - battery
+#pilight:
+#  host: 192.168.1.103
+#  port: 5000
+#  whitelist:
+#    protocol:
+#      - elro_800_switch
+#      - dio_switch

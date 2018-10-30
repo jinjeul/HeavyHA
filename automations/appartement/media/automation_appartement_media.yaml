@@ -1,0 +1,71 @@
+﻿- alias: 'Mediaplayer - Appartement - OFF au Départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+#  condition:
+#    condition: template
+#      # si changement etat porte il y a moins de 5 minutes
+#    value_template: '{{(as_timestamp(now())-as_timestamp(states.binary_sensor.door_window_sensor_158d00019fd4b5.last_updated)) < 300 }}'
+  action:
+    - service: media_player.turn_off
+      entity_id: group.mediaplayers
+    - service: automation.trigger
+      entity_id: automation.harmony_off
+    - service: switch.turn_off
+      entity_id: switch.jungle_pc
+- alias: 'Media - Denon Bureau - Eteindre au départ'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'not_home'
+  condition:
+    condition: state
+    entity_id: media_player.denon_bureau
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: media_player.denon_chambre
+- alias: 'Media - Appartement - electronics OFF single jungletap'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: single
+  action:
+    - service: switch.turn_off
+      entity_id: switch.jungle_pc
+    - service: media_player.turn_off
+      entity_id: group.mediaplayers
+    - service: automation.trigger
+      entity_id: automation.harmony_off  
+    - service: switch.turn_off
+      entity_id: switch.sonoff_bed
+- alias: 'Media - Denon - Source BT arrivée'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'home'
+  action:
+    - service: remote.turn_on
+      data:
+        activity: 35366534
+        entity_id: remote.hub_salon
+- alias: 'Media - Denon - drum&bass arrivée'
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jungle3t_wifi
+    to: 'home'
+    for:
+      minutes: 1
+  action:
+    - service: media_player.play_media
+      entity_id: media_player.junglehomemini
+      data_template:
+        media_content_id: 'http://108.163.197.114:8141/;stream.mp3'
+        media_content_type: music

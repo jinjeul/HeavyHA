@@ -1,0 +1,26 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                WEBLINKS                                          #
+#                                                                                  #
+#                                                                                  #
+####################################################################################
+
+liens_junglenas:
+  name: JungleNAS Apps
+  entities:
+    - weblink.monitorix
+    - weblink.plex_py
+    - weblink.serveur_de_torrents
+    - weblink.sonarr
+liens_routeur:
+  name: Mon Routeur
+  entities:
+    - weblink.routeur_logs
+    - weblink.routeur_status
+liens_accesrapide:
+  name: Accès rapide
+  entities:
+    - weblink.github_heavyha
+    - weblink.junglemanfr
+    - weblink.plex_media_server

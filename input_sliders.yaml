@@ -1,0 +1,14 @@
+﻿alarmhour:
+  name: Heure
+  icon: mdi:timer
+  initial: 6
+  min: 0
+  max: 23
+  step: 1
+alarmminutes:
+  name: Minutes
+  icon: mdi:timer
+  initial: 30
+  min: 0
+  max: 59
+  step: 5

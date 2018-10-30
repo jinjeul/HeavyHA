@@ -1,0 +1,404 @@
+﻿####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                                GROUPS                                            #
+#                                                                                  #
+####################################################################################
+
+group.all_lights:
+  hidden: false
+  friendly_name: 'Les lumières'
+group.lumieres_home:
+  hidden: false
+  friendly_name: 'Réglage des Lumières'
+group.chauffage:
+  hidden: false
+  friendly_name: 'Chauffage'
+group.light_salon:
+  hidden: false
+  friendly_name: 'Lumières du Salon'
+  icon: mdi:ceiling-light
+group.light_vestibule:
+  hidden: false
+  friendly_name: 'Lumières du Vestibule'
+  icon: mdi:ceiling-light
+group.light_cuisine:
+  hidden: false
+  friendly_name: 'Lumières de la Cuisine'
+  icon: mdi:ceiling-light
+group.light_chambre:
+  hidden: false
+  friendly_name: 'Lumières de la Chambre'
+  icon: mdi:ceiling-light
+group.light_salledebain:
+  hidden: false
+  friendly_name: 'Lumières de la Salle de bain'
+  icon: mdi:ceiling-light
+light.salon:
+  friendly_name: 'LIFX Salon'
+light.cuisine:
+  friendly_name: 'LIFX Cuisine'
+light.salledebain:
+  hidden: false
+  friendly_name: 'Salle de bain'
+group.salledebain_view:
+  hidden: false
+  friendly_name: 'Salle de bain'
+light.gateway_light_34ce008db5a7:
+  hidden: false
+  friendly_name: 'Passerelle Xiaomi'
+group.room_cuisine:
+  hidden: false
+  friendly_name: 'Cuisine'
+group.room_chambre:
+  hidden: false
+  friendly_name: 'Chambre'
+group.room_vestibule:
+  hidden: false
+  friendly_name: 'Vestibule'
+group.room_salledebain:
+  hidden: false
+  friendly_name: 'Salle de bain'
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                             SENSOR-NODES                                         #
+#                                                                                  #
+####################################################################################
+
+sensor.temperature_1:
+  friendly_name: 'Température Cuisine OLD'
+sensor.humidite_1:
+  friendly_name: 'Taux humidité OLD'
+  icon: mdi:cup-water
+sensor.lumsens_1:
+  friendly_name: 'Luminosité OLD'
+  icon: mdi:weather-sunny
+sensor.motion_1:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
+sensor.temperature_2:
+  friendly_name: 'Température Vestibule'
+sensor.humidite_2:
+  friendly_name: "Taux d'humidité"
+  icon: mdi:cup-water
+sensor.lumsens_2:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+sensor.motion_2:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
+sensor.temperature_3:
+  friendly_name: 'Température Chambre'
+sensor.humidite_3:
+  friendly_name: "Taux d'humidité"
+  icon: mdi:cup-water
+#sensor.lumsens_3:
+#  friendly_name: 'Luminosité'
+#  icon: mdi:weather-sunny
+sensor.motion_3:
+  friendly_name: 'Détecteur motion'
+  icon: mdi:run
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                               SENSOR-HW                                          #
+#                                                                                  #
+####################################################################################
+
+
+sensor.rpi_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock
+sensor.time:
+  friendly_name: 'Heure'
+sensor.date:
+  friendly_name: 'Date'
+sensor.yr_symbol:
+  friendly_name: 'Etat du ciel'
+sensor.yr_temperature:
+  friendly_name: 'Température'
+sensor.yr_cloudiness:
+  friendly_name: 'Nuages'
+  icon: mdi:cloud-outline
+sensor.yr_humidity:
+  friendly_name: 'Humidité'
+  icon: mdi:cup-water
+sensor.yr_precipitation:
+  friendly_name: 'Pluie'
+  icon: mdi:weather-rainy
+sensor.yr_wind_speed:
+  friendly_name: 'Vent'
+  icon: mdi:weather-windy
+sensor.yr_wind_direction:
+  friendly_name: 'Direction du vent'
+  hidden: true
+sensor.glances_cpu_load:
+  friendly_name: 'CPU Use'
+  icon: mdi:nfc-variant
+sensor.glances_disk_free:
+  friendly_name: 'Disk Free'
+  icon: mdi:harddisk
+sensor.glances_disk_use:
+  friendly_name: 'Disk Use'
+  icon: mdi:harddisk
+sensor.glances_ram_free:
+  friendly_name: 'RAM Free'
+  icon: mdi:nfc-variant
+sensor.glances_ram_use:
+  friendly_name: 'RAM Use'
+  icon: mdi:nfc-variant
+sensor.glances_swap_use:
+  friendly_name: 'Swap Use'
+  icon: mdi:swap-horizontal
+sensor.glances_swap_use_2:
+  friendly_name: 'Swap Size'
+  icon: mdi:swap-horizontal
+switch.jungle_pc:
+  icon: mdi:desktop-classic
+switch.tv:
+  icon: mdi:television-classic
+switch.lumiere_bureau:
+  assumed_state: false
+  friendly_name: 'Bureau'
+  icon: mdi:lamp
+  google_assistant_type: light
+switch.radiateur_salon:
+  friendly_name: 'Salon'
+  icon: mdi:radiator
+switch.radiateur_chambre:
+  friendly_name: 'Chambre'
+  icon: mdi:hot-tub
+switch.sonoff_bed:
+  friendly_name: 'Chaffauge Lit'
+  icon: mdi:hotel
+#  friendly_name: 'Ventilateur Salon'
+#  icon: mdi:fan
+  google_assistant_type: fan
+climate.salon:
+  friendly_name: 'Salon'
+climate.chambre:
+  friendly_name: 'Chambre'
+sensor.france:
+  friendly_name: 'France'
+  icon: mdi:clock
+sensor.finlande:
+  friendly_name: 'Finlande'
+  icon: mdi:clock
+sensor.turquie:
+  friendly_name: 'Turquie'
+  icon: mdi:clock
+sensor.transmission_active_torrents:
+  friendly_name: 'Torrents Actifs'
+  icon: mdi:clipboard-flow
+sensor.transmission_down_speed:
+  friendly_name: 'Vitesse Download'
+  icon: mdi:download
+sensor.transmission_status:
+  friendly_name: 'Etat global'
+  icon: mdi:server
+sensor.transmission_up_speed:
+  friendly_name: 'Vitesse Upload'
+  icon: mdi:upload
+sensor.sonarr_disk_space:
+  friendly_name: 'Espace disque disponible'
+  icon: mdi:harddisk
+  unit_of_measurement: Go
+sensor.sonarr_upcoming:
+  friendly_name: 'Diffusés en ce moment :'
+  icon: mdi:youtube-tv
+sensor.sonarr_queue:
+  friendly_name: 'En récupération :'
+  icon: mdi:youtube-tv
+sensor.sonarr_wanted:
+  friendly_name: 'Pas encore disponible :'
+  icon: mdi:youtube-tv
+sensor.hp_ilo_alimentation:
+  icon: mdi:power
+switch.portail:
+  icon: mdi:gate
+sensor.alarm_time:
+  icon: mdi:clock
+group.rad_stats:
+  friendly_name: Statistiques Journalières
+sensor.radiateur_chambre_on_today_view:
+  friendly_name: Chambre
+  icon: mdi:av-timer
+sensor.radiateur_lit_on_today_view:
+  friendly_name: Lit
+  icon: mdi:av-timer
+sensor.radiateur_salon_on_today_view:
+  friendly_name: Salon
+  icon: mdi:av-timer
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                                 HIBP                                             #
+#                                                                                  #
+####################################################################################
+
+sensor.breaches_contactjunglemanfr:
+  friendly_name: 'c****t@jungleman.fr'
+  icon: mdi:mail-ru
+sensor.breaches_mikaelboulogmailcom:
+  friendly_name: 'm****o@gmail.com'
+  icon: mdi:mail-ru
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                CUSTOM                                            #
+#                               TRACKING                                           #
+#                                                                                  #
+####################################################################################
+
+sensor.junglenut:
+  friendly_name: 'Porte clé'
+  icon: mdi:key-variant
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                                                                  #
+#                               XIAOMI DEVICES                                     #
+#                                                                                  #
+####################################################################################
+
+binary_sensor.door_window_sensor_158d00019fd4b5:
+  friendly_name: "Porte d'Entrée"
+  icon: mdi:door
+binary_sensor.door_window_sensor_158d00019fd569:
+  friendly_name: 'Fenêtre du Salon'
+  icon: mdi:door-closed
+binary_sensor.door_window_sensor_158d0001f381a2:
+  friendly_name: 'Volet'
+  icon: mdi:garage
+binary_sensor.door_window_sensor_158d000201e249:
+  friendly_name: 'Boîte aux lettres'
+  icon: mdi:mailbox
+binary_sensor.motion_sensor_158d0001b1d2c3:
+  friendly_name: 'Présence Salle de bain'
+  icon: mdi:walk
+sensor.illumination_158d0001b1d2c3:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+  unit_of_measurement: LUX
+sensor.fleur_1_battery:
+  friendly_name: 'Etat pile (CR2032)'
+  icon: mdi:battery
+sensor.fleur_1_conductivity:
+  friendly_name: 'Fertilité'
+  icon: mdi:eye
+sensor.fleur_1_light_intensity:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+sensor.fleur_1_moisture:
+  friendly_name: 'Humidité'
+  icon: mdi:cup-water
+sensor.fleur_1_temperature:
+  friendly_name: 'Température'
+  icon: mdi:thermometer
+sensor.fleur_2_battery:
+  friendly_name: 'Etat pile (CR2032)'
+  icon: mdi:battery
+sensor.fleur_2_conductivity:
+  friendly_name: 'Fertilité'
+  icon: mdi:eye
+sensor.fleur_2_light_intensity:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+sensor.fleur_2_moisture:
+  friendly_name: 'Humidité'
+  icon: mdi:cup-water
+sensor.fleur_2_temperature:
+  friendly_name: 'Température'
+  icon: mdi:thermometer
+sensor.humidity_158d0001f52004:
+  friendly_name: "Taux d'humidité"
+  icon: mdi:cup-water
+sensor.pressure_158d0001f52004:
+  friendly_name: 'Pression'
+  icon: mdi:elevator
+sensor.temperature_158d0001f52004:
+  friendly_name: 'Température Cuisine'
+sensor.illumination_158d0001ab3533:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+binary_sensor.motion_sensor_158d0001ab3533:
+  friendly_name: 'Présence Cuisine'
+  icon: mdi:run
+sensor.humidity_158d0002273c15:
+  friendly_name: "Taux d'humidité"
+  icon: mdi:cup-water
+sensor.pressure_158d0002273c15:
+  friendly_name: 'Pression'
+  icon: mdi:elevator
+sensor.temperature_158d0002273c15:
+  friendly_name: 'Température Chambre'
+sensor.illumination_158d0001ad6284:
+  friendly_name: 'Luminosité'
+  icon: mdi:weather-sunny
+binary_sensor.motion_sensor_158d0001ad6284:
+  friendly_name: 'Présence Vestibule'
+  icon: mdi:run
+sensor.humidity_158d0001fa768f:
+  friendly_name: "Taux d'humidité"
+  icon: mdi:cup-water
+sensor.pressure_158d0001fa768f:
+  friendly_name: 'Pression'
+  icon: mdi:elevator
+sensor.temperature_158d0001fa768f:
+  friendly_name: 'Température SDB'
+  
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                ELEC                                              #
+#                                                                                  #
+####################################################################################
+
+sensor.hp_edf_view:
+  friendly_name: 'Option tarifaire en cours'
+  icon: mdi:theme-light-dark
+sensor.releve_consommation_esp:
+  friendly_name: 'Pendant la dernière minute'
+  unit_of_measurement: Wh consommés
+  icon: mdi:clock-start
+sensor.cout_journalier_view:
+  friendly_name: 'Coût journalier'
+  unit_of_measurement: €
+  icon: mdi:cash-multiple
+sensor.conso_journaliere:
+  friendly_name: 'Consommation journalière'
+  unit_of_measurement: Wh consommés
+  icon: mdi:battery-charging
+sensor.releve_consommation_wh:
+  friendly_name: 'Conso instantanée'
+  unit_of_measurement: Wh
+  icon: mdi:flash
+sensor.cout_wh_instant:
+  friendly_name: 'Coût du Wh/h induit'
+  icon: mdi:cash
+history_graph.consommation_wh:
+  friendly_name: 'Suivi de consommation'
+history_graph.cout_du_wh_instantane:
+  friendly_name: 'Suivi du coût réel'
+
+####################################################################################
+#                                                                                  #
+#                                                                                  #
+#                                GRAFANA                                           #
+#                                                                                  #
+####################################################################################
+
+camera.grafana_conso:
+  friendly_name: 'Consommation Electrique'
+camera.grafana_temps:
+  friendly_name: 'Températures'
