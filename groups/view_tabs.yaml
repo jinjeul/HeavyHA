@@ -25,7 +25,7 @@ chauffage:
     - group.thermostat
     - group.rad_stats
     - history_graph.temperature_appartement
-    - camera.grafana_temps
+    - camera.grafana_temperature
   view: true
 room_sensor:
   icon: mdi:home-assistant
@@ -81,8 +81,8 @@ conso_view:
   icon: mdi:power-plug
   name: Consommation
   entities:
-    - history_graph.consommation_wh_jour
-    - history_graph.consommation_wh_semaine
+#    - history_graph.consommation_wh_jour
+#    - history_graph.consommation_wh_semaine
     - history_graph.cout_du_wh_instantane
     - group.infos_conso_instant
     - group.infos_conso_stats

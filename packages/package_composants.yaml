@@ -1,5 +1,3 @@
-lifx:
-  lights:
 sun:
 mqtt:  
   broker: localhost
@@ -41,6 +39,12 @@ device_tracker:
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
+  - platform: command_line
+    name: "Download Grafana - temps"
+    command: !secret cmd_get_grafana_conso
+  - platform: command_line
+    name: "Download Grafana - conso"
+    command: !secret cmd_get_grafana_temp
   - platform: haveibeenpwned
     email: 
       - !secret email_1
@@ -270,3 +274,10 @@ google_assistant:
       expose: false
     cover.volet_du_salon:
       name: Volet
+camera:
+  - platform: local_file
+    name: Grafana_temperature
+    file_path: !secret  grafana_path_temp
+  - platform: local_file
+    name: Grafana_conso
+    file_path: !secret  grafana_path_conso

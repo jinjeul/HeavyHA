@@ -280,14 +280,3 @@ binary_sensor:
   - platform: ping
     host: !secret espedf_ip
     name: ESP EDF
-camera:
-  - platform: generic
-    name: Grafana_temps
-    still_image_url: !secret grafana_temps_url
-    username: !secret grafana_user
-    password: !secret grafana_pass
-  - platform: generic
-    name: Grafana_conso
-    still_image_url: !secret grafana_conso_url
-    username: !secret grafana_user
-    password: !secret grafana_pass

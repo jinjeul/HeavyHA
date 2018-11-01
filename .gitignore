@@ -9,6 +9,7 @@
 !automations/**
 !automations/**/*
 !automations/**/*/*.yaml
+packages/package_test.yaml
 secrets.yaml
 known_devices.yaml
 entity_registry.yaml
