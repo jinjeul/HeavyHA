@@ -25,6 +25,7 @@ http:
   ssl_certificate: !secret ssl_cert_crt
   ssl_key: !secret ssl_cert_key
   base_url: !secret ha_url
+#  ssl_profile: intermediate
   
 recorder:
   #db_url: !secret recorder_mariadb_docker
@@ -52,7 +53,7 @@ frontend:
 ####################################################################################
 
 logger:
-  default: error
+  default: warn
 config:
 updater:
   reporting: False

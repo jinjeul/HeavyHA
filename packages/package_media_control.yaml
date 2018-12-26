@@ -239,44 +239,45 @@ binary_sensor:
     host: !secret junglenas_ip
     name: JungleNAS
   - platform: ping
+    host: !secret junglenas_ilo_ip
+    name: Jungle NAS ILO
+  - platform: ping
     host: !secret xiaomi_gateway_ip
     name: Xiaomi Gateway
-  - platform: ping
-    host: !secret junglepc_ip
-    name: Jungle PC
-  - platform: ping
-    host: !secret ip_google_home
-    name: JungleHome
-  - platform: ping
-    host: !secret denon_ip
-    name: Denon AVR
   - platform: ping
     host: !secret esprad_ip
     name: ESP Radiateurs
   - platform: ping
-    host: !secret lifx_cuisine_ip
-    name: LIFX Cuisine
-  - platform: ping
-    host: !secret lifx_salon_ip
-    name: LIFX Salon
-  - platform: ping
-    host: !secret harmony_ip
-    name: Harmony Hub
-  - platform: ping
-    host: !secret yeelight_sdb_ip
-    name: Yeelight SDB
-  - platform: ping
-    host: !secret yeelight_chambre_ip
-    name: Yeelight Chambre
-  - platform: ping
-    host: !secret junglenas_ilo_ip
-    name: Jungle NAS ILO
-  - platform: ping
-    host: !secret sonoff_bed_ip
-    name: ESP Lit
-  - platform: ping
-    host: !secret yeelight_tvstrip_ip
-    name: Yeelight TV Strip
-  - platform: ping
     host: !secret espedf_ip
     name: ESP EDF
+#  - platform: ping
+#    host: !secret junglepc_ip
+#    name: Jungle PC
+#  - platform: ping
+#    host: !secret ip_google_home
+#    name: JungleHome
+#  - platform: ping
+#    host: !secret denon_ip
+#    name: Denon AVR
+#  - platform: ping
+#    host: !secret lifx_cuisine_ip
+#    name: LIFX Cuisine
+#  - platform: ping
+#    host: !secret lifx_salon_ip
+#    name: LIFX Salon
+#  - platform: ping
+#    host: !secret harmony_ip
+#    name: Harmony Hub
+#  - platform: ping
+#    host: !secret yeelight_sdb_ip
+#    name: Yeelight SDB
+#  - platform: ping
+#    host: !secret yeelight_chambre_ip
+#    name: Yeelight Chambre
+#  - platform: ping
+#    host: !secret sonoff_bed_ip
+#    name: ESP Lit
+#  - platform: ping
+#    host: !secret yeelight_tvstrip_ip
+#    name: Yeelight TV Strip
+

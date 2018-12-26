@@ -1,5 +1,5 @@
 ﻿- alias: 'Alerte - Pushbullet - Gel à venir'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: numeric_state
     entity_id: sensor.yr_temperature
@@ -32,7 +32,7 @@
       title: 'Fuite de donnée détectée'
       message: 'mikael.boulo@gmail.com'
 - alias: 'Alerte - Pushbullet - Glances JungleNAS down'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: state
     entity_id: sensor.glances_running
@@ -47,7 +47,7 @@
       title: 'Monitoring'
       message: 'JungleNAS semble être éteint !'
 - alias: 'Alerte - Pushbullet - Glances JungleNAS back'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: state
     entity_id: sensor.glances_running

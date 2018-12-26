@@ -56,4 +56,5 @@ cover:
         friendly_name: Volet du salon
 device_sun_light_trigger:
   light_group: group.light_salon
+  light_profile: energize
   device_group: group.tracking_jungle

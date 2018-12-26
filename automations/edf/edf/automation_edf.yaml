@@ -1,4 +1,5 @@
 ﻿- alias: 'EDF - Calcul cout journalier'
+  initial_state: 'on'
   trigger:
     - platform: time
       minutes: '/1'
@@ -20,6 +21,7 @@
         topic: 'jungle/edf/conso_today'
         payload_template: '{{(states.sensor.conso_journaliere.state | float + states.sensor.releve_consommation_esp.state | float) | round (0) }}'
 - alias: 'EDF - Remise à zero journalier'
+  initial_state: 'on'
   trigger:
     - platform: time
       hours: 0

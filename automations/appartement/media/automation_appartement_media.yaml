@@ -29,9 +29,10 @@
     service: homeassistant.turn_off
     entity_id: media_player.denon_chambre
 - alias: 'Media - Appartement - electronics OFF single jungletap'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00016bdb71
       click_type: single

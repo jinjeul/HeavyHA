@@ -37,3 +37,29 @@
 #    protocol:
 #      - elro_800_switch
 #      - dio_switch
+#cloud:
+#  alexa:
+#    filter:
+#      include_entities:
+#        - group.light_chambre
+#        - group.light_salon
+#        - group.light_cuisine
+#        - group.light_vestibule
+#        - group.light_salledebain
+#        - light.tv_strip
+#        - light.gateway_light_34ce008db5a7
+#      include_domains:
+#        - switch
+#        - cover
+#        - fan
+#        - media_player
+#      exclude_entities:
+#        - switch.radiateur_chambre
+#        - switch.radiateur_salon
+#        - switch.tv
+#  - platform: wunderground
+#    api_key: !secret wunderground_api
+#    monitored_conditions:
+#      - temp_high_avg_c
+#weather:
+#  - platform: yweather

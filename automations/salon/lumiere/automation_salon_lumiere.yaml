@@ -43,6 +43,7 @@
     below: '300'
     entity_id: sensor.lumsens_1
 - alias: 'Lumières - Salon - OFF si luminosité haute'
+  initial_state: 'off'
   action:
     entity_id: light.salon
     service: homeassistant.turn_off
@@ -63,6 +64,7 @@
     entity_id: sensor.lumsens_1
   initial_state: 'off'
 - alias: 'Lumières - Salon - Allumer soir'
+  initial_state: 'on'
   trigger:
     platform: sun
     event: sunset

@@ -25,9 +25,10 @@
     service: light.turn_off
     entity_id: group.all_lights
 - alias: 'Lumières - Appartement - OFF on single jungletap'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00016bdb71
       click_type: single
@@ -35,9 +36,10 @@
     service: light.turn_off
     entity_id: group.all_lights    
 - alias: 'Lumières - Appartement - ON on double jungletap'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.switch_158d00016bdb71
       click_type: double
@@ -47,9 +49,10 @@
     - service: scene.turn_on
       entity_id: scene.chambre_on
 - alias: 'Lumières - Salon - Toggle light on leftswitch bis'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d000163a561
       click_type: single
@@ -64,9 +67,10 @@
     service: homeassistant.turn_off
     entity_id: light.salon
 - alias: 'Lumières - Salon - Toggle light on leftswitch'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d000163a561
       click_type: single
@@ -78,9 +82,10 @@
     service: homeassistant.toggle
     entity_id: light.salon, light.cuisine
 - alias: 'Lumières - Salon - Toggle light on leftswitch trois'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d000163a561
       click_type: single
@@ -95,9 +100,10 @@
     service: homeassistant.turn_on
     entity_id: light.salon, light.cuisine
 - alias: 'Lumières - Chambre - Toggle light on rightswitch'
+  initial_state: 'on'
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_right_158d000163a561
       click_type: single

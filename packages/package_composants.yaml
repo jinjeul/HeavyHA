@@ -4,26 +4,6 @@ mqtt:
   port: 1883
   username: !secret mqtt_login_junglenas
   password: !secret mqtt_password_junglenas
-cloud:
-  alexa:
-    filter:
-      include_entities:
-        - group.light_chambre
-        - group.light_salon
-        - group.light_cuisine
-        - group.light_vestibule
-        - group.light_salledebain
-        - light.tv_strip
-        - light.gateway_light_34ce008db5a7
-      include_domains:
-        - switch
-        - cover
-        - fan
-        - media_player
-      exclude_entities:
-        - switch.radiateur_chambre
-        - switch.radiateur_salon
-        - switch.tv
 device_tracker:
   - platform: ddwrt
     host: !secret ddwrt_ip
@@ -33,9 +13,8 @@ device_tracker:
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
-  - platform: gpslogger
-  - platform: owntracks
-    max_gps_accuracy: 200
+  - platform: googlehome
+    host: !secret ip_google_home
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -86,10 +65,6 @@ sensor:
     display_options:
       - 'time'
       - 'date'
-#  - platform: wunderground
-#    api_key: !secret wunderground_api
-#    monitored_conditions:
-#      - temp_high_avg_c
   - platform: history_stats
     name: Radiateur Chambre ON today
     entity_id: switch.radiateur_chambre
@@ -122,8 +97,6 @@ sensor:
       radiateur_salon_on_today_view:
         unit_of_measurement: 'Heures'
         value_template: '{{ states.sensor.radiateur_salon_on_today.state }}'
-#weather:
-#  - platform: yweather
 xiaomi_aqara:
   discovery_retry: 5
   gateways:

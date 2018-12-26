@@ -58,7 +58,7 @@
     data:
      rgb_color: [46,0,137]
 - alias: 'Lumières - Vestibule - Chaud scene'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: event
     event_type: call_service
