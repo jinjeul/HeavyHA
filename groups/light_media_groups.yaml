@@ -13,7 +13,7 @@ salon:
   entities:
     - light.salon
     - light.tv_strip
-    - switch.lumiere_bureau
+    - light.lampe_bureau
     - media_player.denon_salon
     - media_player.la_tele
 chambre:
@@ -39,7 +39,7 @@ light_salon:
   entities:
     - light.salon
     - light.tv_strip
-    - switch.lumiere_bureau
+    - light.lampe_bureau
     - light.gateway_light_34ce008db5a7
 light_cuisine:
   entities:

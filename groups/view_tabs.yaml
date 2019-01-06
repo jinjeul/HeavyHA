@@ -52,7 +52,8 @@ meteo_view:
   icon: mdi:weather-partlycloudy
   entities:
   - group.meteo
-  - weather.yweather
+  - group.meteo_epinaysurorge
+#  - weather.yweather
   name: Meteo
   view: true
 automations_view:

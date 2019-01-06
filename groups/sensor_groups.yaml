@@ -28,6 +28,18 @@ meteo:
     - sensor.yr_precipitation
     - sensor.yr_wind_speed
     - sensor.yr_wind_direction
+meteo_epinaysurorge:
+  name: Météo à Epinay sur Orge
+  entities:
+    - sensor.epinaysurorge_freeze_chance
+    - sensor.epinaysurorge_next_rain
+    - sensor.epinaysurorge_rain_chance
+    - sensor.epinaysurorge_snow_chance
+    - sensor.epinaysurorge_temperature
+    - sensor.epinaysurorge_thunder_chance
+    - sensor.epinaysurorge_uv
+    - sensor.epinaysurorge_weather
+    - sensor.epinaysurorge_wind_speed
 date:
   name: Date & Heure
   entities:

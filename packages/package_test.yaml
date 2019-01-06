@@ -63,3 +63,7 @@
 #      - temp_high_avg_c
 #weather:
 #  - platform: yweather
+#sensor:
+#  - platform: tautulli
+#    api_key: !secret TAUTULLI_API_KEY
+#    host: !secret TAUTULLI_HOST

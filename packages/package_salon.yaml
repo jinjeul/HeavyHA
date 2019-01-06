@@ -3,6 +3,9 @@
     devices:
       192.168.1.173:
         name: TV Strip
+  - platform: switch
+    name: Lampe Bureau
+    entity_id: switch.lumiere_bureau
 climate:
   - platform: generic_thermostat
     name: Salon

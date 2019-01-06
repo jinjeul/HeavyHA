@@ -97,6 +97,18 @@ sensor:
       radiateur_salon_on_today_view:
         unit_of_measurement: 'Heures'
         value_template: '{{ states.sensor.radiateur_salon_on_today.state }}'
+  - platform: meteo_france
+    postal_code: !secret postal_code
+    monitored_conditions:
+      - temperature
+      - weather
+      - wind_speed
+      - uv
+      - next_rain
+      - freeze_chance
+      - rain_chance
+      - snow_chance
+      - thunder_chance 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
