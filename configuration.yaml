@@ -60,6 +60,7 @@ updater:
 discovery:
   ignore:
     - harmony
+system_health:
 map:
 history:
   include:
@@ -121,9 +122,9 @@ logbook:
       - media_player.junglehomemini
       - media_player.la_tele
       - automation.keep_google_home_alive
-      - automation.edf__calcul_cout_journalier
-      - automation.edf__remise_a_zero_journalier
-      - automation.reveil__send_tasker_event
+      - automation.edf_calcul_cout_journalier
+      - automation.edf_remise_a_zero_journalier
+      - automation.reveil_send_tasker_event
       - sensor.cout_wh_instant
       - sensor.releve_consommation_wh
       - sensor.cout_journalier

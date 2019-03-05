@@ -1,4 +1,4 @@
-﻿- alias: 'Lumières - Vestibule - ON mouvement'
+﻿- alias: 'Lumières Vestibule ON mouvement'
   initial_state: 'on'
   action:
     data:
@@ -15,7 +15,7 @@
     entity_id: binary_sensor.motion_sensor_158d0001ad6284
     from: 'off'
     to: 'on'
-- alias: 'Lumières - Vestibule - OFF mouvement 10min'
+- alias: 'Lumières Vestibule OFF mouvement 10min'
   initial_state: 'on'
   trigger:
     platform: state
@@ -27,7 +27,7 @@
   action:
     service: scene.turn_on
     entity_id: scene.vestibuleoff
-- alias: 'Lumières - Vestibule - Physchedelic scene'
+- alias: 'Lumières Vestibule Physchedelic scene'
   initial_state: 'on'
   trigger:
     platform: event
@@ -42,7 +42,7 @@
     service: light.turn_on
     data:
      rgb_color: [46,0,137]
-- alias: 'Lumières - Vestibule - Coolblue scene'
+- alias: 'Lumières Vestibule Coolblue scene'
   initial_state: 'on'
   trigger:
     platform: event
@@ -57,7 +57,7 @@
     service: light.turn_on
     data:
      rgb_color: [46,0,137]
-- alias: 'Lumières - Vestibule - Chaud scene'
+- alias: 'Lumières Vestibule Chaud scene'
   initial_state: 'off'
   trigger:
     platform: event
@@ -70,7 +70,7 @@
   action:
     entity_id: light.vestibule
     service: light.turn_off
-- alias: 'Lumières - Vestibule - ON porte ouverte'
+- alias: 'Lumières Vestibule ON porte ouverte'
   initial_state: 'on'
   action:
     data:
@@ -83,7 +83,7 @@
     entity_id: binary_sensor.door_window_sensor_158d00019fd4b5
     from: 'off'
     to: 'on'
-- alias: 'Lumières - Vestibule - OFF porte fermee'
+- alias: 'Lumières Vestibule OFF porte fermee'
   initial_state: 'on'
   trigger:
     platform: state

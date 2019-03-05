@@ -1,4 +1,4 @@
-﻿- alias: 'Volet - Appartement - Fermer tombee nuit'
+﻿- alias: 'Volet Appartement Fermer tombee nuit'
   initial_state: 'off'
   trigger:
     platform: sun
@@ -14,7 +14,7 @@
   action:
     - service: cover.close_cover
       entity_id: cover.volet_du_salon
-- alias: 'Volet - Appartement - Ouvrir journee si absent'
+- alias: 'Volet Appartement Ouvrir journee si absent'
   initial_state: 'off'
   trigger:
     platform: sun
@@ -29,7 +29,7 @@
   action:
     - service: cover.open_cover
       entity_id: cover.volet_du_salon
-- alias: 'Volet - Appartement - Ouvrir volet a ouverture fenetre'
+- alias: 'Volet Appartement Ouvrir volet a ouverture fenetre'
   initial_state: 'on'
   trigger:
     platform: state

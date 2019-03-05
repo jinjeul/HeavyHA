@@ -1,4 +1,4 @@
-﻿- alias: 'Power - Server - bring it back up'
+﻿- alias: 'Power Server bring it back up'
   initial_state: 'on'
   trigger:
     platform: state

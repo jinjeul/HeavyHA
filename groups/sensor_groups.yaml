@@ -31,15 +31,15 @@ meteo:
 meteo_epinaysurorge:
   name: Météo à Epinay sur Orge
   entities:
-    - sensor.epinaysurorge_freeze_chance
-    - sensor.epinaysurorge_next_rain
-    - sensor.epinaysurorge_rain_chance
-    - sensor.epinaysurorge_snow_chance
-    - sensor.epinaysurorge_temperature
-    - sensor.epinaysurorge_thunder_chance
-    - sensor.epinaysurorge_uv
-    - sensor.epinaysurorge_weather
-    - sensor.epinaysurorge_wind_speed
+    - sensor.epinay_sur_orge_freeze_chance
+    - sensor.epinay_sur_orge_next_rain
+    - sensor.epinay_sur_orge_rain_chance
+    - sensor.epinay_sur_orge_snow_chance
+    - sensor.epinay_sur_orge_temperature
+    - sensor.epinay_sur_orge_thunder_chance
+    - sensor.epinay_sur_orge_uv
+    - sensor.epinay_sur_orge_weather
+    - sensor.epinay_sur_orge_wind_speed
 date:
   name: Date & Heure
   entities:
@@ -53,7 +53,7 @@ monitoring_ip:
     - binary_sensor.denon_avr
     - binary_sensor.esp_lit
     - binary_sensor.harmony_hub
-    - binary_sensor.junglenas_ilo
+    - binary_sensor.jungle_nas_ilo
     - binary_sensor.junglehome
     - binary_sensor.junglenas
     - binary_sensor.lifx_cuisine
@@ -66,27 +66,24 @@ rpi:
   name: JunglePi
   entities:
     - sensor.cpu_speed
-    - sensor.cpu_used
-    - sensor.disk_use_home
-    - sensor.ram_free
+    - sensor.disk_use_percent_home
     - sensor.rpi_uptime
-    - sensor.ipv4_address_eth0
 junglenas:
   name: JungleNAS
   entities:
     - sensor.hp_ilo_alimentation
     - sensor.glances_cpu_load
     - sensor.glances_disk_free
-    - sensor.glances_disk_use
+    - sensor.glances_disk_used
     - sensor.glances_ram_free
-    - sensor.glances_ram_use
-    - sensor.glances_swap_use
-    - sensor.glances_swap_use_2
+    - sensor.glances_ram_used
+    - sensor.glances_swap_used
+    - sensor.glances_swap_used_2
 haveibeenpwned:
   name: Data Leak - HIBP
   entities:
-    - sensor.breaches_contactjunglemanfr
-    - sensor.breaches_mikaelboulogmailcom
+    - !secret haveibeenpwned_email1
+    - !secret haveibeenpwned_email2
 presence_tracking:
   name: Détection de présence
   entities:

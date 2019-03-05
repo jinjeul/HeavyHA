@@ -1,7 +1,7 @@
-﻿- alias: 'Chauffage - Chambre - thermostat 20 à 06h00 semaine'
+﻿- alias: 'Chauffage Chambre thermostat 20 à 06h00 semaine'
   initial_state: 'on'
   trigger:
-    platform: time
+    platform: time_pattern
     hours: 06
     minutes: 0
     seconds: 0
@@ -21,10 +21,10 @@
       data:
         entity_id: climate.chambre
         temperature: '20'
-- alias: 'Chauffage - Chambre - thermostat 17 à 08h00 semaine'
+- alias: 'Chauffage Chambre thermostat 17 à 08h00 semaine'
   initial_state: 'on'
   trigger:
-    platform: time
+    platform: time_pattern
     hours: 08
     minutes: 0
     seconds: 0
@@ -41,7 +41,7 @@
       data:
         entity_id: climate.chambre
         temperature: '17'
-- alias: 'Chauffage - Chambre - 17 Départ Appart'
+- alias: 'Chauffage Chambre 17 Départ Appart'
   initial_state: 'on'
   trigger:
     platform: state
@@ -55,10 +55,10 @@
     - service : homeassistant.turn_off
       data:
         entity_id: switch.radiateur_chambre
-- alias: 'Chauffage - Chambre - lit ON a 22h15 semaine'
+- alias: 'Chauffage Chambre lit ON a 22h15 semaine'
   initial_state: 'on'
   trigger:
-    platform: time
+    platform: time_pattern
     hours: 22
     minutes: 15
     seconds: 00

@@ -6,6 +6,10 @@
   - platform: switch
     name: Lampe Bureau
     entity_id: switch.lumiere_bureau
+  - platform: yeelight
+    devices:
+      192.168.1.174:
+        name: Bureau Strip
 climate:
   - platform: generic_thermostat
     name: Salon

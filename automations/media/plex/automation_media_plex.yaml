@@ -1,4 +1,4 @@
-﻿- alias: 'Media - PLEX - Baisser les lumières play'
+﻿- alias: 'Media PLEX Baisser les lumières play'
   trigger:
     platform: state
     entity_id: sensor.plex_chromecast_status
@@ -13,7 +13,7 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexon
-- alias: 'Media - PLEX - Monter les lumières pause'
+- alias: 'Media PLEX Monter les lumières pause'
   trigger:
     platform: state
     entity_id: sensor.plex_chromecast_status
@@ -28,7 +28,7 @@
   action:
     service: scene.turn_on
     entity_id: scene.plexpause
-- alias: 'Media - PLEX - Monter les lumières stop'
+- alias: 'Media PLEX Monter les lumières stop'
   initial_state: 'on'
   trigger:
     platform: state

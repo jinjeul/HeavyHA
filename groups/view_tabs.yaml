@@ -53,7 +53,6 @@ meteo_view:
   entities:
   - group.meteo
   - group.meteo_epinaysurorge
-#  - weather.yweather
   name: Meteo
   view: true
 automations_view:

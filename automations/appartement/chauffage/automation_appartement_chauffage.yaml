@@ -1,4 +1,4 @@
-﻿- alias: 'Chauffage - Appartement - 18 salon on single jungletap'
+﻿- alias: 'Chauffage Appartement 18 salon on single jungletap'
   initial_state: 'on'
   trigger:
     platform: event
@@ -11,7 +11,7 @@
       data:
         entity_id: climate.salon
         temperature: '18'
-- alias: 'Chauffage - Appartement - 22 salon on double jungletap'
+- alias: 'Chauffage Appartement 22 salon on double jungletap'
   initial_state: 'on'
   trigger:
     platform: event

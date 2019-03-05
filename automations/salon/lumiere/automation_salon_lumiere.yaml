@@ -1,4 +1,4 @@
-﻿- alias: 'Lumières - Salon - Allumer au couché du soleil'
+﻿- alias: 'Lumières Salon Allumer au couché du soleil'
   initial_state: 'off'
   trigger:
     platform: sun
@@ -19,7 +19,7 @@
       data:
         transition: 600
         brightness: 200
-- alias: 'Lumières - Salon - ON si luminosité basse'
+- alias: 'Lumières Salon ON si luminosité basse'
   initial_state: 'on'
   action:
     entity_id: light.salon
@@ -42,7 +42,7 @@
   - platform: numeric_state
     below: '300'
     entity_id: sensor.lumsens_1
-- alias: 'Lumières - Salon - OFF si luminosité haute'
+- alias: 'Lumières Salon OFF si luminosité haute'
   initial_state: 'off'
   action:
     entity_id: light.salon
@@ -62,8 +62,7 @@
   - platform: numeric_state
     above: '300'
     entity_id: sensor.lumsens_1
-  initial_state: 'off'
-- alias: 'Lumières - Salon - Allumer soir'
+- alias: 'Lumières Salon Allumer soir'
   initial_state: 'on'
   trigger:
     platform: sun

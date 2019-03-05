@@ -1,4 +1,4 @@
-﻿- alias: 'Mediaplayer - Appartement - OFF au Départ'
+﻿- alias: 'Mediaplayer Appartement OFF au Départ'
   initial_state: 'on'
   trigger:
     platform: state
@@ -15,7 +15,7 @@
       entity_id: automation.harmony_off
     - service: switch.turn_off
       entity_id: switch.jungle_pc
-- alias: 'Media - Denon Bureau - Eteindre au départ'
+- alias: 'Media Denon Bureau Eteindre au départ'
   initial_state: 'on'
   trigger:
     platform: state
@@ -28,7 +28,7 @@
   action:
     service: homeassistant.turn_off
     entity_id: media_player.denon_chambre
-- alias: 'Media - Appartement - electronics OFF single jungletap'
+- alias: 'Media Appartement electronics OFF single jungletap'
   initial_state: 'on'
   trigger:
     platform: event
@@ -45,28 +45,34 @@
       entity_id: automation.harmony_off  
     - service: switch.turn_off
       entity_id: switch.sonoff_bed
-- alias: 'Media - Denon - Source BT arrivée'
+- alias: 'Media Denon Jungle arrivée'
   initial_state: 'on'
   trigger:
     platform: state
     entity_id: device_tracker.jungle3t_wifi
     to: 'home'
   action:
-    - service: remote.turn_on
+    - service: remote.send_command
+      entity_id: remote.hub_salon
       data:
-        activity: 35366534
-        entity_id: remote.hub_salon
-- alias: 'Media - Denon - drum&bass arrivée'
-  initial_state: 'on'
-  trigger:
-    platform: state
-    entity_id: device_tracker.jungle3t_wifi
-    to: 'home'
-    for:
-      minutes: 1
-  action:
+        device: "45999099"
+        command: "InputMediaPlayer"
+    #- service: remote.turn_on
+    #  data:
+    #    activity: 35366534
+    #    entity_id: remote.hub_salon
+    - service: media_player.volume_set
+      entity_id: media_player.la_tele
+      data:
+        volume_level: 0.50
+    - delay: 
+        seconds: 3
     - service: media_player.play_media
-      entity_id: media_player.junglehomemini
+      entity_id: media_player.la_tele
       data_template:
         media_content_id: 'http://108.163.197.114:8141/;stream.mp3'
         media_content_type: music
+    - delay: 
+        seconds: 7
+    - service: switch.turn_on
+      entity_id: switch.allzonestereo

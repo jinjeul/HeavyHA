@@ -6,14 +6,19 @@
 #                                                                                  #
 ####################################################################################
 
+light_bureau:
+  entities:
+    - light.bureau_strip
+    - light.lampe_bureau
 cuisine:
   entities:
-    - light.cuisine
+    - light.cuisine_2
 salon:
   entities:
     - light.salon
     - light.tv_strip
     - light.lampe_bureau
+    - light.bureau_strip
     - media_player.denon_salon
     - media_player.la_tele
 chambre:
@@ -40,10 +45,11 @@ light_salon:
     - light.salon
     - light.tv_strip
     - light.lampe_bureau
+    - light.bureau_strip
     - light.gateway_light_34ce008db5a7
 light_cuisine:
   entities:
-    - light.cuisine
+    - light.cuisine_2
 light_vestibule:
   entities:
     - light.vestibule

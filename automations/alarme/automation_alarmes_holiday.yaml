@@ -1,4 +1,4 @@
-﻿- alias: 'Alarme - Vacances - Activé'
+﻿- alias: 'Alarme Vacances Activé'
   initial_state: 'on'
   trigger:
     platform: state
@@ -8,8 +8,8 @@
     - service: automation.turn_off
       entity_id: group.light_automation, group.media_automation, group.chauffage_automation, group.scene_automation, group.reveil_automation
     - service: automation.turn_on
-      entity_id: automation.update_homeassistant_disponible, automation.power__server__bring_it_back_up
-- alias: 'Alarme - Vacances - Désactivé'
+      entity_id: automation.update_homeassistant_disponible, automation.power_server_bring_it_back_up
+- alias: 'Alarme Vacances Désactivé'
   initial_state: 'on'
   trigger:
     platform: state
@@ -19,4 +19,4 @@
     - service: automation.turn_on
       entity_id: group.light_automation, group.media_automation, group.chauffage_automation, group.scene_automation, group.reveil_automation
     - service: automation.turn_off
-      entity_id: automation.lumieres__salon__allumer_soir
+      entity_id: automation.lumieres_salon_allumer_soir

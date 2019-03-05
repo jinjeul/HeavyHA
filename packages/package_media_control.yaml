@@ -46,16 +46,16 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.allzonestereo_off
+transmission:
+  host: !secret junglenas_ip
+  username: !secret transmission_user
+  password: !secret transmission_pass
+  monitored_conditions:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
+    - 'active_torrents'
 sensor:
-  - platform: transmission
-    host: !secret junglenas_ip
-    username: !secret transmission_user
-    password: !secret transmission_pass
-    monitored_variables:
-      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
-      - 'active_torrents'
   - platform: sonarr
     api_key: !secret sonarr_api
     host: !secret junglenas_ip
@@ -250,34 +250,34 @@ binary_sensor:
   - platform: ping
     host: !secret espedf_ip
     name: ESP EDF
-#  - platform: ping
-#    host: !secret junglepc_ip
-#    name: Jungle PC
-#  - platform: ping
-#    host: !secret ip_google_home
-#    name: JungleHome
-#  - platform: ping
-#    host: !secret denon_ip
-#    name: Denon AVR
-#  - platform: ping
-#    host: !secret lifx_cuisine_ip
-#    name: LIFX Cuisine
-#  - platform: ping
-#    host: !secret lifx_salon_ip
-#    name: LIFX Salon
-#  - platform: ping
-#    host: !secret harmony_ip
-#    name: Harmony Hub
-#  - platform: ping
-#    host: !secret yeelight_sdb_ip
-#    name: Yeelight SDB
-#  - platform: ping
-#    host: !secret yeelight_chambre_ip
-#    name: Yeelight Chambre
-#  - platform: ping
-#    host: !secret sonoff_bed_ip
-#    name: ESP Lit
-#  - platform: ping
-#    host: !secret yeelight_tvstrip_ip
-#    name: Yeelight TV Strip
+  - platform: ping
+    host: !secret junglepc_ip
+    name: Jungle PC
+  - platform: ping
+    host: !secret ip_google_home
+    name: JungleHome
+  - platform: ping
+    host: !secret denon_ip
+    name: Denon AVR
+  - platform: ping
+    host: !secret lifx_cuisine_ip
+    name: LIFX Cuisine
+  - platform: ping
+    host: !secret lifx_salon_ip
+    name: LIFX Salon
+  - platform: ping
+    host: !secret harmony_ip
+    name: Harmony Hub
+  - platform: ping
+    host: !secret yeelight_sdb_ip
+    name: Yeelight SDB
+  - platform: ping
+    host: !secret yeelight_chambre_ip
+    name: Yeelight Chambre
+  - platform: ping
+    host: !secret sonoff_bed_ip
+    name: ESP Lit
+  - platform: ping
+    host: !secret yeelight_tvstrip_ip
+    name: Yeelight TV Strip
 

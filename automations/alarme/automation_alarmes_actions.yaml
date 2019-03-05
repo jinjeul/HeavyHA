@@ -1,4 +1,4 @@
-﻿- alias: 'Alarme - Pushbullet - Fenetre ouverte'
+﻿- alias: 'Alarme Pushbullet Fenetre ouverte'
   initial_state: 'on'
   trigger:
     platform: state
@@ -13,7 +13,7 @@
     data:
       title: 'ALARME'
       message: 'Porte Fenetre a été ouverte !'
-- alias: 'Alarme - Pushbullet - Porte ouverte'
+- alias: 'Alarme Pushbullet Porte ouverte'
   initial_state: 'on'
   trigger:
     platform: state

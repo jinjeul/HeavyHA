@@ -37,7 +37,7 @@ group.light_salledebain:
   icon: mdi:ceiling-light
 light.salon:
   friendly_name: 'LIFX Salon'
-light.cuisine:
+light.cuisine_2:
   friendly_name: 'LIFX Cuisine'
 light.salledebain:
   hidden: false

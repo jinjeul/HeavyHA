@@ -13,8 +13,8 @@ device_tracker:
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
-  - platform: googlehome
-    host: !secret ip_google_home
+#  - platform: googlehome
+#    host: !secret ip_google_home
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -161,7 +161,7 @@ scene:
           brightness: 3
           transition: 20
           rgb_color: [128, 147, 255]
-        light.cuisine:
+        light.cuisine_2:
           state: off
           transition: 10
         switch.lumiere_bureau:
@@ -204,7 +204,7 @@ scene:
           transition: 5
   - name: cuisineoff
     entities:
-        light.cuisine:
+        light.cuisine_2:
           state: off
           transition: 10
   - name: vestibuleoff
@@ -247,6 +247,8 @@ google_assistant:
       expose: false
     switch.sonoff_bed:
       name: lit
+    switch.lumiere_bureau:
+      expose: false
     switch.tv:
       expose: false
     light.yeelight_rgb_34ce0082379e:
@@ -256,6 +258,8 @@ google_assistant:
     light.yeelight_strip_7811dc672f73:
       expose: false
     light.yeelight_white_34ce008876d6:
+      expose: false
+    light.yeelight_strip2_04cf8c7ad539:
       expose: false
     cover.volet_du_salon:
       name: Volet

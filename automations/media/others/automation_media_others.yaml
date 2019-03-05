@@ -86,7 +86,7 @@
           {%- else -%}
           false
           {%- endif -%}
-- alias: TTS - GoogleHome - nouveau mail
+- alias: TTS GoogleHome nouveau mail
   trigger:
     platform: numeric_state
     entity_id: sensor.gmail_imap
@@ -106,35 +106,5 @@
     - service: tts.google_say
       entity_id: media_player.junglehomemini
       data:
-        message: 'Jinjeul, tu as reçu un mail !'
+        message: 'Jinjeul, tu as reçu un nouveau mail !'
         language: 'fr'     
-- alias: TTS - GoogleHome - keupon arrive
-  trigger:
-    platform: state
-    entity_id: binary_sensor.door_window_sensor_158d00019fd4b5
-    to: 'on'
-  condition: 
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: device_tracker.keupon_huawei
-        state: 'home'
-      - condition: template
-        value_template: '{{(as_timestamp(now())-as_timestamp(states.device_tracker.keupon_huawei.last_updated)) < 300 }}'
-  action:
-    - service: media_player.volume_set
-      entity_id: media_player.junglehomemini
-      data:
-        volume_level: 0.3
-    - service: media_player.play_media
-      entity_id: media_player.junglehomemini
-      data:
-        media_content_id: !secret url_mp3_waza
-        media_content_type: music
-    - delay: 00:00:05
-    - service: tts.google_say
-      entity_id: media_player.junglehomemini
-      data:
-        message: 'Monsieur Keupon est dans la place !'
-        language: 'fr'
-

@@ -13,7 +13,7 @@
 ######
 # ON #
 ######
-- alias: 'HA START - Chauffage - 22 salon si présent semaine'
+- alias: 'HA START Chauffage 22 salon si présent semaine'
   initial_state: 'on'
   trigger:
     platform: homeassistant
@@ -35,7 +35,7 @@
       data:
         entity_id: climate.salon
         temperature: '23'
-- alias: 'HA START - Chauffage - 22 salon si présent weekend'
+- alias: 'HA START Chauffage 22 salon si présent weekend'
   initial_state: 'on'
   trigger:
     platform: homeassistant
@@ -85,7 +85,7 @@
 #######
 # OFF #
 #######
-- alias: 'HA STOP - Chauffage - OFF partout'
+- alias: 'HA STOP Chauffage OFF partout'
   initial_state: 'on'
   trigger:
     platform: homeassistant
@@ -103,7 +103,7 @@
 - alias: Keep Google Home Alive
   initial_state: 'off'
   trigger:
-    platform: time
+    platform: time_pattern
     minutes: '/2'
     seconds: 00
   condition:
