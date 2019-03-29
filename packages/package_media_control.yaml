@@ -12,6 +12,19 @@ media_player:
     zones:
       - zone: Zone2
         name: Denon Bureau
+  - platform: kodi
+    host: !secret shield_ip
+    name: JungleKodi
+    username: !secret kodi_username
+    password: !secret kodi_password
+    turn_on_action:
+        - service: remote.turn_on
+          data:
+            activity: 39121780
+            entity_id: remote.hub_salon
+    turn_off_action:
+        - service: remote.turn_off
+          entity_id: remote.hub_salon
 shell_command:
   junglepc_shutdown: !secret junglepc_shutdown
   junglepc_restart: !secret junglepc_restart
@@ -84,10 +97,9 @@ sensor:
       - type: ipv4_address
         arg: eth0
   - platform: command_line
-    name: Rpi Uptime
+    name: JungleNAS Uptime
     command: "uptime -p"
     value_template: "{{ value[3:] }}"
-    scan_interval: 60
   - platform: glances
     host: !secret junglenas_ip
     resources:
@@ -106,14 +118,28 @@ sensor:
       - 'process_thread'
       - 'process_sleeping'
       - 'cpu_temp'
-  - platform: plex_client
-    name: plex_chromecast_status
-    host: !secret junglenas_ip
-    port: 32400
-    username: !secret plex_username
-    password: !secret plex_password
-    token: !secret plex_token
-    machine_id: !secret plex_machineid_chromecast
+  - platform: tautulli
+    api_key: !secret TAUTULLI_API_KEY
+    host: !secret TAUTULLI_HOST
+    monitored_users:
+      - !secret tautulli_user_1
+    monitored_conditions:
+      - quality_profile
+      - bitrate
+      - bandwidth
+      - file
+      - video_decision
+      - stream_audio_decision
+      - transcode_decision
+      - full_title
+      - library_name
+      - media_type
+      - state
+      - player
+  - platform: mqtt
+    name: shieldplex_state
+    state_topic: !secret topic_shieldplexstate
+    value_template: '{{ value_json.body }}'
 weblink:
   entities:
     - name: Routeur Status
@@ -174,9 +200,9 @@ input_select:
     options:
       - Choisir la source
       - Arrêt
-      - Chromecast Salon
+      - TV
+      - PC
       - Vinyle Salon
-      - PC Video Salon
       - Bluetooth Bureau
       - Vinyle Bureau
       - PC Musique Bureau
@@ -191,29 +217,24 @@ script:
       - service: remote.send_command
         entity_id: remote.hub_salon
         data:
-          device: "45999239"
+          device: "61872874"
           command: "PowerOn"
-      - service: remote.send_command
-        entity_id: remote.hub_salon
-        data:
-          device: "45999239"
-          command: "InputHdmi1"
   philipstv_off:
     sequence:
       - service: input_boolean.turn_off
         entity_id: input_boolean.tvstate
+      - service: script.turn_on
+        entity_id: script.65oled803_12_3_off
+      - delay: 5
       - service: remote.send_command
         entity_id: remote.hub_salon
         data:
-          device: "45999239"
+          device: "61872874"
           command: "PowerOff"
-      # Si TV OFF alors éteindre Harmony CHROMECAST
-      - service: script.turn_on
-        entity_id: script.la_tele_off
-  la_tele_off:
+  65oled803_12_3_off:
     sequence:
       - condition: template
-        value_template: '{{ states.remote.hub_salon.attributes.current_activity == "Chromecast" }}'
+        value_template: '{{ states.remote.hub_salon.attributes.current_activity == "TV" }}'
       - service: remote.turn_off
         entity_id: remote.hub_salon
   allzonestereo_on:
@@ -234,6 +255,18 @@ script:
         data:
           device: "45999099"
           command: "AllZoneStereoOff"
+  start_junglekodi:
+    sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.shield
+        source: 'org.xbmc.kodi'
+  stop_junglekodi:
+    sequence:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.shield
+        source: '!org.xbmc.kodi'
 binary_sensor:
   - platform: ping
     host: !secret junglenas_ip
@@ -242,20 +275,8 @@ binary_sensor:
     host: !secret junglenas_ilo_ip
     name: Jungle NAS ILO
   - platform: ping
-    host: !secret xiaomi_gateway_ip
-    name: Xiaomi Gateway
-  - platform: ping
     host: !secret esprad_ip
     name: ESP Radiateurs
-  - platform: ping
-    host: !secret espedf_ip
-    name: ESP EDF
-  - platform: ping
-    host: !secret junglepc_ip
-    name: Jungle PC
-  - platform: ping
-    host: !secret ip_google_home
-    name: JungleHome
   - platform: ping
     host: !secret denon_ip
     name: Denon AVR
@@ -277,7 +298,3 @@ binary_sensor:
   - platform: ping
     host: !secret sonoff_bed_ip
     name: ESP Lit
-  - platform: ping
-    host: !secret yeelight_tvstrip_ip
-    name: Yeelight TV Strip
-

@@ -38,6 +38,7 @@ binary_sensor:
   - platform: template
     sensors:
       hp_edf:
+        entity_id: sensor.time
         friendly_name: "Heures Pleines EDF"
         value_template: >-
           {{ now().strftime("%H%M") | int > 0632

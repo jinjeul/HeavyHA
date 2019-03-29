@@ -70,7 +70,6 @@ hardware_view:
   icon: mdi:thermostat
   name: Monitoring
   entities:
-    - group.rpi
     - group.junglenas
     - group.haveibeenpwned
     - group.transmission

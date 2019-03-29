@@ -13,8 +13,6 @@ device_tracker:
     new_device_defaults:
       track_new_devices: False
       hide_if_away: False
-#  - platform: googlehome
-#    host: !secret ip_google_home
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -96,19 +94,7 @@ sensor:
         value_template: '{{ states.sensor.radiateur_lit_on_today.state }}'
       radiateur_salon_on_today_view:
         unit_of_measurement: 'Heures'
-        value_template: '{{ states.sensor.radiateur_salon_on_today.state }}'
-  - platform: meteo_france
-    postal_code: !secret postal_code
-    monitored_conditions:
-      - temperature
-      - weather
-      - wind_speed
-      - uv
-      - next_rain
-      - freeze_chance
-      - rain_chance
-      - snow_chance
-      - thunder_chance 
+        value_template: '{{ states.sensor.radiateur_salon_on_today.state }}' 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
@@ -156,9 +142,9 @@ scene:
           color_temp: 333
           brightness: 12
           transition: 10
-        light.tv_strip:
+        light.vinyles_strip:
           state: on
-          brightness: 3
+          brightness: 12
           transition: 20
           rgb_color: [128, 147, 255]
         light.cuisine_2:
@@ -166,9 +152,8 @@ scene:
           transition: 10
         switch.lumiere_bureau:
           state: off
-        light.gateway_light_34ce008db5a7:
-          state: on
-          brightness: 20
+        light.bureau_strip:
+          state: off
           transition: 20
         light.vestibule:
           state: off
@@ -180,13 +165,14 @@ scene:
           color_temp: 333
           brightness: 250
           transition: 30
-        light.gateway_light_34ce008db5a7:
+        light.cuisine_2:
           state: on
-          brightness: 240
-          transition: 20
-        light.tv_strip:
+          color_temp: 333
+          brightness: 250
+          transition: 30
+        light.vinyles_strip:
           state: on
-          brightness: 240
+          brightness: 20
           transition: 10
           rgb_color: [64, 0, 255]
   - name: plexpause
@@ -196,9 +182,6 @@ scene:
           color_temp: 333
           brightness: 131
           transition: 7
-        light.gateway_light_34ce008db5a7:
-          state: on
-          brightness: 150
         light.vestibule:
           state: on
           transition: 5
@@ -261,6 +244,8 @@ google_assistant:
       expose: false
     light.yeelight_strip2_04cf8c7ad539:
       expose: false
+    light.gateway_light_34ce008db5a7:
+      expose: false
     cover.volet_du_salon:
       name: Volet
 camera:
@@ -270,3 +255,15 @@ camera:
   - platform: local_file
     name: Grafana_conso
     file_path: !secret  grafana_path_conso
+meteo_france:
+  - city: !secret city_name
+    monitored_conditions:
+      - temperature
+      - weather
+      - wind_speed
+      - uv
+      - next_rain
+      - freeze_chance
+      - rain_chance
+      - snow_chance
+      - thunder_chance    

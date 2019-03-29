@@ -19,16 +19,13 @@ homeassistant:
     "*":
       homebridge_hidden: true
       google_assistant: false
-
 http:
-  api_password: !secret api_ha
   ssl_certificate: !secret ssl_cert_crt
   ssl_key: !secret ssl_cert_key
   base_url: !secret ha_url
-  ssl_profile: intermediate
+  ssl_profile: modern
   
 recorder:
-  #db_url: !secret recorder_mariadb_docker
   purge_keep_days: 5
 
 ####################################################################################
@@ -120,7 +117,7 @@ logbook:
       - sensor.transmission_up_speed
       - binary_sensor.gmail_new
       - media_player.junglehomemini
-      - media_player.la_tele
+      - media_player.65oled803_12_3
       - automation.keep_google_home_alive
       - automation.edf_calcul_cout_journalier
       - automation.edf_remise_a_zero_journalier

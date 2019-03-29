@@ -1,12 +1,13 @@
 ﻿- alias: 'Media PLEX Baisser les lumières play'
+  initial_state: 'on'
   trigger:
-    platform: state
-    entity_id: sensor.plex_chromecast_status
-    to: playing
+    - platform: state
+      entity_id: sensor.shieldplex_state
+      to: playing
+    - platform: state
+      entity_id: sensor.shieldplex_state
+      to: resumed
   condition:
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: 'Plex'
   - condition: state
     entity_id: device_tracker.jungle3t_wifi
     state: 'home'
@@ -14,14 +15,12 @@
     service: scene.turn_on
     entity_id: scene.plexon
 - alias: 'Media PLEX Monter les lumières pause'
+  initial_state: 'on'
   trigger:
     platform: state
-    entity_id: sensor.plex_chromecast_status
+    entity_id: sensor.shieldplex_state
     to: paused
   condition:
-  - condition: state
-    entity_id: sensor.chromecast_source
-    state: 'Plex'
   - condition: state
     entity_id: device_tracker.jungle3t_wifi
     state: 'home'
@@ -32,12 +31,12 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: sensor.plex_chromecast_status
-    to: idle
+    entity_id: sensor.shieldplex_state
+    to: stopped
     for:
       hours: 00
       minutes: 00
-      seconds: 03
+      seconds: 01
   condition:
   - condition: state
     entity_id: device_tracker.jungle3t_wifi

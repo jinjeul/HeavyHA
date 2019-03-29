@@ -16,11 +16,11 @@ cuisine:
 salon:
   entities:
     - light.salon
-    - light.tv_strip
+    - light.vinyles_strip
     - light.lampe_bureau
     - light.bureau_strip
     - media_player.denon_salon
-    - media_player.la_tele
+    - media_player.65oled803_12_3
 chambre:
   entities:
     - light.chambre
@@ -43,10 +43,9 @@ light_salledebain:
 light_salon:
   entities:
     - light.salon
-    - light.tv_strip
+    - light.vinyles_strip
     - light.lampe_bureau
     - light.bureau_strip
-    - light.gateway_light_34ce008db5a7
 light_cuisine:
   entities:
     - light.cuisine_2
@@ -55,7 +54,9 @@ light_vestibule:
     - light.vestibule
 mediaplayers:
   entities:
-    - media_player.la_tele
+    - media_player.65oled803_12_3
+    - media_player.junglekodi
+    - media_player.shield
     - media_player.junglehomemini
     - media_player.denon_salon
     - media_player.denon_bureau
@@ -85,7 +86,7 @@ mediaswitches:
   control: hidden
   name: 'Contrôle Multimedia'
   entities:
-    - light.tv_strip
+    - light.vinyles_strip
     - switch.tv
     - switch.allzonestereo
 portail_switch:

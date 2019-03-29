@@ -46,7 +46,7 @@
 #        - group.light_cuisine
 #        - group.light_vestibule
 #        - group.light_salledebain
-#        - light.tv_strip
+#        - light.vinyles_strip
 #        - light.gateway_light_34ce008db5a7
 #      include_domains:
 #        - switch
@@ -67,3 +67,22 @@
 #  - platform: tautulli
 #    api_key: !secret TAUTULLI_API_KEY
 #    host: !secret TAUTULLI_HOST
+######################################
+#  - platform: androidtv
+#    name: Android@JungleTV
+#    device_class: androidtv
+#    host: !secret tv_ip
+#    adbkey: "/config/adbkey"
+#    adb_server_ip: 127.0.0.1
+#    apps:
+#      com.netflix.ninja: "Netflix"
+#      org.xbmc.kodi: "Kodi"
+#      com.amazon.amazonvideo.livingroom: "PrimeVideo"
+#  - platform: plex_client
+#    name: plex_chromecast_status
+#    host: !secret junglenas_ip
+#    port: 32400
+#    username: !secret plex_username
+#    password: !secret plex_password
+#    token: !secret plex_token
+#    machine_id: !secret plex_machineid_chromecast

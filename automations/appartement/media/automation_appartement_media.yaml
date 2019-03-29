@@ -52,27 +52,25 @@
     entity_id: device_tracker.jungle3t_wifi
     to: 'home'
   action:
+    - service: remote.turn_on
+      data:
+        activity: 38872584
+        entity_id: remote.hub_salon
+    - delay: 
+        seconds: 10
     - service: remote.send_command
       entity_id: remote.hub_salon
       data:
         device: "45999099"
-        command: "InputMediaPlayer"
-    #- service: remote.turn_on
-    #  data:
-    #    activity: 35366534
-    #    entity_id: remote.hub_salon
-    - service: media_player.volume_set
-      entity_id: media_player.la_tele
-      data:
-        volume_level: 0.50
-    - delay: 
-        seconds: 3
+        command: "PureDirect"
     - service: media_player.play_media
-      entity_id: media_player.la_tele
+      entity_id: media_player.65oled803_12_3
       data_template:
         media_content_id: 'http://108.163.197.114:8141/;stream.mp3'
         media_content_type: music
-    - delay: 
-        seconds: 7
-    - service: switch.turn_on
+#    - service: media_player.volume_set
+#      entity_id: media_player.65oled803_12_3
+#      data:
+#        volume_level: 0.50
+    - service: switch.turn_off
       entity_id: switch.allzonestereo

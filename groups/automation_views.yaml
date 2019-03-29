@@ -13,6 +13,9 @@ media_automation:
     - automation.media_plex_baisser_les_lumieres_play
     - automation.media_plex_monter_les_lumieres_pause
     - automation.media_plex_monter_les_lumieres_stop
+    - automation.media_kodi_baisser_les_lumieres_play
+    - automation.media_kodi_monter_les_lumieres_pause
+    - automation.media_kodi_monter_les_lumieres_stop
     - automation.pc_arreter_au_depart
     - automation.mediaplayer_appartement_off_au_depart
     - automation.power_server_bring_it_back_up
@@ -23,12 +26,10 @@ media_automation:
     - automation.cube_event_tap_twice
     - automation.harmony
     - automation.harmony_off
-    - automation.harmony_update_tv_boolean
     - automation.junglepc_eteindre
     - automation.junglepc_redemarrer
     - automation.junglepc_veille
     - automation.media_appartement_electronics_off_single_jungletap
-
 light_automation:
   name: 'Lumières & Mouvements'
   entities:

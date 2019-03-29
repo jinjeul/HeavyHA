@@ -24,7 +24,7 @@
       action_type: shake_air
   action:
     - service: media_player.media_next_track
-      entity_id: media_player.la_tele
+      entity_id: media_player.65oled803_12_3
     - service: media_player.volume_set
       entity_id: media_player.junglehomemini
       data:

@@ -24,3 +24,14 @@
       data:
         entity_id: climate.salon
         temperature: '23'
+- alias: 'Chauffage Appartement sonoff lit on single jungletap'
+  initial_state: 'on'
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.switch_158d00016bdb71
+      click_type: single
+  action:
+    - service: switch.turn_off
+      entity_id: switch.sonoff_bed

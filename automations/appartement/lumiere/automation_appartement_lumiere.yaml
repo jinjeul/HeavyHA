@@ -10,7 +10,7 @@
     below: '300'
   action:
     service: homeassistant.turn_on
-    entity_id: light.salon, light.cuisine_2, light.gateway_light_34ce008db5a7, light.tv_strip
+    entity_id: light.salon, light.cuisine_2, light.vinyles_strip
 - alias: 'Lumières Appartement OFF au Départ'
   initial_state: 'on'
   trigger:
@@ -45,7 +45,7 @@
       click_type: double
   action:
     - service: homeassistant.turn_on
-      entity_id: light.salon, light.cuisine_2, light.vestibule, light.salledebain, light.gateway_light_34ce008db5a7, light.tv_strip
+      entity_id: light.salon, light.cuisine_2, light.vestibule, light.salledebain, light.vinyles_strip
     - service: scene.turn_on
       entity_id: scene.chambre_on
 - alias: 'Lumières Salon Toggle light on leftswitch bis'

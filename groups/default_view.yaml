@@ -18,6 +18,7 @@ default_view:
   - group.presence_tracking
   - group.home_domotique
   - group.meteo_epinaysurorge
-  - media_player.la_tele
+  - media_player.shield
+  - media_player.junglekodi
   - media_player.denon_salon
   - media_player.denon_bureau

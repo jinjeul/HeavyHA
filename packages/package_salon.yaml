@@ -2,7 +2,7 @@
   - platform: yeelight
     devices:
       192.168.1.173:
-        name: TV Strip
+        name: Vinyles Strip
   - platform: switch
     name: Lampe Bureau
     entity_id: switch.lumiere_bureau
@@ -29,16 +29,16 @@ sensor:
   - platform: template
     sensors:
       chromecast_source:
-        value_template: '{{ states.media_player.la_tele.attributes["app_name"] }}'
+        value_template: "{{ state_attr('media_player.65oled803_12_3', 'app_name') }}"
         friendly_name: 'Chromecast Source'
       chromecast_state:
-        value_template: '{{ states.media_player.la_tele.state }}'
+        value_template: "{{ states('media_player.65oled803_12_3') }}"
         friendly_name: 'Chromecast State'
   - platform: template
     sensors:
       current_activity_hub:
         friendly_name: 'Activité en cours'
-        value_template: '{{ states.remote.hub_salon.attributes.current_activity }}'
+        value_template: "{{ state_attr('remote.hub_salon', 'current_activity') }}"
 switch:
   - platform: mqtt
     name: "Radiateur Salon"  

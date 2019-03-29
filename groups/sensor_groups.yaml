@@ -54,23 +54,17 @@ monitoring_ip:
     - binary_sensor.esp_lit
     - binary_sensor.harmony_hub
     - binary_sensor.jungle_nas_ilo
-    - binary_sensor.junglehome
     - binary_sensor.junglenas
     - binary_sensor.lifx_cuisine
     - binary_sensor.lifx_salon
-    - binary_sensor.xiaomi_gateway
     - binary_sensor.yeelight_chambre
     - binary_sensor.yeelight_sdb
-    - binary_sensor.yeelight_tv_strip
-rpi:
-  name: JunglePi
-  entities:
-    - sensor.cpu_speed
-    - sensor.disk_use_percent_home
-    - sensor.rpi_uptime
 junglenas:
   name: JungleNAS
   entities:
+    - sensor.cpu_speed
+    - sensor.disk_use_percent_home
+    - sensor.junglenas_uptime
     - sensor.hp_ilo_alimentation
     - sensor.glances_cpu_load
     - sensor.glances_disk_free
