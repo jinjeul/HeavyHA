@@ -13,3 +13,10 @@ packages/package_test.yaml
 secrets.yaml
 known_devices.yaml
 entity_registry.yaml
+automations/workshop
+automations/workshop/**
+automations/workshop/*.yaml
+automations/workshop/*.test
+packages/package_workshop.yaml
+groups/workshop.yaml
+

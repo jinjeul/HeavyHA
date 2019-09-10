@@ -51,10 +51,7 @@ monitoring_ip:
   name: Monitoring IP
   entities:
     - binary_sensor.denon_avr
-    - binary_sensor.esp_lit
     - binary_sensor.harmony_hub
-    - binary_sensor.jungle_nas_ilo
-    - binary_sensor.junglenas
     - binary_sensor.lifx_cuisine
     - binary_sensor.lifx_salon
     - binary_sensor.yeelight_chambre

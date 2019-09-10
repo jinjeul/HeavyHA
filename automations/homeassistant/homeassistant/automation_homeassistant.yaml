@@ -95,29 +95,3 @@
       entity_id: switch.radiateur_salon
     - service: homeassistant.turn_off
       entity_id: switch.radiateur_chambre
-      
-##########
-# OTHERS #
-##########
-
-- alias: Keep Google Home Alive
-  initial_state: 'off'
-  trigger:
-    platform: time_pattern
-    minutes: '/2'
-    seconds: 00
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: media_player.junglehomemini
-        state: 'off'
-      - condition: state
-        entity_id: media_player.junglehomemini
-        state: 'idle'
-  action:
-    service: media_player.play_media
-    entity_id: media_player.junglehomemini
-    data:
-      media_content_id: !secret url_mp3_1sec
-      media_content_type: music

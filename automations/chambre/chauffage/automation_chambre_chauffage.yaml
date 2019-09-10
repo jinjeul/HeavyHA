@@ -56,7 +56,7 @@
       data:
         entity_id: switch.radiateur_chambre
 - alias: 'Chauffage Chambre lit ON a 22h15 semaine'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: time_pattern
     hours: 22

@@ -1,4 +1,16 @@
 sun:
+yeelight:
+    devices:
+      192.168.1.170:
+        name: Vestibule
+      192.168.1.171:
+        name: Salledebain
+      192.168.1.172:
+        name: Chambre
+      192.168.1.173:
+        name: Vinyles Strip
+      192.168.1.174:
+        name: Bureau Strip
 mqtt:  
   broker: localhost
   port: 1883
@@ -22,10 +34,10 @@ sensor:
   - platform: command_line
     name: "Download Grafana - conso"
     command: !secret cmd_get_grafana_temp
-  - platform: haveibeenpwned
-    email: 
-      - !secret email_1
-      - !secret email_2
+#  - platform: haveibeenpwned
+#    email: 
+#      - !secret email_1
+#      - !secret email_2
   - platform: mqtt_room
     device_id: !secret junglenut_id
     state_topic: "room_presence"
@@ -115,11 +127,11 @@ notify:
     username: !secret gmail_user
     password: !secret gmail_pass
     recipient: !secret gmail_user
-tts:
-  - platform: google
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
+#tts:
+#  - platform: google_translate
+#    cache: true
+#    cache_dir: /tmp/tts
+#    time_memory: 300
 binary_sensor:
   - platform: trend
     sensors:
@@ -143,10 +155,8 @@ scene:
           brightness: 12
           transition: 10
         light.vinyles_strip:
-          state: on
-          brightness: 12
-          transition: 20
-          rgb_color: [128, 147, 255]
+          state: off
+          transition: 30
         light.cuisine_2:
           state: off
           transition: 10
@@ -154,7 +164,7 @@ scene:
           state: off
         light.bureau_strip:
           state: off
-          transition: 20
+          transition: 30
         light.vestibule:
           state: off
           transition: 30
@@ -175,6 +185,11 @@ scene:
           brightness: 20
           transition: 10
           rgb_color: [64, 0, 255]
+        light.bureau_strip:
+          state: on
+          transition: 20
+        switch.lumiere_bureau:
+          state: on
   - name: plexpause
     entities:
         light.salon:
@@ -182,9 +197,11 @@ scene:
           color_temp: 333
           brightness: 131
           transition: 7
-        light.vestibule:
+        light.vinyles_strip:
           state: on
-          transition: 5
+          brightness: 12
+          transition: 20
+          rgb_color: [128, 147, 255]
   - name: cuisineoff
     entities:
         light.cuisine_2:
@@ -217,37 +234,40 @@ influxdb:
       - sensor.temperature_158d0001fa768f
       - sensor.temperature_158d0002273c15
       - sensor.releve_consommation_wh
-google_assistant:
-  project_id: !secret gassist_project_id
-  exposed_domains:
-    - switch
-    - light
-    - cover
-  entity_config:
-    switch.radiateur_chambre:
-      expose: false
-    switch.radiateur_salon:
-      expose: false
-    switch.sonoff_bed:
-      name: lit
-    switch.lumiere_bureau:
-      expose: false
-    switch.tv:
-      expose: false
-    light.yeelight_rgb_34ce0082379e:
-      expose: false
-    light.yeelight_rgb_34ce008cff26:
-      expose: false
-    light.yeelight_strip_7811dc672f73:
-      expose: false
-    light.yeelight_white_34ce008876d6:
-      expose: false
-    light.yeelight_strip2_04cf8c7ad539:
-      expose: false
-    light.gateway_light_34ce008db5a7:
-      expose: false
-    cover.volet_du_salon:
-      name: Volet
+      - sensor.temperature_158d0002272ffb
+      - sensor.humidity_158d0002272ffb
+      - sensor.pressure_158d0002272ffb
+#google_assistant:
+#  project_id: !secret gassist_project_id
+#  exposed_domains:
+#    - switch
+#    - light
+#    - cover
+#  entity_config:
+#    switch.radiateur_chambre:
+#      expose: false
+#    switch.radiateur_salon:
+#      expose: false
+#    switch.sonoff_bed:
+#      name: lit
+#    switch.lumiere_bureau:
+#      expose: false
+#    switch.tv:
+#      expose: false
+#    light.yeelight_rgb_34ce0082379e:
+#      expose: false
+#    light.yeelight_rgb_34ce008cff26:
+#      expose: false
+#    light.yeelight_strip_7811dc672f73:
+#      expose: false
+#    light.yeelight_white_34ce008876d6:
+#      expose: false
+#    light.yeelight_strip2_04cf8c7ad539:
+#      expose: false
+#    light.gateway_light_34ce008db5a7:
+#      expose: false
+#    cover.volet_du_salon:
+#      name: Volet
 camera:
   - platform: local_file
     name: Grafana_temperature

@@ -1,15 +1,7 @@
 ﻿light:
-  - platform: yeelight
-    devices:
-      192.168.1.173:
-        name: Vinyles Strip
   - platform: switch
     name: Lampe Bureau
     entity_id: switch.lumiere_bureau
-  - platform: yeelight
-    devices:
-      192.168.1.174:
-        name: Bureau Strip
 climate:
   - platform: generic_thermostat
     name: Salon
@@ -29,10 +21,10 @@ sensor:
   - platform: template
     sensors:
       chromecast_source:
-        value_template: "{{ state_attr('media_player.65oled803_12_3', 'app_name') }}"
+        value_template: "{{ state_attr('media_player.jungletv', 'app_name') }}"
         friendly_name: 'Chromecast Source'
       chromecast_state:
-        value_template: "{{ states('media_player.65oled803_12_3') }}"
+        value_template: "{{ states('media_player.jungletv') }}"
         friendly_name: 'Chromecast State'
   - platform: template
     sensors:

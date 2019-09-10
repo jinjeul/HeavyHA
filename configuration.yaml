@@ -19,6 +19,9 @@ homeassistant:
     "*":
       homebridge_hidden: true
       google_assistant: false
+  customize_domain:
+    group:
+      control: hidden
 http:
   ssl_certificate: !secret ssl_cert_crt
   ssl_key: !secret ssl_cert_key
@@ -57,6 +60,7 @@ updater:
 discovery:
   ignore:
     - harmony
+    - yeelight
 system_health:
 map:
 history:
@@ -87,6 +91,7 @@ history:
       - sensor.transmission_active_torrents
       - sensor.transmission_status
       - sensor.yr_symbol
+      - media_player.junglekodi
 logbook:
   exclude:
     entities:
@@ -117,7 +122,8 @@ logbook:
       - sensor.transmission_up_speed
       - binary_sensor.gmail_new
       - media_player.junglehomemini
-      - media_player.65oled803_12_3
+      - media_player.jungletv
+      - media_player.junglekodi
       - automation.keep_google_home_alive
       - automation.edf_calcul_cout_journalier
       - automation.edf_remise_a_zero_journalier

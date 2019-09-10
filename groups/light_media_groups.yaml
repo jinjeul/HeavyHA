@@ -20,7 +20,7 @@ salon:
     - light.lampe_bureau
     - light.bureau_strip
     - media_player.denon_salon
-    - media_player.65oled803_12_3
+    - media_player.jungletv
 chambre:
   entities:
     - light.chambre
@@ -54,10 +54,8 @@ light_vestibule:
     - light.vestibule
 mediaplayers:
   entities:
-    - media_player.65oled803_12_3
     - media_player.junglekodi
-    - media_player.shield
-    - media_player.junglehomemini
+    - media_player.jungleshield
     - media_player.denon_salon
     - media_player.denon_bureau
 radiateurs:
@@ -82,13 +80,19 @@ harmony:
   entities:
     - sensor.current_activity_hub
     - input_select.harmony
+    - switch.harmony_shield_tv
+    - switch.harmony_vinyle
+    - switch.harmony_off
 mediaswitches:
   control: hidden
   name: 'Contrôle Multimedia'
   entities:
-    - light.vinyles_strip
-    - switch.tv
+    - switch.mute_denon_salon
     - switch.allzonestereo
+    - switch.mcs_denon_salon
+    - switch.tv
+    
+
 portail_switch:
   name: 'Contrôle des Portails'
   entities:
@@ -103,3 +107,4 @@ home_domotique:
   entities:
     - cover.volet_du_salon
     - switch.portail
+    - switch.sonoff_bed

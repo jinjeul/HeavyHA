@@ -86,3 +86,34 @@
 #    password: !secret plex_password
 #    token: !secret plex_token
 #    machine_id: !secret plex_machineid_chromecast
+#  - platform: hp_ilo
+#    host: !secret junglenas_ilo_ip
+#    username: !secret junglenas_ilo_username
+#    password: !secret junglenas_ilo_password
+#    monitored_variables:
+#      - name: Nom du serveur
+#        sensor_type: server_name
+#      - name: Alimentation
+#        sensor_type: server_power_status
+#  - platform: command_line
+#    name: JungleNAS Uptime
+#    command: "uptime -p"
+#    value_template: "{{ value[3:] }}"
+#  - platform: glances
+#    host: !secret junglenas_ip
+#    resources:
+#      - 'disk_use_percent'
+#      - 'disk_use'
+#      - 'disk_free'
+#      - 'memory_use_percent'
+#      - 'memory_use'
+#      - 'memory_free'
+#      - 'swap_use_percent'
+#      - 'swap_use'
+#      - 'swap_free'
+#      - 'processor_load'
+#      - 'process_running'
+#      - 'process_total'
+#      - 'process_thread'
+#      - 'process_sleeping'
+#      - 'cpu_temp'

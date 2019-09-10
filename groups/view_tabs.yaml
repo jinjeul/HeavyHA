@@ -49,7 +49,7 @@ media:
   name: Media
   view: true
 meteo_view:
-  icon: mdi:weather-partlycloudy
+  icon: mdi:weather-sunny
   entities:
   - group.meteo
   - group.meteo_epinaysurorge

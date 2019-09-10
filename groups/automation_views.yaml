@@ -19,7 +19,6 @@ media_automation:
     - automation.pc_arreter_au_depart
     - automation.mediaplayer_appartement_off_au_depart
     - automation.power_server_bring_it_back_up
-    - automation.keep_google_home_alive
     - automation.cube_event_shake_air
     - automation.cube_event_flip180
     - automation.cube_event_flip90
@@ -69,8 +68,6 @@ alerte_automation:
     - automation.alerte_pushbullet_portail_terrasses_ouvert
     - automation.alerte_pushbullet_volet_ferme
     - automation.alerte_pushbullet_volet_ouvert
-    - automation.tts_googlehome_keupon_arrive
-    - automation.tts_googlehome_nouveau_mail
     
 chauffage_automation:
   name: 'Gestion des thermostats'

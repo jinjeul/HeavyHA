@@ -178,10 +178,10 @@ switch.radiateur_chambre:
   friendly_name: 'Chambre'
   icon: mdi:hot-tub
 switch.sonoff_bed:
-  friendly_name: 'Chaffauge Lit'
-  icon: mdi:hotel
-#  friendly_name: 'Ventilateur Salon'
-#  icon: mdi:fan
+#  friendly_name: 'Chaffauge Lit'
+#  icon: mdi:hotel
+  friendly_name: 'Ventilateur Salon'
+  icon: mdi:fan
   google_assistant_type: fan
 climate.salon:
   friendly_name: 'Salon'

@@ -64,12 +64,12 @@
         device: "45999099"
         command: "PureDirect"
     - service: media_player.play_media
-      entity_id: media_player.65oled803_12_3
+      entity_id: media_player.jungletv
       data_template:
         media_content_id: 'http://108.163.197.114:8141/;stream.mp3'
         media_content_type: music
 #    - service: media_player.volume_set
-#      entity_id: media_player.65oled803_12_3
+#      entity_id: media_player.jungletv
 #      data:
 #        volume_level: 0.50
     - service: switch.turn_off

@@ -11,7 +11,7 @@
       data_template:
         activity: >
           {% if is_state("input_select.harmony", "TV") %}
-            38872584
+            39121780
           {% elif is_state("input_select.harmony", "PC") %}
             38956202
           {% elif is_state("input_select.harmony", "Vinyle Salon") %}
@@ -80,7 +80,7 @@
 #    - service: switch.turn_on
 #      entity_id: switch.allzonestereo
 - alias: Harmony Vinyle UnMuteFix
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: state
     entity_id: remote.hub_salon
@@ -96,3 +96,32 @@
        data:
          device: "45999099"
          command: "Mute"
+- alias : Harmony vinyle volume
+  initial_state: 'off'
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+    - condition: template
+      value_template: '{{ trigger.to_state.attributes.current_activity == "Vinyle Salon" }}'
+  action:
+     - delay: 2
+     - service: media_player.volume_set
+       entity_id: media_player.denon_salon
+       data:
+         volume_level: 0.54
+- alias : Harmony shield tv volume
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: remote.hub_salon
+  condition:
+    - condition: template
+      value_template: '{{ trigger.to_state.attributes.current_activity == "SHIELD TV" }}'
+    - condition: template
+      value_template: '{{ trigger.from_state.attributes.current_activity == "Vinyle Salon" }}'
+  action:
+     - service: media_player.volume_set
+       entity_id: media_player.denon_salon
+       data:
+         volume_level: 0.38

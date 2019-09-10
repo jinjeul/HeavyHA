@@ -59,6 +59,53 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.allzonestereo_off
+      mute_denon_salon:
+        friendly_name: 'Mute Denon Salon'
+        value_template: "{{ state_attr('media_player.denon_salon', 'is_volume_muted') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.mutedenonsalon_onoff
+        turn_off:
+          service: script.turn_on
+          entity_id: script.mutedenonsalon_onoff
+      mcs_denon_salon:
+        friendly_name: 'MultiChannelStereo Denon Salon'
+        value_template: "{{ is_state('input_boolean.mcs_denon_salon', 'on')}}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.mcsdenonsalon_onoff
+        turn_off:
+          service: script.turn_on
+          entity_id: script.mcsdenonsalon_onoff
+      harmony_shield_tv:
+        friendly_name: 'Activité SHIELD TV'
+        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'SHIELD') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.harmony_shield_tv_onoff
+        turn_off:
+          service: script.turn_on
+          entity_id: script.harmony_shield_tv_onoff
+      harmony_vinyle:
+        friendly_name: 'Activité Vinyle'
+        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'Vinyle') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.harmony_vinyle_onoff
+        turn_off:
+          service: script.turn_on
+          entity_id: script.harmony_vinyle_onoff
+      harmony_off:
+        friendly_name: 'Arrêter Activité Harmony'
+        value_template: "{{ is_state_attr('remote.hub_salon', 'current_activity', 'PowerOff') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.harmony_off
+        turn_off:
+          service: script.turn_on
+          entity_id: script.harmony_off
+      
+      
 transmission:
   host: !secret junglenas_ip
   username: !secret transmission_user
@@ -79,15 +126,6 @@ sensor:
       - queue
     days: 2
     include_paths: !secret sonarr_series_path
-  - platform: hp_ilo
-    host: !secret junglenas_ilo_ip
-    username: !secret junglenas_ilo_username
-    password: !secret junglenas_ilo_password
-    monitored_variables:
-      - name: Nom du serveur
-        sensor_type: server_name
-      - name: Alimentation
-        sensor_type: server_power_status
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
@@ -96,28 +134,6 @@ sensor:
       - type: processor_use
       - type: ipv4_address
         arg: eth0
-  - platform: command_line
-    name: JungleNAS Uptime
-    command: "uptime -p"
-    value_template: "{{ value[3:] }}"
-  - platform: glances
-    host: !secret junglenas_ip
-    resources:
-      - 'disk_use_percent'
-      - 'disk_use'
-      - 'disk_free'
-      - 'memory_use_percent'
-      - 'memory_use'
-      - 'memory_free'
-      - 'swap_use_percent'
-      - 'swap_use'
-      - 'swap_free'
-      - 'processor_load'
-      - 'process_running'
-      - 'process_total'
-      - 'process_thread'
-      - 'process_sleeping'
-      - 'cpu_temp'
   - platform: tautulli
     api_key: !secret TAUTULLI_API_KEY
     host: !secret TAUTULLI_HOST
@@ -179,6 +195,10 @@ input_boolean:
     icon: mdi:television-classic
   allzonestereostate:
     name: 'All Zone ON/OFF'
+    initial: off
+    icon: mdi:speaker
+  mcs_denon_salon:
+    name: 'MultiChannelStereo Denon'
     initial: off
     icon: mdi:speaker
   vacancesstate:
@@ -255,25 +275,49 @@ script:
         data:
           device: "45999099"
           command: "AllZoneStereoOff"
+  mutedenonsalon_onoff:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999099"
+          command: "Mute"
+  mcsdenonsalon_onoff:
+    sequence:
+      - service: remote.send_command
+        entity_id: remote.hub_salon
+        data:
+          device: "45999099"
+          command: "MultiChStereo"
+  harmony_shield_tv_onoff:
+   sequence:
+      - service: remote.turn_on
+        entity_id: remote.hub_salon
+        data:
+          activity: "SHIELD TV"
+  harmony_vinyle_onoff:
+   sequence:
+      - service: remote.turn_on
+        entity_id: remote.hub_salon
+        data:
+          activity: "Vinyle Salon"
+  harmony_off:
+   sequence:
+      - service: remote.turn_off
+        entity_id: remote.hub_salon
   start_junglekodi:
     sequence:
     - service: media_player.select_source
       data:
-        entity_id: media_player.shield
+        entity_id: media_player.jungleshield
         source: 'org.xbmc.kodi'
   stop_junglekodi:
     sequence:
     - service: media_player.select_source
       data:
-        entity_id: media_player.shield
+        entity_id: media_player.jungleshield
         source: '!org.xbmc.kodi'
 binary_sensor:
-  - platform: ping
-    host: !secret junglenas_ip
-    name: JungleNAS
-  - platform: ping
-    host: !secret junglenas_ilo_ip
-    name: Jungle NAS ILO
   - platform: ping
     host: !secret esprad_ip
     name: ESP Radiateurs
@@ -295,6 +339,3 @@ binary_sensor:
   - platform: ping
     host: !secret yeelight_chambre_ip
     name: Yeelight Chambre
-  - platform: ping
-    host: !secret sonoff_bed_ip
-    name: ESP Lit

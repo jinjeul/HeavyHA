@@ -1,7 +1,7 @@
 ﻿- alias: 'Media androidtv Baisser les lumières play'
   trigger:
     platform: state
-    entity_id: media_player.shield
+    entity_id: media_player.jungleshield
     to: playing
   condition:
   - condition: state
@@ -10,16 +10,16 @@
   - condition: or
     conditions:
       - condition: template
-        value_template: "{{ is_state_attr('media_player.shield', 'app_name', 'Netflix') }}"
+        value_template: "{{ is_state_attr('media_player.jungleshield', 'app_name', 'Netflix') }}"
       - condition: template
-        value_template: "{{ is_state_attr('media_player.shield', 'app_name', 'PrimeVideo') }}"
+        value_template: "{{ is_state_attr('media_player.jungleshield', 'app_name', 'PrimeVideo') }}"
   action:
     service: scene.turn_on
     entity_id: scene.plexon
 - alias: 'Media androidtv Monter les lumières pause'
   trigger:
     platform: state
-    entity_id: media_player.shield
+    entity_id: media_player.jungleshield
     to: paused
   condition:
   - condition: state
@@ -28,9 +28,9 @@
   - condition: or
     conditions:
       - condition: template
-        value_template: "{{ is_state_attr('media_player.shield', 'app_name', 'Netflix') }}"
+        value_template: "{{ is_state_attr('media_player.jungleshield', 'app_name', 'Netflix') }}"
       - condition: template
-        value_template: "{{ is_state_attr('media_player.shield', 'app_name', 'PrimeVideo') }}"
+        value_template: "{{ is_state_attr('media_player.jungleshield', 'app_name', 'PrimeVideo') }}"
   action:
     service: scene.turn_on
     entity_id: scene.plexpause
@@ -38,7 +38,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: media_player.shield
+    entity_id: media_player.jungleshield
     to: idle
     for:
       hours: 00

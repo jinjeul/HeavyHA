@@ -24,7 +24,7 @@
       action_type: shake_air
   action:
     - service: media_player.media_next_track
-      entity_id: media_player.65oled803_12_3
+      entity_id: media_player.jungletv
     - service: media_player.volume_set
       entity_id: media_player.junglehomemini
       data:
@@ -86,25 +86,3 @@
           {%- else -%}
           false
           {%- endif -%}
-- alias: TTS GoogleHome nouveau mail
-  trigger:
-    platform: numeric_state
-    entity_id: sensor.gmail_imap
-    above: 0
-  condition:
-    - condition: state
-      entity_id: device_tracker.jungle3t_wifi
-      state: 'home'
-    - condition: time
-      after: '10:00'
-      before: '22:00'
-  action:
-    - service: media_player.volume_set
-      entity_id: media_player.junglehomemini
-      data:
-        volume_level: 0.3
-    - service: tts.google_say
-      entity_id: media_player.junglehomemini
-      data:
-        message: 'Jinjeul, tu as reçu un nouveau mail !'
-        language: 'fr'     
