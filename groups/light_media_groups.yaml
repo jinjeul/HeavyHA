@@ -5,7 +5,16 @@
 #                                                                                  #
 #                                                                                  #
 ####################################################################################
-
+light_default_view:
+  entities:
+    - light.vestibule
+    - light.cuisine_2
+    - light.salon
+    - light.salledebain
+    - light.chambre
+    - light.bureau_strip
+    - light.lampe_bureau
+    - light.vinyles_strip
 light_bureau:
   entities:
     - light.bureau_strip
@@ -59,7 +68,6 @@ mediaplayers:
     - media_player.denon_salon
     - media_player.denon_bureau
 radiateurs:
-  control: hidden
   name: 'Contrôle des radiateurs'
   entities:
     - switch.radiateur_salon
@@ -84,15 +92,12 @@ harmony:
     - switch.harmony_vinyle
     - switch.harmony_off
 mediaswitches:
-  control: hidden
   name: 'Contrôle Multimedia'
   entities:
     - switch.mute_denon_salon
     - switch.allzonestereo
     - switch.mcs_denon_salon
     - switch.tv
-    
-
 portail_switch:
   name: 'Contrôle des Portails'
   entities:
@@ -102,7 +107,6 @@ covers:
   entities:
     - cover.volet_du_salon
 home_domotique:
-  control: hidden
   name: 'Contrôle Domotique'
   entities:
     - cover.volet_du_salon

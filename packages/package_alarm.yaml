@@ -15,7 +15,7 @@ input_number:
   alarmminutes:
     name: Minutes
     icon: mdi:timer
-    initial: 00
+    initial: 30
     min: 0
     max: 59
     step: 5

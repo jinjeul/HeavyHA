@@ -5,7 +5,9 @@
 #                                GROUPS                                            #
 #                                                                                  #
 ####################################################################################
-
+group.light_default_view:
+  hidden: false
+  friendly_name: 'Les lumières'
 group.all_lights:
   hidden: false
   friendly_name: 'Les lumières'

@@ -12,13 +12,11 @@ default_view:
   entities:
   - group.date
   - group.alarmclock
-  - group.lumieres_home
+  - group.light_default_view
   - group.temperature
   - group.thermostat
   - group.presence_tracking
+  - group.door_window_tracking
   - group.home_domotique
-#  - group.meteo_epinaysurorge
-  - media_player.jungleshield
-  - media_player.junglekodi
   - media_player.denon_salon
   - media_player.denon_bureau
