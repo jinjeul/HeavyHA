@@ -80,7 +80,7 @@
           {% if states.sun.sun.state == "above_horizon" %}
             Light - Navy Blue
           {% else %}
-            midnight
+            Light - Navy Blue
           {% endif %}
 #######
 # OFF #

@@ -7,29 +7,6 @@
 #    action:
 #      service: light.toggle
 #      entity_id: light.salon
-#sensor:
-#  - platform: miflora
-#    mac: !secret miplant_1_mac
-#    name: Fleur 1
-#    force_update: false
-#    median: 3
-#    monitored_conditions:
-#      - moisture
-#      - light
-#      - temperature
-#      - conductivity
-#      - battery
-#  - platform: miflora
-#    mac: !secret miplant_2_mac
-#    name: Fleur 2
-#    force_update: false
-#    median: 3
-#    monitored_conditions:
-#      - moisture
-#      - light
-#      - temperature
-#      - conductivity
-#      - battery
 #pilight:
 #  host: 192.168.1.103
 #  port: 5000
@@ -117,3 +94,126 @@
 #      - 'process_thread'
 #      - 'process_sleeping'
 #      - 'cpu_temp'
+#google_assistant:
+#  project_id: !secret gassist_project_id
+#  exposed_domains:
+#    - switch
+#    - light
+#    - cover
+#  entity_config:
+#    switch.radiateur_chambre:
+#      expose: false
+#    switch.radiateur_salon:
+#      expose: false
+#    switch.sonoff_bed:
+#      name: lit
+#    switch.lumiere_bureau:
+#      expose: false
+#    switch.tv:
+#      expose: false
+#    light.yeelight_rgb_34ce0082379e:
+#      expose: false
+#    light.yeelight_rgb_34ce008cff26:
+#      expose: false
+#    light.yeelight_strip_7811dc672f73:
+#      expose: false
+#    light.yeelight_white_34ce008876d6:
+#      expose: false
+#    light.yeelight_strip2_04cf8c7ad539:
+#      expose: false
+#    light.gateway_light_34ce008db5a7:
+#      expose: false
+#    cover.volet_du_salon:
+#      name: Volet
+#tts:
+#  - platform: google_translate
+#    cache: true
+#    cache_dir: /tmp/tts
+#    time_memory: 300
+#weblink:
+#  entities:
+#    - name: Routeur Status
+#      url: !secret url_routeur_status
+#      icon: mdi:web
+#    - name: Routeur Logs
+#      url: !secret url_routeur_logs
+#      icon: mdi:web
+#    - name: 'Serveur de Torrents'
+#      url: !secret url_torrent
+#      icon: mdi:web
+#    - name: Sonarr
+#      url: !secret url_sonarr
+#      icon: mdi:web
+#    - name: Plex Py
+#      url: !secret url_plexpy
+#      icon: mdi:web
+#    - name: Plex Media Server
+#      url: !secret url_plex
+#      icon: mdi:web
+#    - name: JungleMan.fr
+#      url: !secret url_junglemanfr
+#      icon: mdi:web
+#    - name: Ihanatarina.com
+#      url: !secret url_ihanatarina
+#      icon: mdi:web
+#    - name: Monitorix
+#      url: !secret url_monitorix
+#      icon: mdi:web
+#    - name: Github HeavyHA
+#      url: !secret url_github_heavyha
+#      icon: mdi:web
+#binary_sensor:
+#  - platform: ping
+#    host: !secret esprad_ip
+#    name: ESP Radiateurs
+#  - platform: ping
+#    host: !secret denon_ip
+#    name: Denon AVR
+#  - platform: ping
+#    host: !secret lifx_cuisine_ip
+#    name: LIFX Cuisine
+#  - platform: ping
+#    host: !secret lifx_salon_ip
+#    name: LIFX Salon
+#  - platform: ping
+#    host: !secret harmony_ip
+#    name: Harmony Hub
+#  - platform: ping
+#    host: !secret yeelight_sdb_ip
+#    name: Yeelight SDB
+#  - platform: ping
+#    host: !secret yeelight_chambre_ip
+#    name: Yeelight Chambre
+#history_graph:
+#  temperature_appartement:
+#    name: Température Appartement
+#    entities:
+#      - sensor.temperature_158d0001f52004
+#      - sensor.temperature_158d0001fa768f
+#      - sensor.temperature_158d0002273c15
+#    hours_to_show: 168
+#   refresh: 120
+#  - platform: imap
+#    name: GMail IMAP
+#    server: !secret mail_server
+#    port: 993
+#    username: !secret gmail_user
+#    password: !secret gmail_pass
+#    folder: inbox
+#  - platform: kodi
+#    host: !secret shield_ip
+#    name: JungleKodi
+#    username: !secret kodi_username
+#    password: !secret kodi_password
+#    turn_on_action:
+#        - service: remote.turn_on
+#          data:
+#            activity: 39121780
+#            entity_id: remote.hub_salon
+#    turn_off_action:
+#        - service: remote.turn_off
+#          entity_id: remote.hub_salon
+#transmission:
+#  host: !secret junglenas_ip
+#  username: !secret transmission_user
+#  password: !secret transmission_pass

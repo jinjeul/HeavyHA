@@ -24,7 +24,6 @@ device_tracker:
     interval_seconds: 10
     new_device_defaults:
       track_new_devices: False
-      hide_if_away: False
 ifttt:
   key: !secret ifttt_webhooks_key
 sensor:
@@ -54,13 +53,6 @@ sensor:
     time_zone: Europe/Istanbul
     name: Turquie
   - platform: cpuspeed
-  - platform: imap
-    name: GMail IMAP
-    server: !secret mail_server
-    port: 993
-    username: !secret gmail_user
-    password: !secret gmail_pass
-    folder: inbox
   - platform: yr
     monitored_conditions:
       - symbol
@@ -127,11 +119,6 @@ notify:
     username: !secret gmail_user
     password: !secret gmail_pass
     recipient: !secret gmail_user
-#tts:
-#  - platform: google_translate
-#    cache: true
-#    cache_dir: /tmp/tts
-#    time_memory: 300
 binary_sensor:
   - platform: trend
     sensors:
@@ -217,15 +204,19 @@ scene:
         light.chambre:
           state: on
           transition: 60
-history_graph:
-  temperature_appartement:
-    name: Température Appartement
-    entities:
-      - sensor.temperature_158d0001f52004
-      - sensor.temperature_158d0001fa768f
-      - sensor.temperature_158d0002273c15
-    hours_to_show: 168
-    refresh: 120
+script:
+  scene_chambre_on:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.chambre
+          transition: 60
+  scene_cuisine_off:
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.cuisine_2
+          transition: 10
 influxdb:
   host: localhost
   include:
@@ -236,38 +227,23 @@ influxdb:
       - sensor.releve_consommation_wh
       - sensor.temperature_158d0002272ffb
       - sensor.humidity_158d0002272ffb
-      - sensor.pressure_158d0002272ffb
-#google_assistant:
-#  project_id: !secret gassist_project_id
-#  exposed_domains:
-#    - switch
-#    - light
-#    - cover
-#  entity_config:
-#    switch.radiateur_chambre:
-#      expose: false
-#    switch.radiateur_salon:
-#      expose: false
-#    switch.sonoff_bed:
-#      name: lit
-#    switch.lumiere_bureau:
-#      expose: false
-#    switch.tv:
-#      expose: false
-#    light.yeelight_rgb_34ce0082379e:
-#      expose: false
-#    light.yeelight_rgb_34ce008cff26:
-#      expose: false
-#    light.yeelight_strip_7811dc672f73:
-#      expose: false
-#    light.yeelight_white_34ce008876d6:
-#      expose: false
-#    light.yeelight_strip2_04cf8c7ad539:
-#      expose: false
-#    light.gateway_light_34ce008db5a7:
-#      expose: false
-#    cover.volet_du_salon:
-#      name: Volet
+      - sensor.temperature_158d00036c18d1
+      - sensor.humidity_158d00036c18d1
+      - sensor.ws_temperature_moyenne
+      - sensor.ws_humidite_moyenne
+      - sensor.ws_temperature_moyenne_espflora
+      - sensor.ws_humidite_moyenne_espflora
+      - sensor.temperature_num_1
+      - sensor.humidite_num_1
+      - sensor.luminosite_num_1
+      - sensor.conductivite_num_1
+      - sensor.temperature_num_2
+      - sensor.humidite_num_2
+      - sensor.luminosite_num_2
+      - sensor.conductivite_num_2
+      - sensor.humidity_158d0002273c15
+      - sensor.humidity_158d0001f52004
+      - sensor.humidity_158d0001fa768f
 camera:
   - platform: local_file
     name: Grafana_temperature
@@ -286,4 +262,7 @@ meteo_france:
       - freeze_chance
       - rain_chance
       - snow_chance
-      - thunder_chance    
+      - thunder_chance
+deconz:
+  host: !secret junglenas_ip
+  port: !secret deconz_port

@@ -9,7 +9,7 @@
     longitude: !secret longitude_work
     radius: 500
     icon: mdi:briefcase
-  - name: Orly
+  - name: Airport
     latitude: !secret latitude_orly_ouest
     longitude: !secret longitude_orly_ouest
     radius: 500

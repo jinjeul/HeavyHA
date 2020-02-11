@@ -22,5 +22,5 @@
     for:
       minutes: 15
   action:
-    service: scene.turn_on
-    entity_id: scene.cuisineoff
+    service: script.turn_on
+    entity_id: script.scene_cuisine_off

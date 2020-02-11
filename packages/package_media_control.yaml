@@ -12,19 +12,6 @@ media_player:
     zones:
       - zone: Zone2
         name: Denon Bureau
-  - platform: kodi
-    host: !secret shield_ip
-    name: JungleKodi
-    username: !secret kodi_username
-    password: !secret kodi_password
-    turn_on_action:
-        - service: remote.turn_on
-          data:
-            activity: 39121780
-            entity_id: remote.hub_salon
-    turn_off_action:
-        - service: remote.turn_off
-          entity_id: remote.hub_salon
 shell_command:
   junglepc_shutdown: !secret junglepc_shutdown
   junglepc_restart: !secret junglepc_restart
@@ -34,7 +21,7 @@ shell_command:
   433_ouvrir_portail: !secret portail_ouvrir
 switch:
   - platform: wake_on_lan
-    mac_address: !secret junglepc_mac
+    mac: !secret junglepc_mac
     name: "Jungle PC"
     host: !secret junglepc_ip
     turn_off:
@@ -104,18 +91,24 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.harmony_off
-      
-      
-transmission:
-  host: !secret junglenas_ip
-  username: !secret transmission_user
-  password: !secret transmission_pass
-  monitored_conditions:
-    - 'current_status'
-    - 'download_speed'
-    - 'upload_speed'
-    - 'active_torrents'
+      harmony_pc:
+        friendly_name: 'Activité PC'
+        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'PC') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.harmony_pc_onoff
+        turn_off:
+          service: script.turn_on
+          entity_id: script.harmony_pc_onoff
 sensor:
+  - platform: deluge
+    host: !secret junglenas_ip
+    username: !secret deluge_user
+    password: !secret deluge_pass
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
   - platform: sonarr
     api_key: !secret sonarr_api
     host: !secret junglenas_ip
@@ -156,38 +149,6 @@ sensor:
     name: shieldplex_state
     state_topic: !secret topic_shieldplexstate
     value_template: '{{ value_json.body }}'
-weblink:
-  entities:
-    - name: Routeur Status
-      url: !secret url_routeur_status
-      icon: mdi:web
-    - name: Routeur Logs
-      url: !secret url_routeur_logs
-      icon: mdi:web
-    - name: 'Serveur de Torrents'
-      url: !secret url_torrent
-      icon: mdi:web
-    - name: Sonarr
-      url: !secret url_sonarr
-      icon: mdi:web
-    - name: Plex Py
-      url: !secret url_plexpy
-      icon: mdi:web
-    - name: Plex Media Server
-      url: !secret url_plex
-      icon: mdi:web
-    - name: JungleMan.fr
-      url: !secret url_junglemanfr
-      icon: mdi:web
-    - name: Ihanatarina.com
-      url: !secret url_ihanatarina
-      icon: mdi:web
-    - name: Monitorix
-      url: !secret url_monitorix
-      icon: mdi:web
-    - name: Github HeavyHA
-      url: !secret url_github_heavyha
-      icon: mdi:web
 input_boolean:
   tvstate:
     name: 'Etat du téléviseur'
@@ -305,6 +266,12 @@ script:
    sequence:
       - service: remote.turn_off
         entity_id: remote.hub_salon
+  harmony_pc_onoff:
+   sequence:
+      - service: remote.turn_on
+        entity_id: remote.hub_salon
+        data:
+          activity: "PC"
   start_junglekodi:
     sequence:
     - service: media_player.select_source
@@ -317,25 +284,3 @@ script:
       data:
         entity_id: media_player.jungleshield
         source: '!org.xbmc.kodi'
-binary_sensor:
-  - platform: ping
-    host: !secret esprad_ip
-    name: ESP Radiateurs
-  - platform: ping
-    host: !secret denon_ip
-    name: Denon AVR
-  - platform: ping
-    host: !secret lifx_cuisine_ip
-    name: LIFX Cuisine
-  - platform: ping
-    host: !secret lifx_salon_ip
-    name: LIFX Salon
-  - platform: ping
-    host: !secret harmony_ip
-    name: Harmony Hub
-  - platform: ping
-    host: !secret yeelight_sdb_ip
-    name: Yeelight SDB
-  - platform: ping
-    host: !secret yeelight_chambre_ip
-    name: Yeelight Chambre

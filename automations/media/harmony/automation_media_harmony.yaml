@@ -1,6 +1,5 @@
 ﻿- alias: Harmony
   initial_state: 'on'
-  hide_entity: True
   trigger:
     platform: state
     entity_id: input_select.harmony
@@ -32,7 +31,6 @@
         option: "Choisir la source"
 - alias: Harmony Off
   initial_state: 'on'
-  hide_entity: True
   trigger:
     platform: state
     entity_id: input_select.harmony
@@ -48,7 +46,6 @@
         option: "Choisir la source"
 - alias: Harmony update TV boolean ON
   initial_state: 'on'
-  hide_entity: True
   trigger:
     platform: template
     value_template: "{% if is_state_attr('remote.hub_salon', 'current_activity', 'TV') %}

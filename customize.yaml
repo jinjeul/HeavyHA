@@ -5,67 +5,34 @@
 #                                GROUPS                                            #
 #                                                                                  #
 ####################################################################################
-group.light_default_view:
-  hidden: false
-  friendly_name: 'Les lumières'
+group.light_default_view:  friendly_name: 'Les lumières'
 group.all_lights:
-  hidden: false
   friendly_name: 'Les lumières'
 group.lumieres_home:
-  hidden: false
   friendly_name: 'Réglage des Lumières'
-group.chauffage:
-  hidden: false
-  friendly_name: 'Chauffage'
-group.light_salon:
-  hidden: false
-  friendly_name: 'Lumières du Salon'
+group.chauffage:  friendly_name: 'Chauffage'
+group.light_salon:  friendly_name: 'Lumières du Salon'
   icon: mdi:ceiling-light
-group.light_vestibule:
-  hidden: false
-  friendly_name: 'Lumières du Vestibule'
+group.light_vestibule:  friendly_name: 'Lumières du Vestibule'
   icon: mdi:ceiling-light
-group.light_cuisine:
-  hidden: false
-  friendly_name: 'Lumières de la Cuisine'
+group.light_cuisine:  friendly_name: 'Lumières de la Cuisine'
   icon: mdi:ceiling-light
-group.light_chambre:
-  hidden: false
-  friendly_name: 'Lumières de la Chambre'
+group.light_chambre:  friendly_name: 'Lumières de la Chambre'
   icon: mdi:ceiling-light
-group.light_salledebain:
-  hidden: false
-  friendly_name: 'Lumières de la Salle de bain'
+group.light_salledebain:  friendly_name: 'Lumières de la Salle de bain'
   icon: mdi:ceiling-light
 light.salon:
   friendly_name: 'LIFX Salon'
 light.cuisine_2:
   friendly_name: 'LIFX Cuisine'
-light.salledebain:
-  hidden: false
-  friendly_name: 'Salle de bain'
-light.lampe_bureau:
-  hidden: false
-  friendly_name: 'Lampe Bureau'
-group.salledebain_view:
-  hidden: false
-  friendly_name: 'Salle de bain'
-light.gateway_light_34ce008db5a7:
-  hidden: false
-  friendly_name: 'Passerelle Xiaomi'
-group.room_cuisine:
-  hidden: false
-  friendly_name: 'Cuisine'
-group.room_chambre:
-  hidden: false
-  friendly_name: 'Chambre'
-group.room_vestibule:
-  hidden: false
-  friendly_name: 'Vestibule'
-group.room_salledebain:
-  hidden: false
-  friendly_name: 'Salle de bain'
-
+light.salledebain:  friendly_name: 'Salle de bain'
+light.lampe_bureau:  friendly_name: 'Lampe Bureau'
+group.salledebain_view:  friendly_name: 'Salle de bain'
+light.gateway_light_34ce008db5a7:  friendly_name: 'Passerelle Xiaomi'
+group.room_cuisine:  friendly_name: 'Cuisine'
+group.room_chambre:  friendly_name: 'Chambre'
+group.room_vestibule:  friendly_name: 'Vestibule'
+group.room_salledebain:  friendly_name: 'Salle de bain'
 ####################################################################################
 #                                                                                  #
 #                                                                                  #
@@ -101,9 +68,6 @@ sensor.temperature_3:
 sensor.humidite_3:
   friendly_name: "Taux d'humidité"
   icon: mdi:cup-water
-#sensor.lumsens_3:
-#  friendly_name: 'Luminosité'
-#  icon: mdi:weather-sunny
 sensor.motion_3:
   friendly_name: 'Détecteur motion'
   icon: mdi:run
@@ -142,7 +106,6 @@ sensor.yr_wind_speed:
   icon: mdi:weather-windy
 sensor.yr_wind_direction:
   friendly_name: 'Direction du vent'
-  hidden: true
 sensor.glances_cpu_load:
   friendly_name: 'CPU Use'
   icon: mdi:nfc-variant
@@ -182,9 +145,8 @@ switch.radiateur_chambre:
 switch.sonoff_bed:
 #  friendly_name: 'Chaffauge Lit'
 #  icon: mdi:hotel
-  friendly_name: 'Ventilateur Salon'
+  friendly_name: 'Ventilateur Chambre'
   icon: mdi:fan
-  google_assistant_type: fan
 climate.salon:
   friendly_name: 'Salon'
 climate.chambre:
@@ -295,34 +257,34 @@ sensor.illumination_158d0001b1d2c3:
   friendly_name: 'Luminosité'
   icon: mdi:weather-sunny
   unit_of_measurement: LUX
-sensor.fleur_1_battery:
+sensor.ws_num_1_battery:
   friendly_name: 'Etat pile (CR2032)'
   icon: mdi:battery
-sensor.fleur_1_conductivity:
+sensor.ws_num_1_conductivity:
   friendly_name: 'Fertilité'
   icon: mdi:eye
-sensor.fleur_1_light_intensity:
+sensor.ws_num_1_light_intensity:
   friendly_name: 'Luminosité'
   icon: mdi:weather-sunny
-sensor.fleur_1_moisture:
+sensor.ws_num_1_moisture:
   friendly_name: 'Humidité'
   icon: mdi:cup-water
-sensor.fleur_1_temperature:
+sensor.ws_num_1_temperature:
   friendly_name: 'Température'
   icon: mdi:thermometer
-sensor.fleur_2_battery:
+sensor.ws_num_2_battery:
   friendly_name: 'Etat pile (CR2032)'
   icon: mdi:battery
-sensor.fleur_2_conductivity:
+sensor.ws_num_2_conductivity:
   friendly_name: 'Fertilité'
   icon: mdi:eye
-sensor.fleur_2_light_intensity:
+sensor.ws_num_2_light_intensity:
   friendly_name: 'Luminosité'
   icon: mdi:weather-sunny
-sensor.fleur_2_moisture:
+sensor.ws_num_2_moisture:
   friendly_name: 'Humidité'
   icon: mdi:cup-water
-sensor.fleur_2_temperature:
+sensor.ws_num_2_temperature:
   friendly_name: 'Température'
   icon: mdi:thermometer
 sensor.humidity_158d0001f52004:

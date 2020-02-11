@@ -77,3 +77,23 @@
     - service : homeassistant.turn_on
       data:
         entity_id: switch.sonoff_bed
+- alias: 'Ventilation Chambre lit ON si hum haute'
+  initial_state: 'on'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.humidity_158d0002273c15
+      above: 60
+  condition:
+    - condition: time
+      after: '10:00:00'
+      before: '23:00:00'
+      weekday:
+       - mon
+       - tue
+       - wed
+       - thu
+       - fri
+  action:
+    - service : homeassistant.turn_on
+      data:
+        entity_id: switch.sonoff_bed

@@ -61,15 +61,15 @@ junglenas:
   entities:
     - sensor.cpu_speed
     - sensor.disk_use_percent_home
-    - sensor.junglenas_uptime
-    - sensor.hp_ilo_alimentation
-    - sensor.glances_cpu_load
-    - sensor.glances_disk_free
-    - sensor.glances_disk_used
-    - sensor.glances_ram_free
-    - sensor.glances_ram_used
-    - sensor.glances_swap_used
-    - sensor.glances_swap_used_2
+#    - sensor.junglenas_uptime
+#    - sensor.hp_ilo_alimentation
+#    - sensor.glances_cpu_load
+#    - sensor.glances_disk_free
+#    - sensor.glances_disk_used
+#    - sensor.glances_ram_free
+#    - sensor.glances_ram_used
+#    - sensor.glances_swap_used
+#    - sensor.glances_swap_used_2
 haveibeenpwned:
   name: Data Leak - HIBP
   entities:
@@ -109,25 +109,8 @@ sonarr:
     - sensor.sonarr_upcoming
     - sensor.sonarr_queue
     - sensor.sonarr_wanted
-fleur_1:
-  name: Suivi Fleur - Hedera Helix
-  entities:
-    - sensor.fleur_1_battery
-    - sensor.fleur_1_conductivity
-    - sensor.fleur_1_light_intensity
-    - sensor.fleur_1_moisture
-    - sensor.fleur_1_temperature
-fleur_2:
-  name: Suivi Fleur - Aloe Vera
-  entities:
-    - sensor.fleur_2_battery
-    - sensor.fleur_2_conductivity
-    - sensor.fleur_2_light_intensity
-    - sensor.fleur_2_moisture
-    - sensor.fleur_2_temperature
 alarmclock:
   name: "Radio réveil"
-  control: hidden
   entities: 
     - input_boolean.alarmweekon
     - sensor.alarm_time

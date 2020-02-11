@@ -41,7 +41,7 @@ lumieres_home:
     - group.light_chambre
     - group.light_salledebain
     - group.light_salon
-    - group.light_cuisine
+    - group.light_cuisine_2
     - group.light_vestibule
 light_chambre:
   entities:
@@ -63,8 +63,8 @@ light_vestibule:
     - light.vestibule
 mediaplayers:
   entities:
-    - media_player.junglekodi
-    - media_player.jungleshield
+#    - media_player.junglekodi
+#    - media_player.jungleshield
     - media_player.denon_salon
     - media_player.denon_bureau
 radiateurs:

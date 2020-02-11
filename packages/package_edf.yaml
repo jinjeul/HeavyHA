@@ -18,9 +18,9 @@
         friendly_name: Coût Wh Instantané
         value_template: >-
           {% if is_state('binary_sensor.hp_edf', 'on') %}
-            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001466) | round(4) }}
+            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001503) | round(4) }}
           {% else %}
-            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001200) | round(4) }}
+            {{ states.sensor.releve_consommation_wh.state | multiply(0.0001172) | round(4) }}
           {% endif %}
         unit_of_measurement: €
       hp_edf_view:
@@ -43,28 +43,28 @@ binary_sensor:
         value_template: >-
           {{ now().strftime("%H%M") | int > 0632
              and now().strftime("%H%M")| int < 2232 }}
-history_graph:
-  compteur_7j:
-    name: Consommation Wh Semaine
-    entities:
-      - sensor.releve_consommation_wh
-    hours_to_show: 168
-    refresh: 120
-  compteur_2j:
-    name: Consommation Wh Jour
-    entities:
-      - sensor.releve_consommation_wh
-    hours_to_show: 168
-    refresh: 120
-  cout_conso_7j:
-    name: Consommation Journalière
-    entities:
-      - sensor.cout_journalier_view
-    hours_to_show: 168
-    refresh: 120
-  prix_wh_inst_j:
-    name: Coût du Wh Instantané
-    entities:
-      - sensor.cout_wh_instant
-    hours_to_show: 24
-    refresh: 120
+#history_graph:
+#  compteur_7j:
+#    name: Consommation Wh Semaine
+#    entities:
+#      - sensor.releve_consommation_wh
+#    hours_to_show: 168
+#    refresh: 120
+#  compteur_2j:
+#    name: Consommation Wh Jour
+#    entities:
+#      - sensor.releve_consommation_wh
+#    hours_to_show: 168
+#    refresh: 120
+#  cout_conso_7j:
+#    name: Consommation Journalière
+#    entities:
+#      - sensor.cout_journalier_view
+#    hours_to_show: 168
+#    refresh: 120
+#  prix_wh_inst_j:
+#    name: Coût du Wh Instantané
+#    entities:
+#      - sensor.cout_wh_instant
+#    hours_to_show: 24
+#    refresh: 120

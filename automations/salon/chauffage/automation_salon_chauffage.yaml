@@ -81,10 +81,8 @@
     for:
       minutes: 5
   action:
-    service: climate.set_operation_mode
-    data:
-        entity_id: climate.salon
-        operation_mode: 'off'
+    service: climate.turn_off
+    entity_id: climate.salon
 - alias: 'Chauffage Salon AUTO si fenetre closed'
   initial_state: 'on'
   trigger:
@@ -92,7 +90,5 @@
     entity_id: binary_sensor.door_window_sensor_158d00019fd569
     to: 'off'
   action:
-    service: climate.set_operation_mode
-    data:
-        entity_id: climate.salon
-        operation_mode: 'heat'
+    service: climate.turn_on
+    entity_id: climate.salon

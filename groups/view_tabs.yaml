@@ -16,7 +16,6 @@ lumieres:
   - group.light_vestibule
   - group.all_scenes
   name: Lumieres
-  view: true
 chauffage:
   icon: mdi:thermometer-lines
   name: Chauffage
@@ -26,7 +25,6 @@ chauffage:
     - group.rad_stats
     - history_graph.temperature_appartement
     - camera.grafana_temperature
-  view: true
 room_sensor:
   icon: mdi:home-assistant
   name: Pièces
@@ -38,7 +36,6 @@ room_sensor:
     - group.door_window_tracking
     - group.presence_tracking
     - group.home_domotique
-  view: true
 media:
   icon: mdi:play-network
   entities:
@@ -47,14 +44,12 @@ media:
   - group.mediaswitches
   - group.mediaplayers
   name: Media
-  view: true
 meteo_view:
   icon: mdi:weather-sunny
   entities:
   - group.meteo
   - group.meteo_epinaysurorge
   name: Meteo
-  view: true
 automations_view:
   icon: mdi:settings
   entities:
@@ -65,17 +60,14 @@ automations_view:
     - group.scene_automation
     - group.reveil_automation
   name: Automations
-  view: true
 hardware_view:
   icon: mdi:thermostat
   name: Monitoring
   entities:
     - group.junglenas
-    - group.haveibeenpwned
     - group.transmission
     - group.sonarr
     - group.monitoring_ip
-  view: true
 conso_view:
   icon: mdi:power-plug
   name: Consommation
@@ -86,7 +78,6 @@ conso_view:
     - group.infos_conso_instant
     - group.infos_conso_stats
     - camera.grafana_conso
-  view: true
 links_view:
   icon: mdi:link-variant
   name: Liens
@@ -95,10 +86,3 @@ links_view:
     - group.liens_routeur
     - group.liens_accesrapide
     - input_boolean.vacancesstate
-  view: true
-flower_view:
-  name: Plantes
-  entities:
-    - group.fleur_1
-    - group.fleur_2
-  view: false

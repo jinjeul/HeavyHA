@@ -7,29 +7,22 @@
 ####################################################################################
 
 homeassistant:
-  name: Jungle'Home
+  name: !secret name_home
   latitude: !secret latitude_home
   longitude: !secret longitude_home
-  elevation: 80
+  elevation: !secret elevation_home
   unit_system: metric
-  time_zone: Europe/Paris
+  time_zone: !secret time_zone_home
   customize: !include customize.yaml
   packages: !include_dir_named packages
-  customize_glob:
-    "*":
-      homebridge_hidden: true
-      google_assistant: false
-  customize_domain:
-    group:
-      control: hidden
+  
 http:
-  ssl_certificate: !secret ssl_cert_crt
-  ssl_key: !secret ssl_cert_key
   base_url: !secret ha_url
-  ssl_profile: modern
   
 recorder:
   purge_keep_days: 5
+  
+mobile_app:
 
 ####################################################################################
 #                                                                                  #
@@ -40,7 +33,12 @@ recorder:
 ####################################################################################
 
 group: !include_dir_merge_named groups/
-automation: !include_dir_merge_list automations/
+
+#Automation Editor
+automation: !include automations.yaml
+#Legacy automations in dir
+automation old: !include_dir_merge_list automations/
+
 frontend:
   themes: !include themes.yaml
 
@@ -54,15 +52,21 @@ frontend:
 
 logger:
   default: warn
+  
 config:
+
 updater:
   reporting: False
+  
 discovery:
   ignore:
     - harmony
     - yeelight
+    
 system_health:
+
 map:
+
 history:
   include:
     domains:
@@ -92,6 +96,7 @@ history:
       - sensor.transmission_status
       - sensor.yr_symbol
       - media_player.junglekodi
+      
 logbook:
   exclude:
     entities:

@@ -8,14 +8,14 @@ input_number:
   alarmhour:
     name: Heure
     icon: mdi:timer
-    initial: 6
+    initial: 8
     min: 0
     max: 23
     step: 1
   alarmminutes:
     name: Minutes
     icon: mdi:timer
-    initial: 30
+    initial: 0
     min: 0
     max: 59
     step: 5

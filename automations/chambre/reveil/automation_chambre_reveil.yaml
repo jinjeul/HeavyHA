@@ -99,7 +99,7 @@
       data:
         volume_level: 0.50
 - alias: 'Réveil Send Tasker Event'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     - platform: state
       entity_id: input_number.alarmhour,input_number.alarmminutes,input_boolean.alarmweekon
