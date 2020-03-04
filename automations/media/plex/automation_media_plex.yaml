@@ -12,8 +12,8 @@
     entity_id: device_tracker.jungle3t_wifi
     state: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.plexon
+    service: script.turn_on
+    entity_id: script.plexon
 - alias: 'Media PLEX Monter les lumières pause'
   initial_state: 'on'
   trigger:
@@ -25,8 +25,8 @@
     entity_id: device_tracker.jungle3t_wifi
     state: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.plexpause
+    service: script.turn_on
+    entity_id: script.plexpause
 - alias: 'Media PLEX Monter les lumières stop'
   initial_state: 'on'
   trigger:
@@ -42,5 +42,5 @@
     entity_id: device_tracker.jungle3t_wifi
     state: 'home'
   action:
-    service: scene.turn_on
-    entity_id: scene.plexoff
+    service: script.turn_on
+    entity_id: script.plexoff

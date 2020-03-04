@@ -134,76 +134,6 @@ switch:
 scene:
   - platform: lifx_cloud
     token: !secret lifxapitoken
-  - name: plexon
-    entities:
-        light.salon:
-          state: on
-          color_temp: 333
-          brightness: 12
-          transition: 10
-        light.vinyles_strip:
-          state: off
-          transition: 30
-        light.cuisine_2:
-          state: off
-          transition: 10
-        switch.lumiere_bureau:
-          state: off
-        light.bureau_strip:
-          state: off
-          transition: 30
-        light.vestibule:
-          state: off
-          transition: 30
-  - name: plexoff
-    entities:
-        light.salon:
-          state: on
-          color_temp: 333
-          brightness: 250
-          transition: 30
-        light.cuisine_2:
-          state: on
-          color_temp: 333
-          brightness: 250
-          transition: 30
-        light.vinyles_strip:
-          state: on
-          brightness: 20
-          transition: 10
-          rgb_color: [64, 0, 255]
-        light.bureau_strip:
-          state: on
-          transition: 20
-        switch.lumiere_bureau:
-          state: on
-  - name: plexpause
-    entities:
-        light.salon:
-          state: on
-          color_temp: 333
-          brightness: 131
-          transition: 7
-        light.vinyles_strip:
-          state: on
-          brightness: 12
-          transition: 20
-          rgb_color: [128, 147, 255]
-  - name: cuisineoff
-    entities:
-        light.cuisine_2:
-          state: off
-          transition: 10
-  - name: vestibuleoff
-    entities:
-        light.vestibule:
-          state: off
-          transition: 10
-  - name: chambre_on
-    entities:
-        light.chambre:
-          state: on
-          transition: 60
 script:
   scene_chambre_on:
     sequence:
@@ -217,12 +147,18 @@ script:
         data:
           entity_id: light.cuisine_2
           transition: 10
+  scene_vestibule_off:
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.vestibule
+          transition: 10
 influxdb:
   host: localhost
   include:
     entities:
       - sensor.temperature_158d0001f52004
-      - sensor.temperature_158d0001fa768f
+      - sensor.multisens_sdb_temperature
       - sensor.temperature_158d0002273c15
       - sensor.releve_consommation_wh
       - sensor.temperature_158d0002272ffb
@@ -233,17 +169,17 @@ influxdb:
       - sensor.ws_humidite_moyenne
       - sensor.ws_temperature_moyenne_espflora
       - sensor.ws_humidite_moyenne_espflora
-      - sensor.temperature_num_1
-      - sensor.humidite_num_1
-      - sensor.luminosite_num_1
-      - sensor.conductivite_num_1
-      - sensor.temperature_num_2
-      - sensor.humidite_num_2
-      - sensor.luminosite_num_2
-      - sensor.conductivite_num_2
+#      - sensor.temperature_num_1
+#      - sensor.humidite_num_1
+#      - sensor.luminosite_num_1
+#      - sensor.conductivite_num_1
+#      - sensor.temperature_num_2
+#      - sensor.humidite_num_2
+#      - sensor.luminosite_num_2
+#      - sensor.conductivite_num_2
       - sensor.humidity_158d0002273c15
       - sensor.humidity_158d0001f52004
-      - sensor.humidity_158d0001fa768f
+      - sensor.multisens_sdb_humidity
 camera:
   - platform: local_file
     name: Grafana_temperature
@@ -253,16 +189,16 @@ camera:
     file_path: !secret  grafana_path_conso
 meteo_france:
   - city: !secret city_name
-    monitored_conditions:
-      - temperature
-      - weather
-      - wind_speed
-      - uv
-      - next_rain
-      - freeze_chance
-      - rain_chance
-      - snow_chance
-      - thunder_chance
-deconz:
-  host: !secret junglenas_ip
-  port: !secret deconz_port
+#    monitored_conditions:
+#      - temperature
+#      - weather
+#      - wind_speed
+#      - uv
+#      - next_rain
+#      - freeze_chance
+#      - rain_chance
+#      - snow_chance
+#      - thunder_chance
+#deconz:
+#  host: !secret junglenas_ip
+#  port: !secret deconz_port

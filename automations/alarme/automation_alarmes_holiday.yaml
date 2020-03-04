@@ -7,8 +7,6 @@
   action:
     - service: automation.turn_off
       entity_id: group.light_automation, group.media_automation, group.chauffage_automation, group.scene_automation, group.reveil_automation
-    - service: automation.turn_on
-      entity_id: automation.update_homeassistant_disponible, automation.power_server_bring_it_back_up
 - alias: 'Alarme Vacances Désactivé'
   initial_state: 'on'
   trigger:

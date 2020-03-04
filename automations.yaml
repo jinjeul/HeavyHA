@@ -1,1 +1,121 @@
-[]
+- id: '1583068731974'
+  alias: Media - Salon - Bouton Vinyle
+  description: Bouton zigbee meuble vinyle pour aller scène harmony vinyle
+  trigger:
+  - device_id: 67f20c89bdce4a9fbbdc605d43e1b8c1
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_short_press
+  condition: []
+  action:
+  - data: {}
+    service: script.harmony_vinyle_onoff
+- id: '1583068881675'
+  alias: Media - Salon - Bouton Vinyle Long
+  description: Bouton zigbee long meuble vinyle pour activer tout zones stereo
+  trigger:
+  - device_id: 67f20c89bdce4a9fbbdc605d43e1b8c1
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_long_press
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.allzonestereo
+    service: switch.toggle
+- id: '1583069067791'
+  alias: Lumiere - SDB - Allumer si motion
+  description: Motion sensor zigbee SDB déclenche lumière sdb si mouvement détecté
+  trigger:
+  - device_id: ac0293a9e0f74bd3a0c27deaf1700418
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_sdb
+    platform: device
+    type: motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.salledebain
+    service: light.turn_on
+- id: '1583069151312'
+  alias: Lumiere - SDB - Eteindre si no motion 20min
+  description: Motion sensor zigbee SDB éteins lumière sdb si no mouvement détecté
+    20min
+  trigger:
+  - device_id: ac0293a9e0f74bd3a0c27deaf1700418
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_sdb
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.salledebain
+    service: light.turn_off
+- id: '1583069236489'
+  alias: Lumiere - Cuisine - Allumer si motion
+  description: Motion sensor zigbee Cuisine déclenche lumière cuisine si mouvement
+    détecté
+  trigger:
+  - device_id: 017abe60a4b443be9a6a42c0c652a87c
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_cuisine
+    platform: device
+    type: motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.cuisine_2
+    service: light.turn_on
+- id: '1583069326051'
+  alias: Lumiere - SDB - Eteindre si no motion 10min
+  description: Motion sensor zigbee Cuisine éteins lumière cuisine si no mouvement
+    détecté
+  trigger:
+  - device_id: 017abe60a4b443be9a6a42c0c652a87c
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_cuisine
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data:
+      transition: 5
+    entity_id: light.cuisine_2
+    service: light.turn_off
+- id: '1583069422640'
+  alias: Media - Salon - Bouton Bureau
+  description: Bouton zigbee sous bureau pour aller scène harmony TV
+  trigger:
+  - device_id: 4fb828a8ac17405e9139f5e650f2973a
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_short_press
+  condition: []
+  action:
+  - data: {}
+    service: script.harmony_shield_tv_onoff
+- id: '1583069600098'
+  alias: Media - Salon - Bouton Bureau Double Clic
+  description: Bouton zigbee double clic sous bureau pour eteindre harmony
+  trigger:
+  - device_id: 4fb828a8ac17405e9139f5e650f2973a
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_double_press
+  condition: []
+  action:
+  - data: {}
+    service: script.harmony_off

@@ -101,14 +101,6 @@ switch:
           service: script.turn_on
           entity_id: script.harmony_pc_onoff
 sensor:
-  - platform: deluge
-    host: !secret junglenas_ip
-    username: !secret deluge_user
-    password: !secret deluge_pass
-    monitored_variables:
-      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
   - platform: sonarr
     api_key: !secret sonarr_api
     host: !secret junglenas_ip
@@ -191,6 +183,74 @@ input_select:
     initial: Choisir la source
     icon: mdi:monitor
 script:
+  plexon:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.salon
+          color_temp: 333
+          brightness: 12
+          transition: 60
+      - service: light.turn_off
+        data:
+          entity_id: light.vinyles_strip
+          transition: 30
+      - service: light.turn_off
+        data:
+          entity_id: light.cuisine_2
+          transition: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.lumiere_bureau
+      - service: light.turn_off
+        data:
+          entity_id: light.bureau_strip
+          transition: 30
+      - service: light.turn_off
+        data:
+          entity_id: light.vestibule
+          transition: 30
+  plexoff:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.salon
+          color_temp: 333
+          brightness: 250
+          transition: 30
+      - service: light.turn_on
+        data:
+          entity_id: light.vinyles_strip
+          brightness: 20
+          transition: 10
+          rgb_color: [64, 0, 255]
+      - service: light.turn_on
+        data:
+          entity_id: light.cuisine_2
+          color_temp: 333
+          brightness: 250
+          transition: 30
+      - service: switch.turn_on
+        data:
+          entity_id: switch.lumiere_bureau
+      - service: light.turn_on
+        data:
+          entity_id: light.bureau_strip
+          transition: 20
+  plexpause:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.salon
+          color_temp: 333
+          brightness: 131
+          transition: 7
+      - service: light.turn_on
+        data:
+          entity_id: light.vinyles_strip
+          brightness: 12
+          transition: 20
+          rgb_color: [128, 147, 255]
   philipstv_on:
     sequence:
       - service: input_boolean.turn_on

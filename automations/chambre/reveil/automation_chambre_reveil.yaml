@@ -25,7 +25,7 @@
       value_template: '{{ now().strftime("%H:%M") == states.sensor.alarm_time.state }}'
   action:
     - service: scene.turn_on
-      entity_id: scene.chambre_on, scene.chaud
+      entity_id: scene.scene_chambre_on, scene.chaud
     - service: homeassistant.turn_on
       entity_id: light.vestibule, light.salledebain, light.vinyles_strip
 - alias: 'Reveil Chambre Sonore Matin semaine'
@@ -81,7 +81,7 @@
         cache: false
         language: fr
     - service: scene.turn_on
-      entity_id: scene.chambre_on, scene.chaud
+      entity_id: scene.scene_chambre_on, scene.chaud
     - service: homeassistant.turn_on
       entity_id: light.vestibule, light.salledebain, light.vinyles_strip
     - service: media_player.volume_set

@@ -217,3 +217,12 @@
 #  host: !secret junglenas_ip
 #  username: !secret transmission_user
 #  password: !secret transmission_pass
+#  - platform: deluge
+#    host: !secret junglenas_ip
+#    port: !secret deluge_port
+#    username: !secret deluge_user
+#    password: !secret deluge_pass
+#    monitored_variables:
+#      - 'current_status'
+#      - 'download_speed'
+#      - 'upload_speed'

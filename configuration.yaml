@@ -52,7 +52,10 @@ frontend:
 
 logger:
   default: warn
-  
+#  logs:
+#    pydeconz: debug
+#    homeassistant.components.deconz: debug  
+
 config:
 
 updater:
