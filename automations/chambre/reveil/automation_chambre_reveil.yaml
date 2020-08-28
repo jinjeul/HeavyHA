@@ -6,7 +6,7 @@
       seconds: 0
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
     - condition: state
       entity_id: input_boolean.alarmweeknoisy
@@ -36,7 +36,7 @@
       seconds: 0
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
     - condition: state
       entity_id: input_boolean.alarmweeknoisy
@@ -105,7 +105,7 @@
       entity_id: input_number.alarmhour,input_number.alarmminutes,input_boolean.alarmweekon
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
   action:
     - service: shell_command.taskerevent

@@ -9,7 +9,7 @@
       to: resumed
   condition:
   - condition: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     state: 'home'
   action:
     service: script.turn_on
@@ -22,7 +22,7 @@
     to: paused
   condition:
   - condition: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     state: 'home'
   action:
     service: script.turn_on
@@ -39,7 +39,7 @@
       seconds: 01
   condition:
   - condition: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     state: 'home'
   action:
     service: script.turn_on

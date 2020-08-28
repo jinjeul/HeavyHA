@@ -2,7 +2,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     to: 'home'
   condition:
     - condition: time
@@ -17,7 +17,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     to: 'not_home'
   action:
     - service: climate.set_temperature
@@ -36,7 +36,7 @@
     seconds: 0
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
   action:
     - service: climate.set_temperature
@@ -55,7 +55,7 @@
     seconds: 0
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
     - condition: time
       weekday:

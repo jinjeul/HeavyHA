@@ -5,13 +5,23 @@
     port: !secret harmony_port
     activity: 'Chromecast'
 media_player:
-  - platform: denonavr
-    host: !secret denon_ip
-    name: Denon Salon
-    show_all_sources: False
-    zones:
-      - zone: Zone2
-        name: Denon Bureau
+#  - platform: denonavr
+#    host: !secret denon_ip
+#    name: Denon Salon
+#    show_all_sources: False
+#    zones:
+#      - zone: Zone2
+#        name: Denon Bureau
+  - platform: onkyo
+    host: !secret onkyo_ip
+    name: Onkyo MAIN
+    sources:
+      strm-box: 'Shield'
+      dvd: 'BD/DVD'
+      game: 'Game'
+      pc: 'PC'
+      cd: 'Vinyl'
+    max_volume: 70
 shell_command:
   junglepc_shutdown: !secret junglepc_shutdown
   junglepc_restart: !secret junglepc_restart
@@ -37,36 +47,27 @@ switch:
         turn_off:
           service: script.turn_on
           entity_id: script.philipstv_off
-      allzonestereo:
-        friendly_name: 'Toutes Zones Stereo'
-        value_template: "{{ is_state('input_boolean.allzonestereostate', 'on')}}"
-        turn_on:
-          service: script.turn_on
-          entity_id: script.allzonestereo_on
-        turn_off:
-          service: script.turn_on
-          entity_id: script.allzonestereo_off
+#      allzonestereo:
+#        friendly_name: 'Toutes Zones Stereo'
+#        value_template: "{{ is_state('input_boolean.allzonestereostate', 'on')}}"
+#        turn_on:
+#          service: script.turn_on
+#          entity_id: script.allzonestereo_on
+#        turn_off:
+#          service: script.turn_on
+#          entity_id: script.allzonestereo_off
       mute_denon_salon:
         friendly_name: 'Mute Denon Salon'
-        value_template: "{{ state_attr('media_player.denon_salon', 'is_volume_muted') }}"
+        value_template: "{{ state_attr('media_player.onkyo_main', 'is_volume_muted') }}"
         turn_on:
           service: script.turn_on
-          entity_id: script.mutedenonsalon_onoff
+          entity_id: script.muteonkyomain_onoff
         turn_off:
           service: script.turn_on
-          entity_id: script.mutedenonsalon_onoff
-      mcs_denon_salon:
-        friendly_name: 'MultiChannelStereo Denon Salon'
-        value_template: "{{ is_state('input_boolean.mcs_denon_salon', 'on')}}"
-        turn_on:
-          service: script.turn_on
-          entity_id: script.mcsdenonsalon_onoff
-        turn_off:
-          service: script.turn_on
-          entity_id: script.mcsdenonsalon_onoff
+          entity_id: script.muteonkyomain_onoff
       harmony_shield_tv:
         friendly_name: 'Activité SHIELD TV'
-        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'SHIELD') }}"
+        value_template: "{{ is_state_attr('remote.hub_salon', 'current_activity', 'SHIELD') }}"
         turn_on:
           service: script.turn_on
           entity_id: script.harmony_shield_tv_onoff
@@ -75,7 +76,7 @@ switch:
           entity_id: script.harmony_shield_tv_onoff
       harmony_vinyle:
         friendly_name: 'Activité Vinyle'
-        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'Vinyle') }}"
+        value_template: "{{ is_state_attr('remote.hub_salon', 'current_activity', 'Vinyle HIFI') }}"
         turn_on:
           service: script.turn_on
           entity_id: script.harmony_vinyle_onoff
@@ -93,7 +94,7 @@ switch:
           entity_id: script.harmony_off
       harmony_pc:
         friendly_name: 'Activité PC'
-        value_template: "{{ is_state_attr('media_player.denon_salon', 'source', 'PC') }}"
+        value_template: "{{ is_state_attr('remote.hub_salon', 'current_activity', 'PC') }}"
         turn_on:
           service: script.turn_on
           entity_id: script.harmony_pc_onoff
@@ -101,16 +102,21 @@ switch:
           service: script.turn_on
           entity_id: script.harmony_pc_onoff
 sensor:
-  - platform: sonarr
+#  - platform: sonarr
+#    api_key: !secret sonarr_api
+#    host: !secret junglenas_ip
+#    monitored_conditions:
+#      - upcoming
+#      - diskspace
+#      - wanted
+#      - queue
+#    days: 2
+#    include_paths: !secret sonarr_series_path
+  - platform: sonarr_upcoming_media
     api_key: !secret sonarr_api
     host: !secret junglenas_ip
-    monitored_conditions:
-      - upcoming
-      - diskspace
-      - wanted
-      - queue
+    port: 8989
     days: 2
-    include_paths: !secret sonarr_series_path
   - platform: systemmonitor
     resources:
       - type: disk_use_percent
@@ -137,23 +143,27 @@ sensor:
       - media_type
       - state
       - player
-  - platform: mqtt
-    name: shieldplex_state
-    state_topic: !secret topic_shieldplexstate
-    value_template: '{{ value_json.body }}'
+  - platform: plex_recently_added
+    token: !secret plex_token_2020
+    host: !secret junglenas_ip
+    port: 32400
+#  - platform: mqtt
+#    name: shieldplex_state
+#    state_topic: !secret topic_shieldplexstate
+#    value_template: '{{ value_json.body }}'
 input_boolean:
   tvstate:
     name: 'Etat du téléviseur'
     initial: off
     icon: mdi:television-classic
-  allzonestereostate:
-    name: 'All Zone ON/OFF'
-    initial: off
-    icon: mdi:speaker
-  mcs_denon_salon:
-    name: 'MultiChannelStereo Denon'
-    initial: off
-    icon: mdi:speaker
+#  allzonestereostate:
+#    name: 'All Zone ON/OFF'
+#    initial: off
+#    icon: mdi:speaker
+#  mcs_denon_salon:
+#    name: 'MultiChannelStereo Denon'
+#    initial: off
+#    icon: mdi:speaker
   vacancesstate:
     name: 'Mode Vacances'
     initial: off
@@ -169,18 +179,14 @@ input_select:
     initial: Choisir une action
     icon: mdi:desktop-tower
   harmony:   
-    name: Mettre une activité
+    name: "Source :"
     options:
-      - Choisir la source
-      - Arrêt
-      - TV
+      - '-'
+      - SHIELD
       - PC
-      - Vinyle Salon
-      - Bluetooth Bureau
-      - Vinyle Bureau
-      - PC Musique Bureau
-      - Google Home AVR BT
-    initial: Choisir la source
+      - Vinyle HIFI
+      - Arrêt
+    initial: '-'
     icon: mdi:monitor
 script:
   plexon:
@@ -272,56 +278,56 @@ script:
         data:
           device: "61872874"
           command: "PowerOff"
-  65oled803_12_3_off:
+#  65oled803_12_3_off:
+#    sequence:
+#      - condition: template
+#        value_template: '{{ states.remote.hub_salon.attributes.current_activity == "TV" }}'
+#      - service: remote.turn_off
+#        entity_id: remote.hub_salon
+# allzonestereo_on:
+#    sequence:
+#      - service: input_boolean.turn_on
+#        entity_id: input_boolean.allzonestereostate
+#      - service: remote.send_command
+#        entity_id: remote.hub_salon
+#        data:
+#          device: "45999099"
+#          command: "AllZoneStereoOn"
+#  allzonestereo_off:
+#    sequence:
+#      - service: input_boolean.turn_off
+#        entity_id: input_boolean.allzonestereostate
+#      - service: remote.send_command
+#        entity_id: remote.hub_salon
+#        data:
+#          device: "45999099"
+#          command: "AllZoneStereoOff"
+  muteonkyomain_onoff:
     sequence:
-      - condition: template
-        value_template: '{{ states.remote.hub_salon.attributes.current_activity == "TV" }}'
-      - service: remote.turn_off
-        entity_id: remote.hub_salon
-  allzonestereo_on:
-    sequence:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.allzonestereostate
       - service: remote.send_command
         entity_id: remote.hub_salon
         data:
-          device: "45999099"
-          command: "AllZoneStereoOn"
-  allzonestereo_off:
-    sequence:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.allzonestereostate
-      - service: remote.send_command
-        entity_id: remote.hub_salon
-        data:
-          device: "45999099"
-          command: "AllZoneStereoOff"
-  mutedenonsalon_onoff:
-    sequence:
-      - service: remote.send_command
-        entity_id: remote.hub_salon
-        data:
-          device: "45999099"
+          device: "69289686"
           command: "Mute"
-  mcsdenonsalon_onoff:
-    sequence:
-      - service: remote.send_command
-        entity_id: remote.hub_salon
-        data:
-          device: "45999099"
-          command: "MultiChStereo"
+#  mcsdenonsalon_onoff:
+#    sequence:
+#      - service: remote.send_command
+#        entity_id: remote.hub_salon
+#        data:
+#          device: "45999099"
+#          command: "MultiChStereo"
   harmony_shield_tv_onoff:
    sequence:
       - service: remote.turn_on
         entity_id: remote.hub_salon
         data:
-          activity: "SHIELD TV"
+          activity: "SHIELD"
   harmony_vinyle_onoff:
    sequence:
       - service: remote.turn_on
         entity_id: remote.hub_salon
         data:
-          activity: "Vinyle Salon"
+          activity: "Vinyle HIFI"
   harmony_off:
    sequence:
       - service: remote.turn_off
@@ -332,15 +338,17 @@ script:
         entity_id: remote.hub_salon
         data:
           activity: "PC"
-  start_junglekodi:
-    sequence:
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.jungleshield
-        source: 'org.xbmc.kodi'
-  stop_junglekodi:
-    sequence:
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.jungleshield
-        source: '!org.xbmc.kodi'
+#  start_junglekodi:
+#    sequence:
+#    - service: media_player.select_source
+#      data:
+#        entity_id: media_player.jungleshield
+#        source: 'org.xbmc.kodi'
+#  stop_junglekodi:
+#    sequence:
+#    - service: media_player.select_source
+#      data:
+#        entity_id: media_player.jungleshield
+#        source: '!org.xbmc.kodi'
+glances:
+  - host: !secret junglenas_ip

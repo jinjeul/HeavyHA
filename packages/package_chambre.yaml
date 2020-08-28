@@ -7,7 +7,7 @@ climate:
   - platform: generic_thermostat
     name: Chambre
     heater: switch.radiateur_chambre
-    target_sensor: sensor.temperature_158d0002273c15
+    target_sensor: sensor.multi_sensor_chambre
     target_temp: 16
     min_temp: 16
     max_temp: 24

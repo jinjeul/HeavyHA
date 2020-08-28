@@ -32,10 +32,10 @@
       data_template:
         option: "Choisir une action"
 - alias: 'PC Arrêter au départ'
-  initial_state: 'on'
+  initial_state: 'off'
   trigger:
     platform: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     to: 'not_home'
     for:
       minutes: 15

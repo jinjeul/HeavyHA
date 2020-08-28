@@ -119,3 +119,309 @@
   action:
   - data: {}
     service: script.harmony_off
+- id: '1586714032540'
+  alias: LUM VESTIBULE - ON MOUVEMENT
+  description: Allume la lumière du vestibule lors de la détection d'un mouvement
+  trigger:
+  - device_id: d9815ef3833149f4af9f074bf18136a9
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_vestibule
+    platform: device
+    type: motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.vestibule
+    service: light.turn_on
+- id: '1586714123644'
+  alias: LUM VESTIBULE - OFF NO MOUVEMENT
+  description: ''
+  trigger:
+  - device_id: d9815ef3833149f4af9f074bf18136a9
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_vestibule
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 45
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data:
+      transition: 5
+    entity_id: light.vestibule
+    service: light.turn_off
+- id: '1586736066965'
+  alias: PORTE FENETRE OUVERTE COUPER CHAUFFAGE
+  description: Si la porte fenêtre reste ouverte plus de x minutes alors couper le
+    chauffage
+  trigger:
+  - device_id: bf1ad0b585064ec0a8ac6ea81bb6b45c
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_fentre
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+    platform: device
+    type: opened
+  condition: []
+  action:
+  - data: {}
+    entity_id: climate.salon
+    service: climate.turn_off
+- id: '1586736155366'
+  alias: PORTE FENETRE FERMER REMETTRE CHAUFFAGE
+  description: Si la porte fenêtre est refermée alors le chauffage est rétabli
+  trigger:
+  - device_id: bf1ad0b585064ec0a8ac6ea81bb6b45c
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_fentre
+    platform: device
+    type: not_opened
+  condition: []
+  action:
+  - data: {}
+    entity_id: climate.salon
+    service: climate.turn_on
+- id: '1586736301086'
+  alias: ALARME PORTE FENETRE OUVERTE PENDANT ABSENCE
+  description: Si porte ouverte alors qu'absent, alors envoyer une notification
+  trigger:
+  - device_id: bf1ad0b585064ec0a8ac6ea81bb6b45c
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_fentre
+    platform: device
+    type: opened
+  condition:
+  - condition: device
+    device_id: 1478fd2dd1af4dafb8ab274b52b8b30c
+    domain: device_tracker
+    entity_id: device_tracker.oneplus_a3003_2
+    type: is_not_home
+  action:
+  - data:
+      message: PORTE FENETRE OUVERTE
+      title: ALARME !!!!!
+    service: notify.mobile_app_oneplus_a3003_lineage
+- id: '1586815898835'
+  alias: PORTE ENTREE OUVERTE ALLUME ENTREE
+  description: Si porte entrée ouverte alors allumer la lumière vestibule et scène
+    chaud salon
+  trigger:
+  - device_id: e9ec3e7fabfb44578ab2c2c48c49c69b
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_entre
+    platform: device
+    type: opened
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.vestibule
+    service: light.turn_on
+  - scene: scene.chaud
+- id: '1586816025266'
+  alias: PORTE ENTREE OUVERTE ENVOI NOTIF SI ABSENT
+  description: Si la porte est ouverte alors qu'absent une notification est envoyée
+  trigger:
+  - device_id: e9ec3e7fabfb44578ab2c2c48c49c69b
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_entre
+    platform: device
+    type: opened
+  condition:
+  - condition: device
+    device_id: 1478fd2dd1af4dafb8ab274b52b8b30c
+    domain: device_tracker
+    entity_id: device_tracker.oneplus_a3003_2
+    type: is_not_home
+  action:
+  - data:
+      message: PORTE ENTREE OUVERTE
+      title: ALARME !!!
+    service: notify.mobile_app_oneplus_a3003_lineage
+- id: '1586816184951'
+  alias: PORTE FERMEE ETEINDRE ENTREE APRES TEMPS
+  description: Si la porte est fermée depuis x minutes et pas de mouvements alors
+    éteindre la lumière vestibule
+  trigger:
+  - device_id: e9ec3e7fabfb44578ab2c2c48c49c69b
+    domain: binary_sensor
+    entity_id: binary_sensor.contact_porte_entre
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    platform: device
+    type: not_opened
+  condition:
+  - condition: device
+    device_id: d9815ef3833149f4af9f074bf18136a9
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor_vestibule
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    type: is_no_motion
+  action:
+  - data: {}
+    entity_id: light.vestibule
+    service: light.turn_off
+- id: '1587113206915'
+  alias: VOLET OUVERT ALERTE
+  description: Si volet ouvert alors qu'absent, envoyer alerte
+  trigger:
+  - device_id: f5d37c1e7d8843788efc3a7016c29f7c
+    domain: binary_sensor
+    entity_id: binary_sensor.window_door_sensor_volet
+    platform: device
+    type: opened
+  condition:
+  - condition: device
+    device_id: 1478fd2dd1af4dafb8ab274b52b8b30c
+    domain: device_tracker
+    entity_id: device_tracker.oneplus_a3003_2
+    type: is_not_home
+  action:
+  - data:
+      message: Volet OUVERT
+      title: ALARME !!!
+    service: notify.mobile_app_oneplus_a3003_lineage
+- id: '1587113263723'
+  alias: VOLET FERME ALERTE
+  description: Si volet fermé alors qu'absent, envoyer alerte
+  trigger:
+  - device_id: f5d37c1e7d8843788efc3a7016c29f7c
+    domain: binary_sensor
+    entity_id: binary_sensor.window_door_sensor_volet
+    platform: device
+    type: not_opened
+  condition:
+  - condition: device
+    device_id: 1478fd2dd1af4dafb8ab274b52b8b30c
+    domain: device_tracker
+    entity_id: device_tracker.oneplus_a3003_2
+    type: is_not_home
+  action:
+  - data:
+      message: Volet fermé
+      title: ALARME !!!
+    service: notify.mobile_app_oneplus_a3003_lineage
+- id: '1587115869681'
+  alias: Switch double - Gauche - Lumière salon ON
+  description: Appuie gauche sur le switch double, allume la scene chaud si rien d'allumé
+  trigger:
+  - device_id: fe0b0bddd8ab48b39236555b6187f405
+    domain: deconz
+    platform: device
+    subtype: left
+    type: remote_button_short_press
+  condition:
+  - condition: state
+    entity_id: light.salon
+    state: 'off'
+  action:
+  - scene: scene.chaud
+- id: '1587116065583'
+  alias: Switch double - Gauche - Lumière salon OFF
+  description: Appuie gauche sur le switch double, si salon/cuisine allumée alors
+    eteindre tout
+  trigger:
+  - device_id: fe0b0bddd8ab48b39236555b6187f405
+    domain: deconz
+    platform: device
+    subtype: left
+    type: remote_button_short_press
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: light.cuisine_2
+      state: 'on'
+    - condition: state
+      entity_id: light.salon
+      state: 'on'
+  action:
+  - data: {}
+    entity_id: light.salon
+    service: light.turn_off
+  - data: {}
+    entity_id: light.cuisine_2
+    service: light.turn_off
+- id: '1587116194292'
+  alias: Switch double - Droite - Lumière chambre ON
+  description: ''
+  trigger:
+  - device_id: fe0b0bddd8ab48b39236555b6187f405
+    domain: deconz
+    platform: device
+    subtype: right
+    type: remote_button_short_press
+  condition:
+  - condition: state
+    entity_id: light.chambre
+    state: 'off'
+  action:
+  - data: {}
+    entity_id: light.chambre
+    service: light.turn_on
+- id: '1587116252985'
+  alias: Switch double - Droite - Lumière chambre OFF
+  description: ''
+  trigger:
+  - device_id: fe0b0bddd8ab48b39236555b6187f405
+    domain: deconz
+    platform: device
+    subtype: right
+    type: remote_button_short_press
+  condition:
+  - condition: state
+    entity_id: light.chambre
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: light.chambre
+    service: light.turn_off
+- id: '1587173140270'
+  alias: LIT ALL OFF SWITCH
+  description: ''
+  trigger:
+  - device_id: 2d2ab0de7f5f4b338bcc97425cd73d32
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_short_press
+  condition: []
+  action:
+  - entity_id: all
+    service: light.turn_off
+  - data: {}
+    entity_id: remote.hub_salon
+    service: remote.turn_off
+  - data: {}
+    entity_id: switch.jungle_pc
+    service: switch.turn_off
+- id: '1587290079782'
+  alias: LIT DOUBLE TAP
+  description: Double cliique sur le bouton lit rallume l'appart
+  trigger:
+  - device_id: 2d2ab0de7f5f4b338bcc97425cd73d32
+    domain: deconz
+    platform: device
+    subtype: turn_on
+    type: remote_button_double_press
+  condition: []
+  action:
+  - data: {}
+    service: script.scene_chambre_on
+  - data: {}
+    entity_id: light.cuisine_2
+    service: light.turn_on
+  - data: {}
+    entity_id: switch.jungle_pc
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.harmony_vinyle
+    service: switch.turn_on

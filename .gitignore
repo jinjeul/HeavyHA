@@ -9,6 +9,9 @@
 !automations/**
 !automations/**/*
 !automations/**/*/*.yaml
+automations/**/*/*.yaml.old
+*.yaml.old
+automations/alertes/mobileapp/
 packages/package_test.yaml
 secrets.yaml
 known_devices.yaml
@@ -19,3 +22,4 @@ automations/workshop/*.yaml
 automations/workshop/*.test
 packages/package_workshop.yaml
 groups/workshop.yaml
+automations/alarme/automation_alarmes_holiday.yaml

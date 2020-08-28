@@ -2,7 +2,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     to: 'home'
   condition:
     condition: numeric_state
@@ -15,12 +15,8 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: device_tracker.jungle3t_wifi
+    entity_id: device_tracker.jungle8_wifi
     to: 'not_home'
-#    condition:
-#      condition: template
-#        # si changement etat porte il y a moins de 5 minutes
-#      value_template: '{{(as_timestamp(now())-as_timestamp(states.binary_sensor.door_window_sensor_158d00019fd4b5.last_updated)) < 300 }}'
   action:
     service: light.turn_off
     entity_id: all
@@ -35,12 +31,6 @@
   action:
     service: light.turn_off
     entity_id: all
-#    data:
-#      entity_id:
-#        - group.lumieres_home
-#        - light.vinyles_strip
-#        - light.lampe_bureau
-#        - light.bureau_strip
 - alias: 'Lumières Appartement ON on double jungletap'
   initial_state: 'on'
   trigger:
@@ -130,7 +120,7 @@
     to: 'on'
   condition:
     - condition: state
-      entity_id: device_tracker.jungle3t_wifi
+      entity_id: device_tracker.jungle8_wifi
       state: 'home'
   action:
     service: light.turn_on

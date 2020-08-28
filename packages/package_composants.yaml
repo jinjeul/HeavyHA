@@ -24,8 +24,6 @@ device_tracker:
     interval_seconds: 10
     new_device_defaults:
       track_new_devices: False
-ifttt:
-  key: !secret ifttt_webhooks_key
 sensor:
   - platform: command_line
     name: "Download Grafana - temps"
@@ -33,16 +31,12 @@ sensor:
   - platform: command_line
     name: "Download Grafana - conso"
     command: !secret cmd_get_grafana_temp
-#  - platform: haveibeenpwned
-#    email: 
-#      - !secret email_1
-#      - !secret email_2
-  - platform: mqtt_room
-    device_id: !secret junglenut_id
-    state_topic: "room_presence"
-    name: 'JungleNUT'
-    timeout: 5
-    away_timeout: 60
+#  - platform: mqtt_room
+#    device_id: !secret junglenut_id
+#    state_topic: "room_presence"
+#    name: 'JungleNUT'
+#    timeout: 5
+#    away_timeout: 60
   - platform: worldclock
     time_zone: Europe/Paris
     name: France
@@ -99,31 +93,6 @@ sensor:
       radiateur_salon_on_today_view:
         unit_of_measurement: 'Heures'
         value_template: '{{ states.sensor.radiateur_salon_on_today.state }}' 
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - mac: !secret xiaomi_gateway_mac
-      key: !secret xiaomi_gateway_key
-      host: !secret xiaomi_gateway_ip
-notify:
-  - name: pushbullet_3t
-    platform: pushbullet
-    api_key: !secret pushbullet_api
-  - name: gmail_smtp
-    platform: smtp
-    server: smtp.gmail.com
-    port: 587
-    timeout: 15
-    sender: !secret gmail_user
-    starttls: 1
-    username: !secret gmail_user
-    password: !secret gmail_pass
-    recipient: !secret gmail_user
-binary_sensor:
-  - platform: trend
-    sensors:
-      gmail_new:
-        entity_id: sensor.gmail_imap
 switch:
   - platform: command_line
     switches:
@@ -155,31 +124,6 @@ script:
           transition: 10
 influxdb:
   host: localhost
-  include:
-    entities:
-      - sensor.temperature_158d0001f52004
-      - sensor.multisens_sdb_temperature
-      - sensor.temperature_158d0002273c15
-      - sensor.releve_consommation_wh
-      - sensor.temperature_158d0002272ffb
-      - sensor.humidity_158d0002272ffb
-      - sensor.temperature_158d00036c18d1
-      - sensor.humidity_158d00036c18d1
-      - sensor.ws_temperature_moyenne
-      - sensor.ws_humidite_moyenne
-      - sensor.ws_temperature_moyenne_espflora
-      - sensor.ws_humidite_moyenne_espflora
-#      - sensor.temperature_num_1
-#      - sensor.humidite_num_1
-#      - sensor.luminosite_num_1
-#      - sensor.conductivite_num_1
-#      - sensor.temperature_num_2
-#      - sensor.humidite_num_2
-#      - sensor.luminosite_num_2
-#      - sensor.conductivite_num_2
-      - sensor.humidity_158d0002273c15
-      - sensor.humidity_158d0001f52004
-      - sensor.multisens_sdb_humidity
 camera:
   - platform: local_file
     name: Grafana_temperature
@@ -189,16 +133,16 @@ camera:
     file_path: !secret  grafana_path_conso
 meteo_france:
   - city: !secret city_name
-#    monitored_conditions:
-#      - temperature
-#      - weather
-#      - wind_speed
-#      - uv
-#      - next_rain
-#      - freeze_chance
-#      - rain_chance
-#      - snow_chance
-#      - thunder_chance
-#deconz:
-#  host: !secret junglenas_ip
-#  port: !secret deconz_port
+#nextcloud:
+#  - url: !secret nextcloud_url
+#    username: !secret nextcloud_username
+#    password: !secret nextcloud_password
+notify:
+- name: gotify_1
+  platform: rest
+  resource: !secret gotify_url
+  method: POST_JSON
+  headers: 
+    X-Gotify-Key: !secret gotify_key
+  message_param_name: message
+  title_param_name: title

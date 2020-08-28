@@ -6,7 +6,7 @@ climate:
   - platform: generic_thermostat
     name: Salon
     heater: switch.radiateur_salon
-    target_sensor: sensor.temperature_158d0001f52004
+    target_sensor: sensor.temperature_16
     min_temp: 17
     max_temp: 24
     target_temp: 16
@@ -43,8 +43,10 @@ switch:
   - platform: command_line
     switches:
       lumiere_bureau:
-        command_on: !secret 433_1_on_pi
-        command_off: !secret 433_1_off_pi
+        command_on: ''
+        command_off: ''
+        #command_on: !secret 433_1_on_pi
+        #command_off: !secret 433_1_off_pi
 cover:
   - platform: command_line
     covers:

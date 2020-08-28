@@ -17,7 +17,7 @@ homeassistant:
   packages: !include_dir_named packages
   
 http:
-  base_url: !secret ha_url
+#  base_url: !secret ha_url
   
 recorder:
   purge_keep_days: 5
@@ -40,7 +40,7 @@ automation: !include automations.yaml
 automation old: !include_dir_merge_list automations/
 
 frontend:
-  themes: !include themes.yaml
+  themes: !include_dir_merge_named themes/
 
 ####################################################################################
 #                                                                                  #
@@ -81,8 +81,6 @@ history:
   exclude:
     entities:
       - sensor.alarm_time
-      - sensor.breaches_contactjunglemanfr
-      - sensor.breaches_mikaelboulogmailcom
       - sensor.date
       - sensor.finlande
       - sensor.france
